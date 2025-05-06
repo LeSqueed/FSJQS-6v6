@@ -1,2 +1,4 @@
-/settings.txt
 /workshop.txt
+/.vscode
+/.idea
+/.DS_Store
