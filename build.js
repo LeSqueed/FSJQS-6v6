@@ -60,7 +60,7 @@ async function generateWorkshop() {
 
 (async () => {
   try {
-    const newVersion = process.argv[2]; // Get version from command-line arguments
+    const newVersion = process.argv[2];
     await updateVersion(newVersion);
     await generateWorkshop();
 
