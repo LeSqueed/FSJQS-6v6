@@ -1,0 +1,29 @@
+{
+  "name": "fsjqs-6v6",
+  "version": "1.15.91",
+  "description": "FSJQS was based on the [6v6 Adjustments](https://github.com/6v6-Adjustments/6v6-adjustments), but all new additions were done in the workshop itself.\r This is an attempt to convert it back to a maintainable project using opy. \r Due to challenges of updating their code to work with the changes already made in the workshop itself I've decided to restart with a fresh decompile from Overwatch's Workshop code. This is very much still a work in progress as I am moving parts over to their own files from a massive main.opy. Referencing both the original source code and the changes made in the workshop itself.",
+  "keywords": [
+    "Overwatch",
+    "Workshop",
+    "FSJQS",
+    "6v6"
+  ],
+  "publisher": "LeSqueed",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "node build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeSqueed/FSJQS-6v6.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/LeSqueed/FSJQS-6v6/issues"
+  },
+  "homepage": "https://github.com/LeSqueed/FSJQS-6v6#readme",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
+}
