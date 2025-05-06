@@ -6258,3 +6258,4 @@ rule ("[ashe/dynamite.opy]: Decreased dynamite damage by healing until timeout o
         Set Player Variable(Victim, Ashe_Dynamite_Healing_ID, Null);
     }
 }
+

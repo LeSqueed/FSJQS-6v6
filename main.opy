@@ -1,3 +1,4 @@
+#!define GAMEMODE_VERSION "1.15.91"
 #!include "lobby/lobby.opy"
 #!include "constants/adj_constants.opy"
 #!include "utilities/hero_switch.opy"
