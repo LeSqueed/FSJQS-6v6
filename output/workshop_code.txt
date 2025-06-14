@@ -556,9 +556,7 @@ rule ("[utilities/custom_hp.opy]: clearCustomHp()") {
     actions {
         Remove All Health Pools From Player(Event Player);
         Wait(0.016, Ignore Condition);
-        "DO NOT REMOVE THIS LINE"
         Set Max Health(Event Player, 99.999);
-        "DO NOT REMOVE THIS LINE"
         Wait(0.016, Ignore Condition);
         Set Max Health(Event Player, 100);
     }
@@ -571,27 +569,27 @@ rule ("[utilities/custom_hp.opy]: applyCustomHp()") {
     }
     actions {
         Set Player Variable At Index(Event Player, custom_hp_pvar, 3, 0);
-        "loop MAX_HP_ITER_COUNT times if hp is incorrect"
         While(And(Or(Or(Compare(Absolute Value(Subtract(Max Health Of Type(Event Player, Health), First Of((Event Player).custom_hp_pvar))), >, 0.01), Compare(Absolute Value(Subtract(Max Health Of Type(Event Player, Armor), Value In Array((Event Player).custom_hp_pvar, 1))), >, 0.01)), Compare(Absolute Value(Subtract(Max Health Of Type(Event Player, Shields), Value In Array((Event Player).custom_hp_pvar, 2))), >, 0.01)), Compare(Value In Array((Event Player).custom_hp_pvar, 3), <, 10)));
             Set Healing Received(Event Player, 0);
-            Set Player Health(Event Player, 1);
-            Add Health Pool To Player(Event Player, Health, 1, True, True);
-            Add Health Pool To Player(Event Player, Armor, 1, True, True);
-            Add Health Pool To Player(Event Player, Shields, 1, True, True);
-            Set Status(Event Player, Null, Invincible, 999999986991104);
-            Remove All Health Pools From Player(Event Player);
-            "wait(0.064)"
+            Set Status(Event Player, Null, Invincible, 9999);
+            Set Max Health(Event Player, 1);
+            Set Player Health(Event Player, 1.0);
             Wait(0.016, Ignore Condition);
-            Wait Until(Compare(Max Health(Event Player), <=, 1), 1);
-            "Apply custom health pool to player"
+            Remove All Health Pools From Player(Event Player);
+            Wait(0.016, Ignore Condition);
+            Wait Until(And(Compare(Max Health Of Type(Event Player, Armor), <, 1.0), Compare(Max Health Of Type(Event Player, Shields), <, 1.0)), 1.0);
             If(Compare(First Of((Event Player).custom_hp_pvar), >, 0));
-                Add Health Pool To Player(Event Player, Health, Max(1, Subtract(First Of((Event Player).custom_hp_pvar), 1)), True, True);
+                "Inlined calculation for target_normal_hp_percentage:\neventPlayer._hp_health / max(MIN_HP, eventPlayer.getMaxHealthOfType(Health.NORMAL))"
+                Set Max Health(Event Player, Max(1, Divide(First Of((Event Player).custom_hp_pvar), Max(1.0, Max Health Of Type(Event Player, Health)))));
+            Else;
+                Set Max Health(Event Player, 1);
             End;
+            Wait(0.016, Ignore Condition);
             If(Compare(Value In Array((Event Player).custom_hp_pvar, 1), >, 0));
-                Add Health Pool To Player(Event Player, Armor, Max(1, Value In Array((Event Player).custom_hp_pvar, 1)), True, True);
+                Add Health Pool To Player(Event Player, Armor, Max(1.0, Value In Array((Event Player).custom_hp_pvar, 1)), True, True);
             End;
             If(Compare(Value In Array((Event Player).custom_hp_pvar, 2), >, 0));
-                Add Health Pool To Player(Event Player, Shields, Max(1, Value In Array((Event Player).custom_hp_pvar, 2)), True, True);
+                Add Health Pool To Player(Event Player, Shields, Max(1.0, Value In Array((Event Player).custom_hp_pvar, 2)), True, True);
             End;
             Set Healing Received(Event Player, 100);
             Heal(Event Player, Null, 999999986991104);

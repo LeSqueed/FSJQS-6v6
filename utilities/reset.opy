@@ -1,33 +1,16 @@
-#!mainFile "../main.opy"
-
-playervar overhealth_check
-playervar balance_change_check
-playervar macro_pvar
-playervar DamageRecieved
-playervar MoveSpeed
-
-subroutine resetHero
-subroutine resetStats
-subroutine resetStatuses
-subroutine disableAllAbilities
-subroutine enableAllAbilities
-
-#!include "utilities/custom_hp.opy"
-#!include "passives/tank/ult_charge.opy"
-#!include "utilities/hero_init.opy"
-
 def resetHero():
     @Name "[utilities/reset.opy]: resetHero()"
     
     clearCustomHp()
     disableAllAbilities()
     resetStats()
-    async(resetUltCharge, AsyncBehavior.RESTART)
+    resetUltCharge()
     enableAllAbilities()
     eventPlayer.hero_initialized = false
 
+
 def enableAllAbilities():
-    @Name "[utilities/hero_reset.opy]: enableAllAbilities()"
+    @Name "[utilities/reset.opy]: enableAllAbilities()"
     
     eventPlayer.allowButton(Button.PRIMARY_FIRE)
     eventPlayer.allowButton(Button.SECONDARY_FIRE)
@@ -51,7 +34,7 @@ def enableAllAbilities():
 
 
 def disableAllAbilities():
-    @Name "[utilities/hero_reset.opy]: disableAllAbilities()"
+    @Name "[utilities/reset.opy]: disableAllAbilities()"
     
     eventPlayer.disallowButton(Button.PRIMARY_FIRE)
     eventPlayer.disallowButton(Button.SECONDARY_FIRE)
@@ -75,7 +58,7 @@ def disableAllAbilities():
 
 
 def resetStats():
-    @Name "[utilities/hero_reset.opy]: resetStats()"
+    @Name "[utilities/reset.opy]: resetStats()"
     
     eventPlayer.macro_pvar[0] = 1
     eventPlayer.setDamageDealt(100 * eventPlayer.macro_pvar[0])
@@ -103,7 +86,7 @@ def resetStats():
 
 
 def resetStatuses():
-    @Name "[utilities/hero_reset.opy]: resetStatuses()"
+    @Name "[utilities/reset.opy]: resetStatuses()"
     
     eventPlayer.clearStatusEffect(Status.ASLEEP)
     eventPlayer.clearStatusEffect(Status.BURNING)
@@ -116,8 +99,8 @@ def resetStatuses():
     eventPlayer.clearStatusEffect(Status.STUNNED)
     eventPlayer.clearStatusEffect(Status.UNKILLABLE)
 
-    
-rule "[utilities/hero_reset.opy]: Stop DoT/HoT on death":
+
+rule "[utilities/reset.opy]: Stop DoT/HoT on death":
     @Event playerDied
     
     eventPlayer.stopAllDamageOverTime()
