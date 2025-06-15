@@ -1,9 +1,11 @@
-#!include "lobby/lobby.opy"
+#!mainFile "../main.opy"
 
-#!include "constants/global.opy"
-#!include "constants/player.opy"
+#!include "../lobby/lobby.opy"
 
-#Subroutine names
+#!include "../constants/global.opy"
+#!include "../constants/player.opy"
+
+# Subroutine names
 subroutine clearCustomHp 0
 subroutine applyCustomHp 1
 subroutine resetHero 2
@@ -64,22 +66,22 @@ subroutine EchoCopy 56
 subroutine initFreja 57
 subroutine executeUppercut 58
 
-#!include "utilities/hero_init.opy"
-#!include "utilities/global.opy"
-#!include "utilities/custom_hp.opy"
-#!include "utilities/hero_switch.opy"
-#!include "utilities/anti_crash.opy"
-#!include "utilities/hud.opy"
-#!include "utilities/utilities.opy"
-#!include "utilities/role_lock.opy"
-#!include "passives/healing.opy"
-#!include "passives/tank/ult_charge.opy"
-#!include "passives/tank/knockback.opy"
-#!include "passives/damage/damage_passive.opy"
-#!include "passives/damage/healthpack.opy"
-#!include "debug_mode.opy"
+#!include "../utilities/hero_init.opy"
+#!include "../utilities/global.opy"
+#!include "../utilities/custom_hp.opy"
+#!include "../utilities/hero_switch.opy"
+#!include "../utilities/anti_crash.opy"
+#!include "../utilities/hud.opy"
+#!include "../utilities/utilities.opy"
+#!include "../utilities/role_lock.opy"
+#!include "../passives/healing.opy"
+#!include "../passives/tank/ult_charge.opy"
+#!include "../passives/tank/knockback.opy"
+#!include "../passives/damage/damage_passive.opy"
+#!include "../passives/damage/healthpack.opy"
+#!include "../debug_mode.opy"
 
-#!include "heroes/init.opy"
+#!include "../heroes/init.opy"
 
 rule "player died":
     @Event playerDied
