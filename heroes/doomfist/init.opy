@@ -1,10 +1,13 @@
 #!include "heroes/doomfist/meteor_strike.opy"
 #!include "heroes/doomfist/punch.opy"
 #!include "heroes/doomfist/powerblock.opy"
+#!include "heroes/doomfist/uppercut.opy"
+#!include "heroes/doomfist/dps.opy"
+#!include "heroes/doomfist/seismic_slam.opy"
+#!include "heroes/doomfist/hand_cannon.opy"
 
 def initDoomfist():
     @Name "[doomfist/init.opy]: initDoomfist()"
-    @Disabled
     
     eventPlayer.custom_hp_pvar[0] = 450
     eventPlayer.custom_hp_pvar[1] = 0
@@ -15,18 +18,20 @@ def initDoomfist():
     eventPlayer.macro_pvar[0] = 0.8
     eventPlayer.setDamageDealt(100 * eventPlayer.macro_pvar[0])
     eventPlayer.max_health_scaler = 0.625
+    eventPlayer.punched_victims = []
+    eventPlayer.wall_impacted_victims = []
+    eventPlayer.uppercut_victims = []
+    eventPlayer.is_using_uppercut = false
     eventPlayer.hero_initialized = true
 
-rule "[doomfist/init.opy]: Correct Seismic Slam damage":
-    @Event playerDealtDamage
-    @Hero doomfist
-    @Condition eventAbility == Button.ABILITY_1
-    
-    damage(victim, attacker, (eventDamage / eventPlayer.macro_pvar[0] * 0.8 - eventDamage) / eventPlayer.macro_pvar[0])
 
-rule "[doomfist/init.opy]: Correct Hand Cannon damage":
-    @Event playerDealtDamage
-    @Hero doomfist
-    @Condition eventAbility == Button.PRIMARY_FIRE
+rule "[doomfist/init.opy]: Clean up Doomfist":
+    @Event eachPlayer
+    @Condition eventPlayer.hero_setup != Hero.DOOMFIST
     
-    damage(victim, attacker, (eventDamage / eventPlayer.macro_pvar[0] * 0.91 - eventDamage) / eventPlayer.macro_pvar[0])
+    eventPlayer.punched_victims = null
+    eventPlayer.wall_impacted_victims = null
+    eventPlayer.uppercut_victims = null
+    eventPlayer.is_using_uppercut = null
+    eventPlayer.doom_uppercut_shields = null
+    eventPlayer.number_of_victims_uppercut = null

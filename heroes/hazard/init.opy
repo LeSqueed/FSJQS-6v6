@@ -1,6 +1,7 @@
 #!include "heroes/hazard/spike_guard.opy"
 #!include "heroes/hazard/violent_leap.opy"
 #!include "heroes/hazard/downpour.opy"
+#!include "heroes/hazard/thorn_wall.opy"
 
 def initHazard():
     @Name "[hazard/init.opy]: initHazard()"
@@ -22,3 +23,11 @@ rule "[hazard/init.opy]: Increase Hazard melee, wall, ultimate damage":
     @Condition eventAbility in [Button.ABILITY_2, Button.ULTIMATE, Button.MELEE] == true
     
     damage(victim, attacker, (eventDamage / eventPlayer.macro_pvar[0] - eventDamage) / eventPlayer.macro_pvar[0])
+
+rule "[hazard/init.opy]: Clean up Hazard":
+    @Event eachPlayer
+    @Condition eventPlayer.hero_setup != Hero.HAZARD
+    
+    eventPlayer.hazard_bubble_target = null
+    destroyInWorldText(eventPlayer.hazard_targeting_hud)
+    eventPlayer.Hazard_Bubble_Allowed = null

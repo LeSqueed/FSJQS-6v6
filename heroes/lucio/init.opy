@@ -1,3 +1,5 @@
+#!include "heroes/lucio/ampitup.opy"
+
 def initLucio():
     @Name "[lucio/init.opy]: initLucio()"
     

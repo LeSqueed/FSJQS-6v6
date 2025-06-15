@@ -1,4 +1,5 @@
 #!include "heroes/kiriko/swift_step.opy"
+#!include "heroes/kiriko/protection_suzu.opy"
 
 def initKiriko():
     @Name "[kiriko/init.opy]: initKiriko()"

@@ -25,8 +25,9 @@ rule "[doomfist/punch.opy]: Find wall impacted victims":
     victim.clearStatusEffect(Status.STUNNED)
     #OW1 single punch victim
     if len(attacker.punched_victims) == 1:
-        damage(victim, attacker, (eventDamage / eventPlayer.macro_pvar[0] - eventDamage) / eventPlayer.macro_pvar[0])
+        damage(victim, attacker, (eventDamage / attacker.macro_pvar[0] - eventDamage) / attacker.macro_pvar[0])
     else:
+        # Multiple punch victims, do nothing special
 
 
 rule "[doomfist/punch.opy]: Find punched victims":
@@ -38,5 +39,6 @@ rule "[doomfist/punch.opy]: Find punched victims":
     attacker.punched_victims.append(victim)
     #OW1 single punch victim
     if len(attacker.punched_victims) == 1:
-        damage(victim, attacker, (eventDamage / eventPlayer.macro_pvar[0] - eventDamage) / eventPlayer.macro_pvar[0])
+        damage(victim, attacker, (eventDamage / attacker.macro_pvar[0] - eventDamage) / attacker.macro_pvar[0])
     else:
+        # Multiple punch victims, do nothing special

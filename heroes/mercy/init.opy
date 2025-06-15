@@ -1,4 +1,6 @@
 #!include "heroes/mercy/valkyrie.opy"
+#!include "heroes/mercy/resurrect.opy"
+#!include "heroes/mercy/imbue.opy"
 
 def initMercy():
     @Name "[mercy/init.opy]: initMercy()"

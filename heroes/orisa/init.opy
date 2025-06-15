@@ -2,6 +2,7 @@
 #!include "heroes/orisa/terra_surge.opy"
 #!include "heroes/orisa/fortify.opy"
 #!include "heroes/orisa/spin.opy"
+#!include "heroes/orisa/heat.opy"
 
 def initOrisa():
     @Name "[orisa/init.opy]: initOrisa()"

@@ -40,3 +40,10 @@ rule "[lifeweaver/dash.opy]: Silly charge Bug fix":
     @Condition eventPlayer.Lifeweaver_dash_charges > 2
     
     eventPlayer.Lifeweaver_dash_charges = 2
+
+rule "[lifeweaver/dash.opy]: Silly charge Bug fix 2":
+    @Event eachPlayer
+    @Hero lifeweaver
+    @Condition eventPlayer.Lifeweaver_dash_charges < 0
+    
+    eventPlayer.Lifeweaver_dash_charges = 0

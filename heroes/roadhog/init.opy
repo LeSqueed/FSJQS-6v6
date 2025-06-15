@@ -1,6 +1,7 @@
 #!include "heroes/roadhog/pigpen.opy"
 #!include "heroes/roadhog/breather.opy"
 #!include "heroes/roadhog/wholehog.opy"
+#!include "heroes/roadhog/primary.opy"
 
 def initRoadhog():
     @Name "[roadhog/init.opy]: initRoadhog()"

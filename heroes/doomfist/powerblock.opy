@@ -7,11 +7,11 @@ rule "[doomfist/powerblock.opy]: Reduce Power Block active duration":
     wait(1.75)
     eventPlayer.forceButtonPress(Button.ABILITY_2)
 
-rule "[doomfist/meteorstrike.opy] Doomfist ult remove self healing":
+
+rule "[doomfist/powerblock.opy]: Cancel Powerblock animation":
     @Event eachPlayer
     @Hero doomfist
-    @Condition eventPlayer.isUsingUltimate() == true
+    @Condition eventPlayer.isUsingAbility2() == true
     
-    eventPlayer.setHealingDealt(0)
-    waitUntil(not eventPlayer.isUsingUltimate(), 99999)
-    eventPlayer.setHealingDealt(100)
+    wait(0.15)
+    eventPlayer.setAbility2Enabled(false)

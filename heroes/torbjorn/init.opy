@@ -1,3 +1,5 @@
+#!include "heroes/torbjorn/turret.opy"
+
 def initTorbjorn():
     @Name "[torbjorn/init.opy]: initTorbjorn()"
     
