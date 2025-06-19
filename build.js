@@ -7,6 +7,7 @@ const colors = require('colors');
 const SOURCE_DIR = path.resolve(__dirname) + path.sep;
 const MAIN_FILE = path.join(SOURCE_DIR, 'main.opy');
 const PACKAGE_FILE = path.join(SOURCE_DIR, 'package.json');
+const LOBBY_FILE = path.join(SOURCE_DIR, 'lobby/lobby.opy');
 const OUTPUT_FILE = path.join(SOURCE_DIR, 'workshop_code.txt');
 
 async function updateVersion(newVersion) {
@@ -18,12 +19,12 @@ async function updateVersion(newVersion) {
   fs.writeFileSync(PACKAGE_FILE, JSON.stringify(packageData, null, 2));
   console.log(colors.green(`Updated version in package.json to ${newVersion}`));
 
-  // Update main.opy
-  let mainFileText = fs.readFileSync(MAIN_FILE, 'utf8');
-  const versionRegex = /#!define GAMEMODE_VERSION \"(.*?)\"/;
-  mainFileText = mainFileText.replace(versionRegex, `#!define GAMEMODE_VERSION \"${newVersion}\"`);
-  fs.writeFileSync(MAIN_FILE, mainFileText);
-  console.log(colors.green(`Updated version in main.opy to ${newVersion}`));
+  // Update lobby.opy mode name
+  let lobbyFileText = fs.readFileSync(LOBBY_FILE, 'utf8');
+  const modeNameRegex = /"modeName": "6v6 Adjustments \+ Realth [\d\.]+"/;
+  lobbyFileText = lobbyFileText.replace(modeNameRegex, `"modeName": "6v6 Adjustments + Realth ${newVersion}"`);
+  fs.writeFileSync(LOBBY_FILE, lobbyFileText);
+  console.log(colors.green(`Updated version in lobby.opy to ${newVersion}`));
 }
 
 async function generateWorkshop() {

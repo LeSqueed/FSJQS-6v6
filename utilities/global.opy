@@ -1,4 +1,3 @@
-#!mainFile "../main.opy"
 
 rule "[utilities/global.opy] Initialize global variables":
     DEBUG_MODE = createWorkshopSettingBool("Dev Tools", "debug mode", true)
@@ -9,3 +8,15 @@ rule "[utilities/global.opy] Initialize global variables":
     ANTI_CRASH_ACTIVATE_PERCENT = createWorkshopSettingInt("Anti Crash", "Activation Percent", 200, 0, 250)
     ANTI_CRASH_HOLD_TIME = createWorkshopSettingFloat("Anti Crash", "Activation Hold Time", 5.5, 0, 20)
     ANTI_CRASH_DEACTIVATE_PERCENT = createWorkshopSettingInt("Anti Crash", "Deactivation Percent", 110, 0, 250)
+
+
+rule "[utilities/global.opy] Initialize player variables":
+    @Event eachPlayer
+    
+    eventPlayer.within_shout_radius = false
+    eventPlayer.DamageRecieved = 100
+    eventPlayer.MoveSpeed = 100
+    eventPlayer.Echo_Copy = false
+    eventPlayer.Within_speed_radius = false
+
+
