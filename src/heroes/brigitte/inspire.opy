@@ -1,5 +1,3 @@
-#!mainFile "../../../main.opy"
-
 rule "[brigitte/inspire.opy]: Increase Inspire self healing":
     @Event playerDealtHealing
     @Hero brigitte

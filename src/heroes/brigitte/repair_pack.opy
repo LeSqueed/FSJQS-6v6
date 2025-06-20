@@ -1,5 +1,3 @@
-#!mainFile "../../../main.opy"
-
 rule "[brigitte/repair_pack.opy]: Increase Repair Pack healing":
     @Event playerDealtHealing
     @Hero brigitte

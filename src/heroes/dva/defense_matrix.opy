@@ -1,5 +1,3 @@
-#!mainFile "../../../main.opy"
-
 rule "[dva/defense_matrix.opy]: Increase Defense Matrix cooldown":
     @Event eachPlayer
     @Hero dva

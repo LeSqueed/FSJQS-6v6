@@ -1,10 +1,9 @@
-#!mainFile "../../../main.opy"
+#!mainFile "../../main.opy"
 
-#!include "reconfigure.opy"
-
-playervar custom_hp_pvar
 playervar Bastion_healing_id
 playervar sentry_healing_id
+
+#!include "heroes/bastion/reconfigure.opy"
 
 def initBastion():
     @Name "[bastion/init.opy]: initBastion()"

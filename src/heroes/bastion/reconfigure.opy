@@ -1,8 +1,3 @@
-#!mainFile "../../../main.opy"
-
-playervar MoveSpeed
-playervar sentry_healing_id
-
 rule "[bastion/reconfigure.opy]: Reduce assault form damage and movement speed":
     @Event eachPlayer
     @Hero bastion

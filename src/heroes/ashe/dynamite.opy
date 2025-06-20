@@ -1,8 +1,3 @@
-#!mainFile "../../../main.opy"
-
-playervar Ashe_dynamite_hit
-playervar Ashe_Dynamite_Healing_ID
-
 rule "[ashe/dynamite.opy]: Decreased dynamite damage by healing until timeout or cleansed = 85 damage":
     @Event playerDealtDamage
     @Hero ashe

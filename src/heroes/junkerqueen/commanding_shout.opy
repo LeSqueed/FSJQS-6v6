@@ -1,0 +1,26 @@
+rule "[junkerqueen/commanding_shout.opy]: Prepare Commanding Shout ally tracking":
+    @Event eachPlayer
+    @Hero junkerQueen
+    @Condition eventPlayer.isUsingAbility1() == true
+    
+    getPlayersInRadius(eventPlayer, 15.5, eventPlayer.getTeam(), LosCheck.SURFACES).exclude(eventPlayer).within_shout_radius = true
+
+rule "[junkerqueen/commanding_shout.opy]: increase overhealth for allies":
+    @Event eachPlayer
+    @Condition eventPlayer.within_shout_radius == true
+    
+    #eventPlayer.MoveSpeed = eventPlayer.MoveSpeed + 3.8
+    #eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
+    eventPlayer.addHealthPool(Health.NORMAL, 9.5, false, false)
+    eventPlayer.Junkerqueen_overhealth = getLastCreatedHealthPool()
+    wait(2.9)
+    #eventPlayer.setMoveSpeed(100 * eventPlayer._current_speed_scalar * 1.35)
+    eventPlayer.MoveSpeed += 30
+    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
+    wait(1.9)
+    #eventPlayer.setMoveSpeed(100 * eventPlayer._current_speed_scalar)
+    eventPlayer.MoveSpeed -= 30
+    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
+    removeHealthPool(eventPlayer.Junkerqueen_overhealth)
+    eventPlayer.Junkerqueen_overhealth = null
+    eventPlayer.within_shout_radius = false

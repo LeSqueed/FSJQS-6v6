@@ -1,21 +1,18 @@
-#!mainFile "../../../main.opy"
+#!mainFile "../../main.opy"
 
-#!include "boosters.opy"
-#!include "hp.opy"
-#!include "defense_matrix.opy"
-
-playervar custom_hp_pvar
-playervar macro_pvar
-playervar max_health_scaler
 playervar self_destruct_charge
+
+#!include "heroes/dva/boosters.opy"
+#!include "heroes/dva/hp.opy"
+#!include "heroes/dva/defense_matrix.opy"
 
 def initDva():
     @Name "[dva/init.opy]: initDva()"
     
     eventPlayer.ult_charge_pvar[1] = 1540
     removeTankPassive()
-    eventPlayer.macro_pvar[0] = 0.91
-    eventPlayer.setDamageDealt(100 * eventPlayer.macro_pvar[0])
+    eventPlayer._base_damage_scalar = 0.91
+    eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer.self_destruct_charge = 0
     eventPlayer.max_health_scaler = 0.857
     waitUntil(not eventPlayer.isInAlternateForm(), 999999986991104)
@@ -30,7 +27,7 @@ rule "[dva/init.opy]: Reduce Micro Missiles damage":
     @Hero dva
     @Condition eventAbility == Button.ABILITY_2
     
-    heal(victim, null, eventDamage - 0.75 * eventDamage / eventPlayer.macro_pvar[0])
+    heal(victim, null, eventDamage - 0.75 * eventDamage / eventPlayer._base_damage_scalar)
 
 
 rule "[dva/init.opy]: Increase D.va other forms of damage":
@@ -38,7 +35,7 @@ rule "[dva/init.opy]: Increase D.va other forms of damage":
     @Hero dva
     @Condition eventAbility in [Button.MELEE, Button.ULTIMATE] == true
     
-    damage(victim, attacker, (eventDamage / eventPlayer.macro_pvar[0] - eventDamage) / eventPlayer.macro_pvar[0])
+    damage(victim, attacker, (eventDamage / eventPlayer._base_damage_scalar - eventDamage) / eventPlayer._base_damage_scalar)
 
 
 rule "[dva/init.opy]: Force reset ult charge when DVa exits Mech":

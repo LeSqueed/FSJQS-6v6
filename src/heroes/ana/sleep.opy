@@ -1,7 +1,3 @@
-#!mainFile "../../../main.opy"
-
-playervar Ana_Sleepdart_Target
-
 rule "[ana/sleep.opy]: Sleep tanks as long as other heroes":
     @Event playerDealtDamage
     @Hero ana

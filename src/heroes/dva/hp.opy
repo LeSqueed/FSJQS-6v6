@@ -1,5 +1,3 @@
-#!mainFile "../../../main.opy"
-
 rule "[dva/hp.opy]: Correct DVa mech health":
     @Event eachPlayer
     @Condition eventPlayer.hero_setup == Hero.DVA

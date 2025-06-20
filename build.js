@@ -4,27 +4,26 @@ const path = require('node:path');
 const colors = require('colors');
 
 
-const SOURCE_DIR = path.resolve(__dirname) + path.sep;
-const MAIN_FILE = path.join(SOURCE_DIR, 'main.opy');
-const PACKAGE_FILE = path.join(SOURCE_DIR, 'package.json');
+const SOURCE_DIR = path.resolve(__dirname) + path.sep + 'src' + path.sep;
+
 const LOBBY_FILE = path.join(SOURCE_DIR, 'lobby/lobby.opy');
-const OUTPUT_FILE = path.join(SOURCE_DIR, 'workshop_code.txt');
+const MAIN_FILE = path.join(SOURCE_DIR, 'main.opy');
+const OUTPUT_FILE = path.join('output/workshop.txt');
+
 
 async function updateVersion(newVersion) {
   if (!newVersion) return;
 
-  // Update package.json
-  const packageData = JSON.parse(fs.readFileSync(PACKAGE_FILE, 'utf8'));
-  packageData.version = newVersion;
-  fs.writeFileSync(PACKAGE_FILE, JSON.stringify(packageData, null, 2));
-  console.log(colors.green(`Updated version in package.json to ${newVersion}`));
-
-  // Update lobby.opy mode name
   let lobbyFileText = fs.readFileSync(LOBBY_FILE, 'utf8');
-  const modeNameRegex = /"modeName": "6v6 Adjustments \+ Realth [\d\.]+"/;
+  const modeNameRegex = /("modeName":\s*"6v6 Adjustments \+ Realth\s+)[^"]*"/;
   lobbyFileText = lobbyFileText.replace(modeNameRegex, `"modeName": "6v6 Adjustments + Realth ${newVersion}"`);
-  fs.writeFileSync(LOBBY_FILE, lobbyFileText);
-  console.log(colors.green(`Updated version in lobby.opy to ${newVersion}`));
+  if (lobbyFileText.match(modeNameRegex)) {
+      lobbyFileText = lobbyFileText.replace(modeNameRegex, `$1${newVersion}"`);
+      fs.writeFileSync(LOBBY_FILE, lobbyFileText);
+      console.log(colors.green(`Updated version in lobby.opy to ${newVersion}`));
+  } else {
+      console.log(colors.yellow(`Warning: Could not find modeName to update in ${LOBBY_FILE}`));
+  }
 }
 
 async function generateWorkshop() {
@@ -61,7 +60,7 @@ async function generateWorkshop() {
 
 (async () => {
   try {
-    const newVersion = process.argv[2]; // Get version from command-line arguments
+    const newVersion = process.argv[2];
     await updateVersion(newVersion);
     await generateWorkshop();
 

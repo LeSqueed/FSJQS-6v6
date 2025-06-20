@@ -1,22 +1,19 @@
-#!mainFile "../../../main.opy"
+#!mainFile "../../main.opy"
 
-#!include "meteor_strike.opy"
-#!include "punch.opy"
-#!include "powerblock.opy"
-#!include "uppercut.opy"
-#!include "seismic_slam.opy" 
-#!include "hand_cannon.opy"
-#!include "dps.opy"
-
-playervar custom_hp_pvar
-playervar macro_pvar
-playervar max_health_scaler
-playervar is_using_uppercut
 playervar punched_victims
 playervar wall_impacted_victims
 playervar uppercut_victims
+playervar is_using_uppercut
 playervar doom_uppercut_shields
 playervar number_of_victims_uppercut
+
+#!include "heroes/doomfist/meteor_strike.opy"
+#!include "heroes/doomfist/punch.opy"
+#!include "heroes/doomfist/powerblock.opy"
+#!include "heroes/doomfist/uppercut.opy"
+#!include "heroes/doomfist/seismic_slam.opy" 
+#!include "heroes/doomfist/hand_cannon.opy"
+#!include "heroes/doomfist/dps.opy"
 
 def initDoomfist():
     @Name "[doomfist/init.opy]: initDoomfist()"
@@ -27,8 +24,8 @@ def initDoomfist():
     applyCustomHp()
     eventPlayer.ult_charge_pvar[1] = 1750
     removeTankPassive()
-    eventPlayer.macro_pvar[0] = 0.8
-    eventPlayer.setDamageDealt(100 * eventPlayer.macro_pvar[0])
+    eventPlayer._base_damage_scalar = 0.8
+    eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer.max_health_scaler = 0.625
     eventPlayer.punched_victims = []
     eventPlayer.wall_impacted_victims = []

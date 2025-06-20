@@ -1,14 +1,10 @@
-#!mainFile "../../../main.opy"
-
-playervar bash_cooldown
-
 rule "[brigitte/bash.opy]: Correct Shield Bash damage":
     @Event playerDealtDamage
     @Hero brigitte
     @Condition eventPlayer.isFiringSecondaryFire() == true
     @Condition eventAbility == Button.PRIMARY_FIRE
     
-    damage(victim, attacker, (eventDamage / eventPlayer.macro_pvar[0] - eventDamage) / eventPlayer.macro_pvar[0])
+    damage(victim, attacker, (eventDamage / eventPlayer._base_damage_scalar - eventDamage) / eventPlayer._base_damage_scalar)
 
 
 rule "[brigitte/bash.opy]: Track Bash cooldown":

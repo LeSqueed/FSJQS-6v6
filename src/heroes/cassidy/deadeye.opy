@@ -1,5 +1,3 @@
-#!mainFile "../../../main.opy"
-
 rule "[cassidy/deadeye.opy]: Set damage during deadeye":
     @Event eachPlayer
     @Hero cassidy
@@ -7,4 +5,4 @@ rule "[cassidy/deadeye.opy]: Set damage during deadeye":
     
     eventPlayer.setDamageDealt(100)
     waitUntil(not eventPlayer.isUsingUltimate(), 999999986991104)
-    eventPlayer.setDamageDealt(100 * eventPlayer.macro_pvar[0])
+    eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)

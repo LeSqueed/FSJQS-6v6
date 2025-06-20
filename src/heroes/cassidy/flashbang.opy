@@ -1,5 +1,3 @@
-#!mainFile "../../../main.opy"
-
 rule "[cassidy/flashbang.opy] Flashbang stun target for 0.4s":
     @Event playerDealtDamage
     @Hero cassidy
