@@ -3,10 +3,9 @@
 playervar WidowScopeGlint_effect
 playervar Widowmaker_beam_effect
 playervar Widow_maxscope_duration
-playervar Widow_Focus_HUD
 
-#!include "heroes/widowmaker/widows_kiss.opy"
-#!include "heroes/widowmaker/grapple.opy"
+#!include "widows_kiss.opy"
+#!include "grapple.opy"
 
 def initWidowmaker():
     @Name "[widowmaker/init.opy]: initWidowmaker()"

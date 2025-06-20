@@ -3,7 +3,7 @@
 playervar baptiste_balance_change_check
 playervar Baptiste_hud
 
-#!include "heroes/baptiste/regen_burst.opy"
+#!include "regen_burst.opy"
 
 def initBaptiste():
     @Name "[baptiste/init.opy]: initBaptiste()"

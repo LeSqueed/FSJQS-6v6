@@ -1,7 +1,6 @@
 #!mainFile "../../main.opy"
 
 playervar hazard_bubble_target
-playervar hazard_targeting_hud
 playervar Hazard_Downpour_Target
 playervar Hazard_Downpour_effect
 playervar Hazard_Bubble_Allowed
@@ -10,10 +9,10 @@ playervar hazard_bubble_effect
 playervar hazard_bubble_effect2
 playervar hazard_bubble_icon
 
-#!include "heroes/hazard/spike_guard.opy"
-#!include "heroes/hazard/violent_leap.opy"
-#!include "heroes/hazard/downpour.opy"
-#!include "heroes/hazard/thorn_wall.opy"
+#!include "spike_guard.opy"
+#!include "violent_leap.opy"
+#!include "downpour.opy"
+#!include "thorn_wall.opy"
 
 def initHazard():
     @Name "[hazard/init.opy]: initHazard()"
@@ -41,5 +40,5 @@ rule "[hazard/init.opy]: Clean up Hazard":
     @Condition eventPlayer.hero_setup != Hero.HAZARD
     
     eventPlayer.hazard_bubble_target = null
-    destroyInWorldText(eventPlayer.hazard_targeting_hud)
+    destroyInWorldText(eventPlayer._hazard_bubble_target_hud)
     eventPlayer.Hazard_Bubble_Allowed = null

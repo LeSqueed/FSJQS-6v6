@@ -2,11 +2,9 @@
 
 playervar HanzoDrawAura
 playervar Hanzo_Marked_icon
-playervar Hanzo_Marked_effect
-
-#!include "heroes/hanzo/stormbow.opy"
-#!include "heroes/hanzo/stormarrow.opy"
-#!include "heroes/hanzo/mark.opy"
+#!include "stormbow.opy"
+#!include "stormarrow.opy"
+#!include "mark.opy"
 
 def initHanzo():
     @Name "[hanzo/init.opy]: initHanzo()"

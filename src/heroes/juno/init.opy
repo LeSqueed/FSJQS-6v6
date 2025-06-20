@@ -5,7 +5,7 @@ playervar orbital_ray_z
 playervar orbital_ray_final_x
 playervar orbital_ray_final_z
 
-#!include "heroes/juno/orbital_ray.opy"
+#!include "orbital_ray.opy"
 
 def initJuno():
     @Name "[juno/init.opy]: initJuno()"
@@ -19,8 +19,8 @@ def initJuno():
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer._base_healing_scalar = 0.833
     eventPlayer.setHealingDealt(100 * eventPlayer._base_healing_scalar)
-    eventPlayer.MoveSpeed += 9.1
-    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
+    eventPlayer._current_move_speed += 9.1
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     eventPlayer.setAmmo(0, 120)
     eventPlayer.setMaxAmmo(0, 120)
     eventPlayer.hero_initialized = true

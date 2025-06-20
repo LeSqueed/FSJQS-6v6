@@ -14,8 +14,8 @@ rule "[utilities/global.opy] Initialize player variables":
     @Event eachPlayer
     
     eventPlayer.within_shout_radius = false
-    eventPlayer.DamageRecieved = 100
-    eventPlayer.MoveSpeed = 100
+    eventPlayer._current_damage_received = 100
+    eventPlayer._current_move_speed = 100
     eventPlayer.Echo_Copy = false
     eventPlayer.Within_speed_radius = false
 

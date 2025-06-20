@@ -9,18 +9,14 @@ rule "[junkerqueen/commanding_shout.opy]: increase overhealth for allies":
     @Event eachPlayer
     @Condition eventPlayer.within_shout_radius == true
     
-    #eventPlayer.MoveSpeed = eventPlayer.MoveSpeed + 3.8
-    #eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
     eventPlayer.addHealthPool(Health.NORMAL, 9.5, false, false)
     eventPlayer.Junkerqueen_overhealth = getLastCreatedHealthPool()
     wait(2.9)
-    #eventPlayer.setMoveSpeed(100 * eventPlayer._current_speed_scalar * 1.35)
-    eventPlayer.MoveSpeed += 30
-    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
+    eventPlayer._current_move_speed += 30
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     wait(1.9)
-    #eventPlayer.setMoveSpeed(100 * eventPlayer._current_speed_scalar)
-    eventPlayer.MoveSpeed -= 30
-    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
+    eventPlayer._current_move_speed -= 30
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     removeHealthPool(eventPlayer.Junkerqueen_overhealth)
     eventPlayer.Junkerqueen_overhealth = null
     eventPlayer.within_shout_radius = false

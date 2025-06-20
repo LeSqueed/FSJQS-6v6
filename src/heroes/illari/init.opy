@@ -1,6 +1,6 @@
 #!mainFile "../../main.opy"
 
-#!include "heroes/illari/solar_rifle.opy"
+#!include "solar_rifle.opy"
 
 def initIllari():
     @Name "[illari/init.opy]: initIllari()"

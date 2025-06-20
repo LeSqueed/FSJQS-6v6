@@ -7,13 +7,13 @@ playervar is_using_uppercut
 playervar doom_uppercut_shields
 playervar number_of_victims_uppercut
 
-#!include "heroes/doomfist/meteor_strike.opy"
-#!include "heroes/doomfist/punch.opy"
-#!include "heroes/doomfist/powerblock.opy"
-#!include "heroes/doomfist/uppercut.opy"
-#!include "heroes/doomfist/seismic_slam.opy" 
-#!include "heroes/doomfist/hand_cannon.opy"
-#!include "heroes/doomfist/dps.opy"
+#!include "meteor_strike.opy"
+#!include "punch.opy"
+#!include "powerblock.opy"
+#!include "uppercut.opy"
+#!include "seismic_slam.opy" 
+#!include "hand_cannon.opy"
+#!include "dps.opy"
 
 def initDoomfist():
     @Name "[doomfist/init.opy]: initDoomfist()"

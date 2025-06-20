@@ -3,8 +3,8 @@
 playervar Ashe_dynamite_hit
 playervar Ashe_Dynamite_Healing_ID
 
-#!include "heroes/ashe/dynamite.opy"
-#!include "heroes/ashe/viper.opy"
+#!include "dynamite.opy"
+#!include "viper.opy"
 
 def initAshe():
     @Name "[ashe/init.opy]: initAshe()"

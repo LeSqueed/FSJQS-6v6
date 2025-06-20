@@ -1,8 +1,8 @@
 #!mainFile "../../main.opy"
 
-#!include "heroes/cassidy/deadeye.opy"
-#!include "heroes/cassidy/fanthehammer.opy"
-#!include "heroes/cassidy/flashbang.opy"
+#!include "deadeye.opy"
+#!include "fanthehammer.opy"
+#!include "flashbang.opy"
 
 def initCassidy():
     @Name "[cassidy/init.opy]: initCassidy()"

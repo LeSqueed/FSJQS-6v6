@@ -11,16 +11,16 @@ rule "[mauga/overrun.opy]: Overrun logic":
     @Hero mauga
     @Condition eventPlayer.isUsingAbility1() == true
     
-    eventPlayer.MoveSpeed -= 10
-    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
-    eventPlayer.DamageRecieved += 50
-    eventPlayer.setDamageReceived(eventPlayer.DamageRecieved)
+    eventPlayer._current_move_speed -= 10
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
+    eventPlayer._current_damage_received += 50
+    eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
     wait(0.32)
     waitUntil(not eventPlayer.isUsingAbility1() or eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) or eventPlayer.isHoldingButton(Button.JUMP), 2.6)
-    eventPlayer.MoveSpeed += 10
-    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
-    eventPlayer.DamageRecieved -= 50
-    eventPlayer.setDamageReceived(eventPlayer.DamageRecieved)
+    eventPlayer._current_move_speed += 10
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
+    eventPlayer._current_damage_received -= 50
+    eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
 
 
 rule "[mauga/overrun.opy]: Doomfist punch track":

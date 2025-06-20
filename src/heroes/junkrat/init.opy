@@ -1,7 +1,7 @@
 #!mainFile "../../main.opy"
 
-#!include "heroes/junkrat/mayhem.opy"
-#!include "heroes/junkrat/trap.opy"
+#!include "mayhem.opy"
+#!include "trap.opy"
 
 def initJunkrat():
     @Name "[junkrat/init.opy]: initJunkrat()"

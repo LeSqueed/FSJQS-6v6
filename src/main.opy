@@ -1,5 +1,4 @@
 #!include "lobby/lobby.opy"
-
 #!include "constants/global.opy"
 #!include "constants/player.opy"
 
@@ -79,12 +78,3 @@ subroutine executeUppercut 58
 #!include "passives/damage/damage_passive.opy"
 #!include "passives/damage/healthpack.opy"
 #!include "debug_mode.opy"
-
-
-
-rule "player died":
-    @Event playerDied
-    
-    eventPlayer.Hanzo_Marked_icon = null
-    destroyInWorldText(eventPlayer.Hanzo_Marked_effect)
-    eventPlayer.Hanzo_Marked_effect = null

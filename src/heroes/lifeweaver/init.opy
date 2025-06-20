@@ -1,18 +1,14 @@
 #!mainFile "../../main.opy"
 
-playervar Lifeweaver_petal_centre_hud
-playervar Lifeweaver_leap_centre_target
 playervar Lifeweaver_healing_cd
 playervar Lifeweaver_healing_hud
-playervar Lifeweaver_dash_hud
 playervar Lifeweaver_dash_charges
-playervar Lifeweaver_petal_hud
 playervar Lifeweaver_petal_charges
 
-#!include "heroes/lifeweaver/healing.opy"
-#!include "heroes/lifeweaver/petalplatform.opy"
-#!include "heroes/lifeweaver/dash.opy"
-#!include "heroes/lifeweaver/grasp.opy"
+#!include "healing.opy"
+#!include "petalplatform.opy"
+#!include "dash.opy"
+#!include "grasp.opy"
 
 def initLifeweaver():
     @Name "[lifeweaver/init.opy]: Initialize Lifeweaver"
@@ -25,13 +21,13 @@ def initLifeweaver():
     eventPlayer._base_damage_scalar = 1.25
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     createInWorldText(eventPlayer, "{0}".format(ceil(eventPlayer.Lifeweaver_petal_charges)), updateEveryFrame(eventPlayer.getEyePosition() + (100 * (1.92 * worldVector(Vector.RIGHT, eventPlayer, Transform.ROTATION) + (-2.05 * (directionFromAngles(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 3)
-    eventPlayer.Lifeweaver_petal_hud = getLastCreatedText()
+    eventPlayer._lifeweaver_petal_charges_text = getLastCreatedText()
     createInWorldText(eventPlayer, "{0}".format(ceil(eventPlayer.Lifeweaver_dash_charges)), updateEveryFrame(eventPlayer.getEyePosition() + (100 * (2.535 * worldVector(Vector.RIGHT, eventPlayer, Transform.ROTATION) + (-2.05 * (directionFromAngles(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 3)
-    eventPlayer.Lifeweaver_dash_hud = getLastCreatedText()
+    eventPlayer._lifeweaver_dash_charges_text = getLastCreatedText()
     createInWorldText(eventPlayer, "{0} {1}".format(ceil(eventPlayer.Lifeweaver_petal_charges), abilityIconString(Hero.LIFEWEAVER, Button.ABILITY_1)), updateEveryFrame(eventPlayer.getEyePosition() + (100 * (-0.22 * worldVector(Vector.RIGHT, eventPlayer, Transform.ROTATION) + (-0.6 * (directionFromAngles(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 1.3)
-    eventPlayer.Lifeweaver_petal_centre_hud = getLastCreatedText()
+    eventPlayer._lifeweaver_petal_charges_icon = getLastCreatedText()
     createInWorldText(eventPlayer, "{0} {1}".format(ceil(eventPlayer.Lifeweaver_dash_charges), abilityIconString(Hero.LIFEWEAVER, Button.JUMP)), updateEveryFrame(eventPlayer.getEyePosition() + (100 * (0.22 * worldVector(Vector.RIGHT, eventPlayer, Transform.ROTATION) + (-0.6 * (directionFromAngles(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 1.3)
-    eventPlayer.Lifeweaver_leap_centre_target = getLastCreatedText()
+    eventPlayer._lifeweaver_dash_charges_icon = getLastCreatedText()
     eventPlayer.Lifeweaver_petal_charges = 2
     eventPlayer.Lifeweaver_dash_charges = 2
     eventPlayer.setMaxAmmo(0, 5)
@@ -59,9 +55,8 @@ rule "[lifeweaver/init.opy]: Clean up lifeweaver":
     @Event eachPlayer
     @Condition eventPlayer.hero_setup != Hero.LIFEWEAVER
     
-    destroyInWorldText(eventPlayer.Lifeweaver_petal_hud)
-    destroyInWorldText(eventPlayer.Lifeweaver_dash_hud)
-    destroyInWorldText(eventPlayer.Lifeweaver_healing_hud)
-    destroyInWorldText(eventPlayer.Lifeweaver_petal_centre_hud)
-    destroyInWorldText(eventPlayer.Lifeweaver_leap_centre_target)
+    destroyInWorldText(eventPlayer._lifeweaver_petal_charges_text)
+    destroyInWorldText(eventPlayer._lifeweaver_dash_charges_text)
+    destroyInWorldText(eventPlayer._lifeweaver_petal_charges_icon)
+    destroyInWorldText(eventPlayer._lifeweaver_dash_charges_icon)
 

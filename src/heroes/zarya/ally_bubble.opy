@@ -1,20 +1,20 @@
 def showAllyBubbleCD():
     @Name "[zarya/ally_bubble.opy]: showAllyBubbleCD()"
     
-    if eventPlayer.ally_bubble_cd_text == null:
+    if eventPlayer._zarya_ally_bubble_cd == null:
         createInWorldText(eventPlayer, "{0}".format(ceil(eventPlayer.ally_bubble_cooldown)), updateEveryFrame(eventPlayer.getEyePosition() + (100 * (2.3 * worldVector(Vector.RIGHT, eventPlayer, Transform.ROTATION) + (-1.9 * (directionFromAngles(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 3)
-        eventPlayer.ally_bubble_cd_text = getLastCreatedText()
+        eventPlayer._zarya_ally_bubble_cd = getLastCreatedText()
         createInWorldText(eventPlayer, "{0} {1}".format(ceil(eventPlayer.ally_bubble_cooldown), abilityIconString(Hero.ZARYA, Button.ABILITY_2)), updateEveryFrame(eventPlayer.getEyePosition() + (100 * (0.2 * worldVector(Vector.RIGHT, eventPlayer, Transform.ROTATION) + (-0.48 * (directionFromAngles(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 1.3)
-        eventPlayer.zarya_ally_bubble_centre_hud = getLastCreatedText()
+        eventPlayer._zarya_ally_bubble_icon = getLastCreatedText()
 
 
 def hideAllyBubbleCD():
     @Name "[zarya/ally_bubble.opy]: hideAllyBubbleCD()"
     
-    destroyInWorldText(eventPlayer.ally_bubble_cd_text)
-    eventPlayer.ally_bubble_cd_text = null
-    destroyInWorldText(eventPlayer.zarya_ally_bubble_centre_hud)
-    eventPlayer.zarya_ally_bubble_centre_hud = null
+    destroyInWorldText(eventPlayer._zarya_ally_bubble_cd)
+    eventPlayer._zarya_ally_bubble_cd = null
+    destroyInWorldText(eventPlayer._zarya_ally_bubble_icon)
+    eventPlayer._zarya_ally_bubble_icon = null
 
 
 rule "[zarya/ally_bubble.opy]: OW1 zarya ally bubble cooldown":

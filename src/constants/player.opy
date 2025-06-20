@@ -1,5 +1,3 @@
-playervar DamageRecieved 1
-playervar MoveSpeed 2
 playervar custom_hp_pvar 3
 playervar regen_passive_id 14
 playervar self_heal_pvar 15
@@ -8,18 +6,15 @@ playervar hero_initialized 4
 playervar max_health_scaler 6
 playervar hero_switch_pvar 7
 playervar hero_setup 8
-playervar HeroCoreActive 13
 playervar overhealth_check 24
 playervar remainingAntiDuration 29
 playervar balance_change_check 31
 playervar AllowedHeroes 40
-playervar Explaination_Hud 46
 playervar damage 86
 playervar time 87
 playervar textID 88
 playervar position 89
 playervar healing 104
-playervar Status_effect_hud 9
 playervar DoomPunchTrack 108
 playervar ReinChargeTrack 109
 playervar Orisa_fortified

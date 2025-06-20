@@ -2,11 +2,10 @@ rule "[hanzo/mark.opy]: Mark enemy play effects":
     @Event eachPlayer
     @Condition eventPlayer.Hanzo_Marked_icon == true
     
-    destroyInWorldText(eventPlayer.Hanzo_Marked_effect)
-    eventPlayer.Hanzo_Marked_effect = null
+    destroyInWorldText(eventPlayer._hanzo_marked_icon)
+    eventPlayer._hanzo_marked_icon = null
     createInWorldText(getPlayersOnHero(Hero.HANZO, getOppositeTeam(eventPlayer.getTeam())), iconString(Icon.SKULL), eventPlayer + vect(0, 2.5, 0), 1.2, Clip.NONE, WorldTextReeval.VISIBILITY_POSITION_AND_STRING, Color.RED)
-    eventPlayer.Hanzo_Marked_effect = getLastCreatedText()
-
+    eventPlayer._hanzo_marked_icon = getLastCreatedText()
 
 rule "[hanzo/mark.opy]: Extra damage on marked enemy":
     @Event playerDealtDamage
@@ -26,13 +25,13 @@ rule "[hanzo/mark.opy]: Mark enemy on damage":
     eventPlayer.Hanzo_Marked_icon = true
     wait(8, Wait.RESTART_WHEN_TRUE)
     eventPlayer.Hanzo_Marked_icon = null
-    destroyInWorldText(eventPlayer.Hanzo_Marked_effect)
-    eventPlayer.Hanzo_Marked_effect = null
+    destroyInWorldText(eventPlayer._hanzo_marked_icon)
+    eventPlayer._hanzo_marked_icon = null
 
 rule "[hanzo/mark.opy]: On death, remove mark":
     @Event playerDied
     @Hero hanzo
     
     eventPlayer.Hanzo_Marked_icon = null
-    destroyInWorldText(eventPlayer.Hanzo_Marked_effect)
-    eventPlayer.Hanzo_Marked_effect = null
+    destroyInWorldText(eventPlayer._hanzo_marked_icon)
+    eventPlayer._hanzo_marked_icon = null

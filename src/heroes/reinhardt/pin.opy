@@ -4,8 +4,8 @@ rule "[reinhardt/pin.opy]: Slow Reinhardt after pin":
     @Condition eventPlayer.isUsingAbility1() == true
     
     waitUntil(not eventPlayer.isUsingAbility1(), 99999)
-    eventPlayer.MoveSpeed -= 50
-    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
+    eventPlayer._current_move_speed -= 50
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     wait(1)
-    eventPlayer.MoveSpeed += 50
-    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
+    eventPlayer._current_move_speed += 50
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)

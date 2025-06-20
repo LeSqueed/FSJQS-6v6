@@ -1,10 +1,11 @@
 #!mainFile "../main.opy"
 
-#!include "utilities/macro_functions.opy"
+#!include "../utilities/macro_functions.opy"
+#!include "../utilities/texts.opy"
 
 settings {
     "main": {
-        "modeName": "6v6 Adjustments + Realth 1.17.0"
+        "modeName": "6v6 Adjustments + Realth 1.17.1"
     },
     "lobby": {
         "mapRotation": "afterGame",

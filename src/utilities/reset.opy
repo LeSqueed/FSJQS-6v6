@@ -72,8 +72,8 @@ def resetStats():
     eventPlayer.setKnockbackDealt(100)
     #eventPlayer.setGravity(100)
     #eventPlayer.setJumpVerticalSpeed(100) # might be responsible for jump bug
-    eventPlayer._current_speed_scalar = 1
-    eventPlayer.setMoveSpeed(100 * eventPlayer._current_speed_scalar)
+    eventPlayer._current_move_speed = 1
+    eventPlayer.setMoveSpeed(100 * eventPlayer._current_move_speed)
     eventPlayer.stopScalingSize()
     eventPlayer.stopScalingBarriers()
     #prevent wholehog from keeping primary fire held
@@ -81,8 +81,8 @@ def resetStats():
     eventPlayer.max_health_scaler = 1
     eventPlayer.stopAllDamageOverTime()
     eventPlayer.stopAllHealingOverTime()
-    eventPlayer.DamageRecieved = 100
-    eventPlayer.MoveSpeed = 100
+    eventPlayer._current_damage_received = 100
+    eventPlayer._current_move_speed = 100
 
 
 def resetStatuses():

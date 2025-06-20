@@ -14,8 +14,8 @@ rule "[sombra/stealth.opy]: Sombra stealth reveal slow":
     @Condition eventPlayer.Sombra_invis_damage == true
     @Condition eventPlayer.Sombra_invisible == true
     
-    eventPlayer.MoveSpeed = eventPlayer.MoveSpeed - 47.5
-    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
+    eventPlayer._current_move_speed = eventPlayer._current_move_speed - 47.5
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     waitUntil(not eventPlayer.Sombra_invisible or not eventPlayer.Sombra_invis_damage, 100000000)
-    eventPlayer.MoveSpeed = eventPlayer.MoveSpeed + 47.5
-    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
+    eventPlayer._current_move_speed = eventPlayer._current_move_speed + 47.5
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)

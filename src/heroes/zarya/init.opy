@@ -2,13 +2,9 @@
 
 playervar self_bubble_cooldown
 playervar ally_bubble_cooldown
-playervar ally_bubble_cd_text
-playervar zarya_ally_bubble_centre_hud
-playervar self_bubble_cd_text
-playervar zarya_self_bubble_centre_hud
 
-#!include "heroes/zarya/self_bubble.opy"
-#!include "heroes/zarya/ally_bubble.opy"
+#!include "self_bubble.opy"
+#!include "ally_bubble.opy"
 
 def initZarya():
     @Name "[zarya/init.opy]: initZarya()"

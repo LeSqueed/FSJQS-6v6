@@ -1,15 +1,14 @@
 #!mainFile "../../main.opy"
 
 playervar Roadhog_vape_target
-playervar Roadhog_targeting_hud
 playervar Roadhog_vape_confirmed
 playervar Roadhog_vape_effect
 playervar Roadhog_vape_hud_icon
 
-#!include "heroes/roadhog/pigpen.opy"
-#!include "heroes/roadhog/breather.opy"
-#!include "heroes/roadhog/wholehog.opy"
-#!include "heroes/roadhog/primary.opy"
+#!include "pigpen.opy"
+#!include "breather.opy"
+#!include "wholehog.opy"
+#!include "primary.opy"
 
 def initRoadhog():
     @Name "[roadhog/init.opy]: initRoadhog()"
@@ -35,4 +34,4 @@ rule "[roadhog/init.opy]: Clean up Roadhog":
     @Condition eventPlayer.hero_setup != Hero.ROADHOG
     
     eventPlayer.Roadhog_vape_target = null
-    destroyInWorldText(eventPlayer.Roadhog_targeting_hud)
+    destroyInWorldText(eventPlayer._roadhog_vape_target_hud)

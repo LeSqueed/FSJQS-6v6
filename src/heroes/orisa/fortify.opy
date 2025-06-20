@@ -6,20 +6,20 @@ rule "[orisa/fortify.opy]: -10% damage reduction and shorter cooldown = 10s":
     #I don't know where this value comes from or how to calculate it
     damage(eventPlayer, null, 125.7)
     eventPlayer.Orisa_fortified = true
-    eventPlayer.MoveSpeed += 10
-    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
-    eventPlayer.DamageRecieved += 30
-    eventPlayer.setDamageReceived(eventPlayer.DamageRecieved)
+    eventPlayer._current_move_speed += 10
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
+    eventPlayer._current_damage_received += 30
+    eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
     playEffect(getAllPlayers(), DynamicEffect.RING_EXPLOSION, Color.ORANGE, eventPlayer, 8)
     createEffect(getAllPlayers(), Effect.RING, Color.ORANGE, eventPlayer, 8, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
     eventPlayer.Orisa_ring_effect = getLastCreatedEntity()
     waitUntil(not eventPlayer.isUsingAbility1(), 99999)
     eventPlayer.setAbilityCooldown(Button.ABILITY_1, 10)
-    eventPlayer.DamageRecieved -= 30
+    eventPlayer._current_damage_received -= 30
     destroyEffect(eventPlayer.Orisa_ring_effect)
-    eventPlayer.setDamageReceived(eventPlayer.DamageRecieved)
-    eventPlayer.MoveSpeed -= 10
-    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
+    eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
+    eventPlayer._current_move_speed -= 10
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     eventPlayer.Orisa_fortified = null
 
 
@@ -28,11 +28,11 @@ rule "[orisa/fortify.opy]: Orisa Fortify others by 20%":
     @Condition getPlayersOnHero(Hero.ORISA, eventPlayer.getTeam()).isUsingAbility1() == true
     @Condition distance(eventPlayer, getPlayersOnHero(Hero.ORISA, eventPlayer.getTeam())) < 8
     
-    eventPlayer.DamageRecieved -= 20
-    eventPlayer.setDamageReceived(eventPlayer.DamageRecieved)
+    eventPlayer._current_damage_received -= 20
+    eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
     waitUntil(distance(eventPlayer, getPlayersOnHero(Hero.ORISA, eventPlayer.getTeam())) > 8 or not getPlayersOnHero(Hero.ORISA, eventPlayer.getTeam()).isUsingAbility1(), 99999)
-    eventPlayer.DamageRecieved += 20
-    eventPlayer.setDamageReceived(eventPlayer.DamageRecieved)
+    eventPlayer._current_damage_received += 20
+    eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
 
 
 rule "[orisa/fortify.opy]: Orisa cancel fortify after 3s":

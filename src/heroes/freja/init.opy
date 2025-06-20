@@ -27,10 +27,18 @@ rule "[freja/init.opy]: Correct Freja secondary impact damage":
     damage(victim, attacker, (eventDamage / eventPlayer._base_damage_scalar - eventDamage) / eventPlayer._base_damage_scalar)
 
 
+# rule "[freja/init.opy]: Correct Freja ultimate impact damage":
+#     @Event playerDealtDamage
+#     @Hero freja
+#     @Condition eventAbility == Button.ULTIMATE
+    
+#     damage(victim, attacker, (eventDamage / eventPlayer._base_damage_scalar - eventDamage) / eventPlayer._base_damage_scalar)
+#     wait(1.3)
+
 rule "[freja/init.opy]: Correct Freja ultimate impact damage":
     @Event playerDealtDamage
     @Hero freja
     @Condition eventAbility == Button.ULTIMATE
-    
+
     damage(victim, attacker, (eventDamage / eventPlayer._base_damage_scalar - eventDamage) / eventPlayer._base_damage_scalar)
     wait(1.3)

@@ -32,7 +32,7 @@ rule "[widowmaker/widows_kiss.opy]: force fire after 5s":
     eventPlayer.setDamageDealt(87.5)
     eventPlayer.Widow_maxscope_duration = 100
     createProgressBarInWorldText(eventPlayer, eventPlayer.Widow_maxscope_duration, "Focus", updateEveryFrame(eventPlayer.getEyePosition() + (100 * (0.3 * (directionFromAngles(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90)) + 3 * eventPlayer.getFacingDirection()))), 0.7)
-    eventPlayer.Widow_Focus_HUD = getLastCreatedText()
+    eventPlayer._widowmaker_scope_duration_bar = getLastCreatedText()
     chaseAtRate(eventPlayer.Widow_maxscope_duration, 0, 25)
     waitUntil(not eventPlayer.isFiringSecondaryFire() or eventPlayer.isHoldingButton(Button.PRIMARY_FIRE), 4)
     if eventPlayer.isHoldingButton(Button.PRIMARY_FIRE):
@@ -41,7 +41,7 @@ rule "[widowmaker/widows_kiss.opy]: force fire after 5s":
         eventPlayer.forceButtonPress(Button.PRIMARY_FIRE)
         eventPlayer.forceButtonPress(Button.SECONDARY_FIRE)
     stopChasingVariable(eventPlayer.Widow_maxscope_duration)
-    destroyProgressBarInWorldText(eventPlayer.Widow_Focus_HUD)
+    destroyProgressBarInWorldText(eventPlayer._widowmaker_scope_duration_bar)
     eventPlayer.setSecondaryFireEnabled(false)
     wait(0.34)
     eventPlayer.setSecondaryFireEnabled(true)
@@ -54,7 +54,7 @@ rule "[widowmaker/widows_kiss.opy]: unscope / reset":
     
     waitUntil(not eventPlayer.isFiringSecondaryFire(), 99999)
     stopChasingVariable(eventPlayer.Widow_maxscope_duration)
-    destroyProgressBarInWorldText(eventPlayer.Widow_Focus_HUD)
-    eventPlayer.Widow_Focus_HUD = null
+    destroyProgressBarInWorldText(eventPlayer._widowmaker_scope_duration_bar)
+    eventPlayer._widowmaker_scope_duration_bar = null
     eventPlayer.Widow_maxscope_duration = null
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)

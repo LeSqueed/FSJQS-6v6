@@ -2,9 +2,9 @@
 
 playervar bash_cooldown
 
-#!include "heroes/brigitte/bash.opy"
-#!include "heroes/brigitte/inspire.opy"
-#!include "heroes/brigitte/repair_pack.opy"
+#!include "bash.opy"
+#!include "inspire.opy"
+#!include "repair_pack.opy"
 
 def initBrigitte():
     @Name "[brigitte/init.opy]: initBrigitte()"

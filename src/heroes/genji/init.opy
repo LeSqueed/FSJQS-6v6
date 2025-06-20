@@ -1,6 +1,6 @@
 #!mainFile "../../main.opy"
 
-#!include "heroes/genji/dragonblade.opy"
+#!include "dragonblade.opy"
 
 def initGenji():
     @Name "[genji/init.opy]: initGenji()"

@@ -3,11 +3,11 @@
 playervar clobber_cooldown_accelerator
 playervar is_firing_excavator
 
-#!include "heroes/venture/excavator.opy"
-#!include "heroes/venture/drill_dash.opy"
-#!include "heroes/venture/clobber.opy"
-#!include "heroes/venture/burrow.opy"
-#!include "heroes/venture/tectonic_shock.opy"
+#!include "excavator.opy"
+#!include "drill_dash.opy"
+#!include "clobber.opy"
+#!include "burrow.opy"
+#!include "tectonic_shock.opy"
 
 def initVenture():
     @Name "[venture/init.opy]: initVenture()"

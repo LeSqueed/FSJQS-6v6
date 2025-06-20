@@ -14,11 +14,11 @@ rule "[lucio/ampitup.opy]: decrease speed for allies":
     @Event eachPlayer
     @Condition eventPlayer.Within_speed_radius == true
     
-    eventPlayer.MoveSpeed -= 6.25
-    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
+    eventPlayer._current_move_speed -= 6.25
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     wait(0.125)
-    eventPlayer.MoveSpeed += 6.25
-    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
+    eventPlayer._current_move_speed += 6.25
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     eventPlayer.Within_speed_radius = false
 
 rule "[lucio/ampitup.opy]: decrease speed for Lucio":
@@ -27,8 +27,8 @@ rule "[lucio/ampitup.opy]: decrease speed for Lucio":
     @Condition eventPlayer.isUsingAbility1() == true
     @Condition eventPlayer.isUsingAbility2() == true
     
-    eventPlayer.MoveSpeed -= 6.25
-    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
+    eventPlayer._current_move_speed -= 6.25
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     wait(3)
-    eventPlayer.MoveSpeed += 6.25
-    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
+    eventPlayer._current_move_speed += 6.25
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)

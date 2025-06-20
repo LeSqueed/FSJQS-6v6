@@ -3,23 +3,20 @@
 
 playervar Sombra_invisible
 playervar Sombra_invis_damage
-playervar Sombra_hud
-playervar Sombra_targeting_hud
 playervar Sombra_virus_target
 playervar Sombra_healing_ring
 playervar Sombra_virus_confirmed
-playervar Sombra_hack_effect
 playervar Sombra_hack_icon
 playervar stealth_timer
 playervar stealth_pvar
 
-#!include "heroes/sombra/hack.opy"
-#!include "heroes/sombra/virus.opy"
-#!include "heroes/sombra/heal.opy"
-#!include "heroes/sombra/translocator.opy"
-#!include "heroes/sombra/stealth.opy"
-#!include "heroes/sombra/opportunist.opy"
-#!include "heroes/sombra/emp.opy"
+#!include "hack.opy"
+#!include "virus.opy"
+#!include "heal.opy"
+#!include "translocator.opy"
+#!include "stealth.opy"
+#!include "opportunist.opy"
+#!include "emp.opy"
 
 def initSombra():
     @Name "[sombra/init.opy]: initSombra()"
@@ -29,7 +26,7 @@ def initSombra():
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer.Sombra_invisible = false
     createInWorldText(eventPlayer, "{0} {1}".format(len([player for player in getLivingPlayers(eventPlayer.getTeam()) if distance(eventPlayer, player) <= 15 and isInLoS(eventPlayer, player, BarrierLos.BLOCKED_BY_ENEMY_BARRIERS) == true and player.getHero() != Hero.SOMBRA]), iconString(Icon.PLUS)), updateEveryFrame(eventPlayer.getEyePosition() + (100 * (0 * worldVector(Vector.RIGHT, eventPlayer, Transform.ROTATION) + (-0.3 * (directionFromAngles(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 1.8)
-    eventPlayer.Sombra_hud = getLastCreatedText()
+    eventPlayer._sombra_healing_radius_targets_text = getLastCreatedText()
     eventPlayer.hero_initialized = true
 
 
@@ -46,7 +43,6 @@ rule "[sombra/init.opy]: Clean up Sombra":
     @Condition eventPlayer.hero_setup != Hero.SOMBRA
     
     eventPlayer.Sombra_virus_target = null
-    destroyInWorldText(eventPlayer.Sombra_targeting_hud)
+    destroyInWorldText(eventPlayer._sombra_virus_target_hud)
     destroyEffect(eventPlayer.Sombra_healing_ring)
-    destroyInWorldText(eventPlayer.Sombra_hud)
-    destroyHudText(eventPlayer.Explaination_Hud[3])
+    destroyInWorldText(eventPlayer._sombra_healing_radius_targets_text)

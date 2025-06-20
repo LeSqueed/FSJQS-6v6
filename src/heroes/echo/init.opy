@@ -1,11 +1,10 @@
 #!mainFile "../../main.opy"
 
 playervar Echo_Copy
-playervar EchoHUD
 playervar EchoUltSeconds
 
-#!include "heroes/echo/copy.opy"
-#!include "heroes/echo/ultimate.opy"
+#!include "copy.opy"
+#!include "ultimate.opy"
 
 def initEcho():
     @Name "[echo/init.opy]: initEcho()"
@@ -19,7 +18,7 @@ def initEcho():
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer.startScalingSize(0.94)
     eventPlayer.disallowButton(Button.ULTIMATE)
-    eventPlayer.MoveSpeed = 100
+    eventPlayer._current_move_speed = 100
     eventPlayer.setMoveSpeed(100)
     eventPlayer.hero_initialized = true
 
@@ -44,8 +43,8 @@ rule "[echo/init.opy]: Clean up Echo":
     @Event eachPlayer
     @Condition eventPlayer.hero_setup != Hero.ECHO
     
-    destroyProgressBarInWorldText(eventPlayer.EchoHUD)
+    destroyProgressBarInWorldText(eventPlayer._echo_copy_seconds_text)
     stopChasingVariable(eventPlayer.EchoUltSeconds)
     getPlayers(eventPlayer.getTeam()).Echo_Copy = false
-    eventPlayer.EchoHUD = null
+    eventPlayer._echo_copy_seconds_text = null
     eventPlayer.EchoUltSeconds = null

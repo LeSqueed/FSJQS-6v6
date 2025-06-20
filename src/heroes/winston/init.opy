@@ -1,6 +1,6 @@
 #!mainFile "../../main.opy"
 
-#!include "heroes/winston/primal.opy"
+#!include "primal.opy"
 
 def initWinston():
     @Name "[winston/init.opy]: initWinston()"

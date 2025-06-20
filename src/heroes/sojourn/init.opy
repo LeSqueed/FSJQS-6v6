@@ -1,8 +1,8 @@
 #!mainFile "../../main.opy"
 
-#!include "heroes/sojourn/primary.opy"
-#!include "heroes/sojourn/orb.opy"
-#!include "heroes/sojourn/ultimate.opy"
+#!include "primary.opy"
+#!include "orb.opy"
+#!include "ultimate.opy"
 
 def initSojourn():
     @Name "[sojourn/init.opy]: initSojourn()"

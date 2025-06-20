@@ -13,9 +13,9 @@ playervar ImbueSecondary
 playervar MercyUltTrack
 playervar Mercy_Rez_charges
 
-#!include "heroes/mercy/valkyrie.opy"
-#!include "heroes/mercy/resurrect.opy"
-#!include "heroes/mercy/imbue.opy"
+#!include "valkyrie.opy"
+#!include "resurrect.opy"
+#!include "imbue.opy"
 
 def initMercy():
     @Name "[mercy/init.opy]: initMercy()"

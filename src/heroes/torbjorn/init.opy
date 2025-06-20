@@ -2,7 +2,7 @@
 
 playervar overload_overhealth
 
-#!include "heroes/torbjorn/turret.opy"
+#!include "turret.opy"
 
 def initTorbjorn():
     @Name "[torbjorn/init.opy]: initTorbjorn()"

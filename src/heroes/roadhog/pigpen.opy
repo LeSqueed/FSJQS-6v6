@@ -25,7 +25,7 @@ rule "[roadhog/pigpen.opy]: Target Teammate HUD and allow Vape":
     
     #targeting hud
     createInWorldText(eventPlayer if eventPlayer.Roadhog_vape_target != null and eventPlayer.getAbilityCooldown(Button.ABILITY_2) == 0 else null, " \n\n\n\n\n\n     ︿\n〈      〉\n     ﹀ ", eventPlayer.Roadhog_vape_target + vect(0, 0.7, 0), 2, Clip.NONE, WorldTextReeval.VISIBILITY_POSITION_AND_STRING, rgb(55, 230, 255, 210))
-    eventPlayer.Roadhog_targeting_hud = getLastCreatedText()
+    eventPlayer._roadhog_vape_target_hud = getLastCreatedText()
     eventPlayer.allowButton(Button.ABILITY_2)
 
 
@@ -35,7 +35,7 @@ rule "[roadhog/pigpen.opy]: Disallow Vape":
     @Condition eventPlayer.Roadhog_vape_target == null
     
     eventPlayer.disallowButton(Button.ABILITY_2)
-    destroyInWorldText(eventPlayer.Roadhog_targeting_hud)
+    destroyInWorldText(eventPlayer._roadhog_vape_target_hud)
 
 
 rule "[roadhog/pigpen.opy]: Confirm Target":
@@ -58,10 +58,10 @@ rule "[roadhog/pigpen.opy]: Buff Teammate and play effects":
     bigMessage(eventPlayer, "VAPED")
     playEffect(getAllPlayers(), DynamicEffect.EXPLOSION_SOUND, Color.WHITE, eventPlayer, 80)
     eventPlayer.startHealingOverTime(getPlayersOnHero(Hero.ROADHOG, eventPlayer.getTeam()), 3, 55)
-    eventPlayer.DamageRecieved -= 40
-    eventPlayer.setDamageReceived(eventPlayer.DamageRecieved)
+    eventPlayer._current_damage_received -= 40
+    eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
     wait(3)
-    eventPlayer.DamageRecieved += 40
-    eventPlayer.setDamageReceived(eventPlayer.DamageRecieved)
+    eventPlayer._current_damage_received += 40
+    eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
     destroyEffect(eventPlayer.Roadhog_vape_effect)
     eventPlayer.Roadhog_vape_hud_icon = null

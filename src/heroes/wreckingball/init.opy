@@ -2,9 +2,9 @@
 
 playervar adaptive_overhealth_id
 
-#!include "heroes/wreckingball/grapple.opy"
-#!include "heroes/wreckingball/shields.opy"
-#!include "heroes/wreckingball/piledriver.opy"
+#!include "grapple.opy"
+#!include "shields.opy"
+#!include "piledriver.opy"
 
 def initWreckingBall():
     @Name "[wreckingball/init.opy]: initWreckingBall()"

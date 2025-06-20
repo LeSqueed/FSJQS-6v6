@@ -11,4 +11,4 @@ rule "[utilities/hud.opy]: Display buffs from Roadhog, Hanzo and Sombra":
     @Condition DEBUG_MODE == false
     
     hudSubtext(eventPlayer, " \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n                                                         {0} {1} {2}".format(abilityIconString(Hero.ROADHOG, Button.SECONDARY_FIRE) if eventPlayer.Roadhog_vape_hud_icon == true else " ", abilityIconString(Hero.SOMBRA, Button.ULTIMATE) if eventPlayer.Sombra_hack_icon == true else " ", iconString(Icon.SKULL) if eventPlayer.Hanzo_Marked_icon else " "), HudPosition.LEFT, 2, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    eventPlayer.Status_effect_hud = getLastCreatedText()
+    eventPlayer._status_effect_hud = getLastCreatedText()

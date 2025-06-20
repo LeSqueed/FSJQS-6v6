@@ -1,7 +1,7 @@
 #!mainFile "../../main.opy"
 
-#!include "heroes/kiriko/swift_step.opy"
-#!include "heroes/kiriko/protection_suzu.opy"
+#!include "swift_step.opy"
+#!include "protection_suzu.opy"
 
 def initKiriko():
     @Name "[kiriko/init.opy]: initKiriko()"
@@ -11,8 +11,8 @@ def initKiriko():
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer._base_healing_scalar = 0.77
     eventPlayer.setHealingDealt(100 * eventPlayer._base_healing_scalar)
-    eventPlayer.MoveSpeed += 9.1
-    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
+    eventPlayer._current_move_speed += 9.1
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     eventPlayer.setAbilityCooldown(Button.ABILITY_1, 5)
     eventPlayer.hero_initialized = true
     

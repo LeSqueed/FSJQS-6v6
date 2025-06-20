@@ -3,7 +3,7 @@
 playervar Bastion_healing_id
 playervar sentry_healing_id
 
-#!include "heroes/bastion/reconfigure.opy"
+#!include "reconfigure.opy"
 
 def initBastion():
     @Name "[bastion/init.opy]: initBastion()"

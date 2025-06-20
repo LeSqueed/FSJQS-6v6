@@ -1,9 +1,9 @@
 #!mainFile "../../main.opy"
 
-#!include "heroes/reinhardt/firestrike.opy"
-#!include "heroes/reinhardt/pin.opy"
-#!include "heroes/reinhardt/charge.opy"
-#!include "heroes/reinhardt/shatter.opy"
+#!include "firestrike.opy"
+#!include "pin.opy"
+#!include "charge.opy"
+#!include "shatter.opy"
 
 def initReinhardt():
     @Name "[reinhardt/init.opy]: initReinhardt()"

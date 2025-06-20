@@ -27,7 +27,7 @@ rule "[hazard/thorn_wall.opy]: Target Teammate HUD and allow bubble":
     
     #targeting hud
     createInWorldText(eventPlayer if eventPlayer.hazard_bubble_target != null and eventPlayer.getAbilityCooldown(Button.ABILITY_2) == 0 else null, " \n\n\n\n\n\n     ︿\n〈      〉\n     ﹀ ", eventPlayer.hazard_bubble_target + vect(0, 0.7, 0), 2, Clip.NONE, WorldTextReeval.VISIBILITY_POSITION_AND_STRING, rgb(55, 230, 255, 210))
-    eventPlayer.hazard_targeting_hud = getLastCreatedText()
+    eventPlayer.text[16] = getLastCreatedText()
     eventPlayer.setAbility2Enabled(true)
     eventPlayer.Hazard_Bubble_Allowed = true
 
@@ -38,7 +38,7 @@ rule "[hazard/thorn_wall.opy]: Disallow bubble":
     @Condition eventPlayer.hazard_bubble_target == null
     
     eventPlayer.setAbility2Enabled(false)
-    destroyInWorldText(eventPlayer.hazard_targeting_hud)
+    destroyInWorldText(eventPlayer.text[16])
     eventPlayer.Hazard_Bubble_Allowed = false
 
 
@@ -57,19 +57,19 @@ rule "[hazard/thorn_wall.opy]: Buff Teammate and play effects":
     @Condition eventPlayer.hazard_bubble_confirmed == true
     
     eventPlayer.hazard_bubble_confirmed = false
-    createEffect(getAllPlayers().exclude(eventPlayer), Effect.BAD_AURA, Color.PURPLE, eventPlayer, 0.5, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
+    createEffect([player for player in getAllPlayers() if player != eventPlayer], Effect.BAD_AURA, Color.PURPLE, eventPlayer, 0.5, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
     eventPlayer.hazard_bubble_effect = getLastCreatedEntity()
-    createEffect(getAllPlayers().exclude(eventPlayer), Effect.SPHERE, Color.PURPLE, eventPlayer, 1.2, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
+    createEffect([player for player in getAllPlayers() if player != eventPlayer], Effect.SPHERE, Color.PURPLE, eventPlayer, 1.2, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
     eventPlayer.hazard_bubble_effect2 = getLastCreatedEntity()
     getPlayersOnHero(Hero.HAZARD, eventPlayer.getTeam()).hazard_bubble_target = null
     eventPlayer.hazard_bubble_icon = true
     bigMessage(eventPlayer, "{0} Bubbled".format(heroIcon(Hero.HAZARD)))
     playEffect(getAllPlayers(), DynamicEffect.BUFF_IMPACT_SOUND, Color.WHITE, eventPlayer, 80)
-    eventPlayer.DamageRecieved -= 50
-    eventPlayer.setDamageReceived(eventPlayer.DamageRecieved)
-    wait(2.25)
-    eventPlayer.DamageRecieved += 50
-    eventPlayer.setDamageReceived(eventPlayer.DamageRecieved)
+    eventPlayer._current_damage_received -= 50
+    eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
+    waitUntil(not eventPlayer.isAlive() or eventPlayer.hero_initialized == false, 2.25)
+    eventPlayer._current_damage_received += 50
+    eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
     destroyEffect(eventPlayer.hazard_bubble_effect)
     destroyEffect(eventPlayer.hazard_bubble_effect2)
     eventPlayer.hazard_bubble_icon = null

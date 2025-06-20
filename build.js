@@ -10,6 +10,7 @@ const SOURCE_DIR = path.resolve(__dirname) + path.sep + 'src' + path.sep;
 const LOBBY_FILE = path.join(SOURCE_DIR, 'lobby/lobby.opy');
 const MAIN_FILE = path.join(SOURCE_DIR, 'main.opy');
 const OUTPUT_FILE = path.join('output/workshop.txt');
+const RULES_ONLY_OUTPUT_FILE = path.join('output/rules.txt');
 
 
 async function updateVersion() {
@@ -50,6 +51,13 @@ async function generateWorkshop() {
     fs.writeFileSync(OUTPUT_FILE, compiledText);
     console.log(colors.green(`Workshop file generated successfully at: ${OUTPUT_FILE}`));
 
+    console.log(colors.green('Generating rules-only file...'));
+        const settingsRegex = /^settings\s*{[\s\S]*?^}\s*$/m;
+        const variablesRegex = /^variables\s*{[\s\S]*?^}\s*$/m;
+        const rulesOnlyText = compiledText.replace(settingsRegex, '').trim().replace(variablesRegex, '').trim();
+
+        fs.writeFileSync(RULES_ONLY_OUTPUT_FILE, rulesOnlyText);
+        console.log(colors.green(`Rules-only file generated successfully at: ${RULES_ONLY_OUTPUT_FILE}`));
   } catch (err) {
     console.error(colors.red(`Error during workshop generation for ${MAIN_FILE}:`), err);
     throw err;

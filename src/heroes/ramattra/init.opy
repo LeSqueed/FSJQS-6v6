@@ -2,7 +2,7 @@
 
 playervar Nemesis_armor
 
-#!include "heroes/ramattra/nemesis_form.opy"
+#!include "nemesis_form.opy"
 
 def initRamattra():
     @Name "[ramattra/init.opy]: initRamattra()"

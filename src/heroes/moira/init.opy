@@ -1,6 +1,6 @@
 #!mainFile "../../main.opy"
 
-#!include "heroes/moira/coalescence.opy"
+#!include "coalescence.opy"
 
 def initMoira():
     @Name "[moira/init.opy]: initMoira()"

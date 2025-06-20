@@ -3,7 +3,8 @@
 playervar macro_pvar
 #!defineMember _base_damage_scalar macro_pvar[0]
 #!defineMember _base_healing_scalar macro_pvar[1]
-#!defineMember _current_speed_scalar macro_pvar[2]
+#!defineMember _current_move_speed macro_pvar[2]
+#!defineMember _current_damage_received macro_pvar[3]
 
 # Macro function for retrieving id of hero
 #!define heroID(h) (getAllHeroes().index(h))
@@ -54,5 +55,5 @@ playervar macro_pvar
     player.setHealingDealt(percent(player._base_healing_scalar))
 
 #!define setCurrentSpeed(player, scalar) \
-    player._current_speed_scalar = scalar \
-    player.setMoveSpeed(percent(player._current_speed_scalar))
+    player._current_move_speed = scalar \
+    player.setMoveSpeed(percent(player._current_move_speed))

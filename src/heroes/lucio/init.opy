@@ -2,7 +2,7 @@
 
 playervar Within_speed_radius
 
-#!include "heroes/lucio/ampitup.opy"
+#!include "ampitup.opy"
 
 def initLucio():
     @Name "[lucio/init.opy]: initLucio()"

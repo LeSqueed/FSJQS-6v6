@@ -62,3 +62,4 @@ jobs:
           body: "New release of the workshop code. See attached artifact."
           files: |
             output/workshop.txt
+            output/rules.txt

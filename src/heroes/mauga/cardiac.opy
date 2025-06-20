@@ -5,12 +5,12 @@ rule "[mauga/cardiac.opy]: Cardiac Use Ability":
     
     eventPlayer.addHealthPool(Health.NORMAL, 150, false)
     eventPlayer.Mauga_Overdrive_Health = getLastCreatedHealthPool()
-    eventPlayer.DamageRecieved += 40
-    eventPlayer.setDamageReceived(eventPlayer.DamageRecieved)
+    eventPlayer._current_damage_received += 40
+    eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
     wait(3)
     removeHealthPool(eventPlayer.Mauga_Overdrive_Health)
-    eventPlayer.DamageRecieved -= 40
-    eventPlayer.setDamageReceived(eventPlayer.DamageRecieved)
+    eventPlayer._current_damage_received -= 40
+    eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
 
 
 rule "[mauga/cardiac.opy]: Mauga Heal Others":

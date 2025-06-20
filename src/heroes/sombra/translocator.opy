@@ -3,11 +3,11 @@ rule "[sombra/translocator.opy]: Sombra Invis Increase move Speed":
     @Hero sombra
     @Condition eventPlayer.Sombra_invisible == true
     
-    eventPlayer.MoveSpeed = eventPlayer.MoveSpeed + 10
-    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
+    eventPlayer._current_move_speed = eventPlayer._current_move_speed + 10
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     waitUntil(eventPlayer.Sombra_invisible == false, 99999)
-    eventPlayer.MoveSpeed = eventPlayer.MoveSpeed - 10
-    eventPlayer.setMoveSpeed(eventPlayer.MoveSpeed)
+    eventPlayer._current_move_speed = eventPlayer._current_move_speed - 10
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
 
 
 rule "[sombra/translocator.opy] Sombra stealth damage cancel count damage":

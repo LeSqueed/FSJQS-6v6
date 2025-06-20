@@ -2,7 +2,7 @@
 
 playervar hp_exiting_grasp
 
-#!include "heroes/sigma/kinetic_grasp.opy"
+#!include "kinetic_grasp.opy"
 
 def initSigma():
     @Name "[sigma/init.opy]: initSigma()"

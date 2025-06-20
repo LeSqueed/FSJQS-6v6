@@ -1,13 +1,12 @@
 #!mainFile "../../main.opy"
 
-playervar JQ_Shout_Hud
 playervar Junkerqueen_overhealth
 playervar within_shout_radius
 
-#!include "heroes/junkerqueen/carnage.opy"
-#!include "heroes/junkerqueen/commanding_shout.opy"
-#!include "heroes/junkerqueen/jagged_blade.opy"
-#!include "heroes/junkerqueen/rampage.opy"
+#!include "carnage.opy"
+#!include "commanding_shout.opy"
+#!include "jagged_blade.opy"
+#!include "rampage.opy"
 
 def initJunkerQueen():
     @Name "[junkerqueen/init.opy]: initJunkerQueen()"
@@ -36,14 +35,14 @@ rule "[junkerqueen/init.opy]: Shout indicator":
     @Condition isMatchBetweenRounds() == false
     
     createInWorldText(eventPlayer, "{0} {1}".format(len([player for player in getLivingPlayers(eventPlayer.getTeam()) if distance(eventPlayer, player) <= 15 and isInLoS(eventPlayer, player) and player.getHero() != Hero.JUNKER_QUEEN]), abilityIconString(Hero.JUNKER_QUEEN, Button.ABILITY_1)), updateEveryFrame(eventPlayer.getEyePosition() + (100 * (-0.5 * (directionFromAngles(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90)) + 3 * eventPlayer.getFacingDirection()))), 2)
-    eventPlayer.JQ_Shout_Hud = getLastCreatedText()
+    eventPlayer._junker_queen_commanding_shout_text = getLastCreatedText()
     waitUntil(eventPlayer.isUsingAbility1(), 99999)
-    destroyInWorldText(eventPlayer.JQ_Shout_Hud)
-    eventPlayer.JQ_Shout_Hud = null
+    destroyInWorldText(eventPlayer._junker_queen_commanding_shout_text)
+    eventPlayer._junker_queen_commanding_shout_text = null
 
 
 rule "[junkerqueen/init.opy]: Clean up JQ":
     @Event eachPlayer
     @Condition eventPlayer.hero_setup != Hero.JUNKER_QUEEN
     
-    destroyInWorldText(eventPlayer.JQ_Shout_Hud)
+    destroyInWorldText(eventPlayer._junker_queen_commanding_shout_text)

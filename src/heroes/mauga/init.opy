@@ -4,8 +4,8 @@ playervar mauga_cardiac_target
 playervar Mauga_Overdrive_Health
 playervar Cardiac_overdrive_active
 
-#!include "heroes/mauga/cardiac.opy"
-#!include "heroes/mauga/cage.opy"
+#!include "cardiac.opy"
+#!include "cage.opy"
 
 def initMauga():
     @Name "[mauga/init.opy]: initMauga()"
