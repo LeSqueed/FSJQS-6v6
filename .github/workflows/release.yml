@@ -8,9 +8,9 @@ on:
         required: true
         type: choice
         options:
-        - patch
-        - minor
-        - major
+          - patch
+          - minor
+          - major
         default: 'patch'
 
 permissions:
@@ -44,27 +44,15 @@ jobs:
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Bump version and build
-        run: |
-          echo "Bumping version with type: ${{ github.event.inputs.version_bump }}"
-          make version-${{ github.event.inputs.version_bump }}
-          
-      - name: Get the new version from package.json
-        id: get_version
-        run: echo "version_tag=v$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+      - name: Bump Version, Build, Commit, and Tag
+        run: "npm version ${{ github.event.inputs.version_bump }} -m 'chore(release): version %s'"
 
-      - name: Commit version bump
-        run: |
-          git add package.json package-lock.json src/lobby/lobby.opy
-          git commit -m "chore(release): version ${{ steps.get_version.outputs.version_tag }}"
-          
-      - name: Create Git tag
-        run: |
-          git tag -a ${{ steps.get_version.outputs.version_tag }} -m "Release ${{ steps.get_version.outputs.version_tag }}"
+      - name: Get the new version tag
+        id: get_version
+        run: echo "version_tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
 
       - name: Push changes and tags
-        run: |
-          git push origin main --follow-tags
+        run: git push origin main --follow-tags
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2

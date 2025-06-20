@@ -3,6 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const colors = require('colors');
 
+const { version } = require('./package.json'); 
 
 const SOURCE_DIR = path.resolve(__dirname) + path.sep + 'src' + path.sep;
 
@@ -11,16 +12,13 @@ const MAIN_FILE = path.join(SOURCE_DIR, 'main.opy');
 const OUTPUT_FILE = path.join('output/workshop.txt');
 
 
-async function updateVersion(newVersion) {
-  if (!newVersion) return;
-
+async function updateVersion() {
   let lobbyFileText = fs.readFileSync(LOBBY_FILE, 'utf8');
-  const modeNameRegex = /("modeName":\s*"6v6 Adjustments \+ Realth\s+)[^"]*"/;
-  lobbyFileText = lobbyFileText.replace(modeNameRegex, `"modeName": "6v6 Adjustments + Realth ${newVersion}"`);
-  if (lobbyFileText.match(modeNameRegex)) {
-      lobbyFileText = lobbyFileText.replace(modeNameRegex, `$1${newVersion}"`);
+  const modeNameRegex = /("modeName":\s*"6v6 Adjustments \+ Realth\s*)[^"]*"/;
+  if (modeNameRegex.test(lobbyFileText)) {
+      lobbyFileText = lobbyFileText.replace(modeNameRegex, `$1${version}"`);
       fs.writeFileSync(LOBBY_FILE, lobbyFileText);
-      console.log(colors.green(`Updated version in lobby.opy to ${newVersion}`));
+      console.log(colors.green(`Updated version in lobby.opy to ${version}`));
   } else {
       console.log(colors.yellow(`Warning: Could not find modeName to update in ${LOBBY_FILE}`));
   }
@@ -60,8 +58,7 @@ async function generateWorkshop() {
 
 (async () => {
   try {
-    const newVersion = process.argv[2];
-    await updateVersion(newVersion);
+    await updateVersion();
     await generateWorkshop();
 
   } catch (err) {
