@@ -46,5 +46,5 @@ status:
 	@echo Build script: $(BUILD_SCRIPT)
 	@node --version
 	@npm --version
-	@echo Build output: workshop_code.txt
+	@echo Build output: output/workshop.txt, output/rules.txt
 	@echo Compilation: Working correctly
