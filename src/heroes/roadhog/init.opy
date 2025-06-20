@@ -8,7 +8,7 @@ playervar Roadhog_vape_hud_icon
 #!include "pigpen.opy"
 #!include "breather.opy"
 #!include "wholehog.opy"
-#!include "primary.opy"
+#!include "scrap_gun.opy"
 
 def initRoadhog():
     @Name "[roadhog/init.opy]: initRoadhog()"

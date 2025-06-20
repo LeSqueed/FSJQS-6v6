@@ -25,6 +25,7 @@ def initHazard():
     eventPlayer._base_damage_scalar = 0.8
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer.setAbility2Enabled(false)
+    eventPlayer.disallowButton(Button.ABILITY_2)
     eventPlayer.hero_initialized = true
 
 
@@ -42,3 +43,4 @@ rule "[hazard/init.opy]: Clean up Hazard":
     eventPlayer.hazard_bubble_target = null
     destroyInWorldText(eventPlayer._hazard_bubble_target_hud)
     eventPlayer.Hazard_Bubble_Allowed = null
+    eventPlayer.allowButton(Button.ABILITY_2)

@@ -5,7 +5,7 @@
 
 settings {
     "main": {
-        "modeName": "6v6 Adjustments + Realth 1.17.1"
+        "modeName": "6v6 Adjustments + Realth 1.17.2"
     },
     "lobby": {
         "mapRotation": "afterGame",

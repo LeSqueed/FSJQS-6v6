@@ -60,10 +60,10 @@ rule "[sombra/virus.opy]: Buff Teammate and play effects":
     playEffect(getAllPlayers(), DynamicEffect.GOOD_PICKUP_EFFECT, Color.PURPLE, eventPlayer, 90)
     playEffect(getAllPlayers(), DynamicEffect.RING_EXPLOSION, Color.PURPLE, eventPlayer + Vector.UP, 4)
     playEffect(getAllPlayers(), DynamicEffect.BUFF_EXPLOSION_SOUND, Color.WHITE, eventPlayer, 80)
-    eventPlayer._current_move_speed = eventPlayer._current_move_speed + 30
+    eventPlayer._current_move_speed += 30
     eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
-    wait(5)
-    eventPlayer._current_move_speed = eventPlayer._current_move_speed - 30
+    waitUntil(not eventPlayer.isAlive() or eventPlayer.hero_initialized == false, 5)
+    eventPlayer._current_move_speed -= 30
     eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     destroyInWorldText(eventPlayer._sombra_ally_hack_icon)
     eventPlayer.Sombra_hack_icon = null

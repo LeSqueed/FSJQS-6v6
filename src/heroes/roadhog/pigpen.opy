@@ -60,7 +60,7 @@ rule "[roadhog/pigpen.opy]: Buff Teammate and play effects":
     eventPlayer.startHealingOverTime(getPlayersOnHero(Hero.ROADHOG, eventPlayer.getTeam()), 3, 55)
     eventPlayer._current_damage_received -= 40
     eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
-    wait(3)
+    waitUntil(not eventPlayer.isAlive() or eventPlayer.hero_initialized == false, 3)
     eventPlayer._current_damage_received += 40
     eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
     destroyEffect(eventPlayer.Roadhog_vape_effect)

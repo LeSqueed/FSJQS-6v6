@@ -18,12 +18,3 @@ rule "[hazard/downpour.opy]: hazard reset reveal enemies":
     destroyInWorldText(eventPlayer.Hazard_Downpour_effect)
     eventPlayer.Hazard_Downpour_Target = null
     eventPlayer.Hazard_Downpour_effect = null
-
-rule "[hazard/downpour.opy]: hazard reset reveal enemies":
-    @Event eachPlayer
-    @Condition eventPlayer.Junkrat_Trap_target == true
-    
-    wait(2.5)
-    destroyInWorldText(eventPlayer.Junkrat_Trap_effect)
-    eventPlayer.Junkrat_Trap_target = null
-    eventPlayer.Junkrat_Trap_effect = null

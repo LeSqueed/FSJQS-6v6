@@ -2,7 +2,7 @@ settings
 {
 	main
 	{
-		Mode Name: "6v6 Adjustments + Realth 1.17.1"
+		Mode Name: "6v6 Adjustments + Realth 1.17.2"
 	}
 	lobby
 	{
@@ -1647,9 +1647,10 @@ rule ("[echo/copy.opy] Echo new ultimate") {
     conditions {
         Is Button Held(Event Player, Button(Ultimate)) == True;
         (Event Player).hero_setup == Hero(Echo);
+        Is Alive(Event Player) == True;
     }
     actions {
-        If(And(Is Alive(Event Player), Compare(Ultimate Charge Percent(Event Player), ==, 100)));
+        If(Compare(Ultimate Charge Percent(Event Player), ==, 100));
             Set Player Variable(All Players(Team Of(Event Player)), Echo_Copy, True);
             Start Forcing Player To Be Hero(Event Player, Hero Of(First Of(Sorted Array(Filtered Array(All Living Players(Opposite Team Of(Team Of(Event Player))), And(And(And(And(Compare(Angle Between Vectors(Facing Direction Of(Event Player), Direction Towards(Eye Position(Event Player), Current Array Element)), <=, 19), Has Spawned(Current Array Element)), Compare(Distance Between(Event Player, Current Array Element), <=, 40)), Compare(Current Array Element, !=, Players On Hero(Hero(Echo), All Teams))), Is In Line of Sight(Event Player, Current Array Element, Barriers Do Not Block LOS))), Angle Between Vectors(Facing Direction Of(Event Player), Direction Towards(Eye Position(Event Player), Current Array Element))))));
             If(Compare(Hero Of(Event Player), !=, Hero(Echo)));
@@ -1659,7 +1660,7 @@ rule ("[echo/copy.opy] Echo new ultimate") {
                 Set Ultimate Charge(Event Player, 92);
                 Call Subroutine(EchoCopy);
                 Wait Until(Is Dead(Event Player), 16);
-                Destroy Progress Bar In-World Text(Value In Array((Event Player).text, 17));
+                Destroy Progress Bar In-World Text(Value In Array((Event Player).text, 15));
                 Stop Chasing Player Variable(Event Player, EchoUltSeconds);
                 Start Forcing Player To Be Hero(Event Player, Hero(Echo));
                 Stop Forcing Player To Be Hero(Event Player);
@@ -1678,7 +1679,7 @@ rule ("[echo/ultimate.opy]: Sub for HUD") {
         Set Player Variable(Event Player, EchoUltSeconds, 100);
         Chase Player Variable At Rate(Event Player, EchoUltSeconds, 0, 6.25, Destination and Rate);
         Create Progress Bar In-World Text(Event Player, (Event Player).EchoUltSeconds, Custom String("{0} {1}", Ability Icon String(Hero(Echo), Button(Ultimate)), Round To Integer(Divide((Event Player).EchoUltSeconds, 6.25), Up)), Update Every Frame(Add(Eye Position(Event Player), Multiply(100, Add(Add(Multiply(-1, World Vector Of(Right, Event Player, Rotation)), Multiply(-0.25, Direction From Angles(Horizontal Angle From Direction(Facing Direction Of(Event Player)), Subtract(Vertical Angle From Direction(Facing Direction Of(Event Player)), 90)))), Multiply(3, Facing Direction Of(Event Player)))))), 0.75, Do Not Clip, Color(White), Color(White), Visible To Position Values and Color, Default Visibility);
-        Set Player Variable At Index(Event Player, text, 17, Last Text ID);
+        Set Player Variable At Index(Event Player, text, 15, Last Text ID);
     }
 }
 
@@ -1742,10 +1743,10 @@ rule ("[echo/init.opy]: Clean up Echo") {
         (Event Player).hero_setup != Hero(Echo);
     }
     actions {
-        Destroy Progress Bar In-World Text(Value In Array((Event Player).text, 17));
+        Destroy Progress Bar In-World Text(Value In Array((Event Player).text, 15));
         Stop Chasing Player Variable(Event Player, EchoUltSeconds);
         Set Player Variable(All Players(Team Of(Event Player)), Echo_Copy, False);
-        Set Player Variable At Index(Event Player, text, 17, Null);
+        Set Player Variable At Index(Event Player, text, 15, Null);
         Set Player Variable(Event Player, EchoUltSeconds, Null);
     }
 }
@@ -1895,10 +1896,10 @@ rule ("[hanzo/mark.opy]: Mark enemy play effects") {
         (Event Player).Hanzo_Marked_icon == True;
     }
     actions {
-        Destroy In-World Text(Value In Array((Event Player).text, 19));
-        Set Player Variable At Index(Event Player, text, 19, Null);
+        Destroy In-World Text(Value In Array((Event Player).text, 16));
+        Set Player Variable At Index(Event Player, text, 16, Null);
         Create In-World Text(Players On Hero(Hero(Hanzo), Opposite Team Of(Team Of(Event Player))), Icon String(Skull), Add(Event Player, Vector(0, 2.5, 0)), 1.2, Do Not Clip, Visible To Position and String, Color(Red), Default Visibility);
-        Set Player Variable At Index(Event Player, text, 19, Last Text ID);
+        Set Player Variable At Index(Event Player, text, 16, Last Text ID);
     }
 }
 
@@ -1932,8 +1933,8 @@ rule ("[hanzo/mark.opy]: Mark enemy on damage") {
         Set Player Variable(Event Player, Hanzo_Marked_icon, True);
         Wait(8, Restart When True);
         Set Player Variable(Event Player, Hanzo_Marked_icon, Null);
-        Destroy In-World Text(Value In Array((Event Player).text, 19));
-        Set Player Variable At Index(Event Player, text, 19, Null);
+        Destroy In-World Text(Value In Array((Event Player).text, 16));
+        Set Player Variable At Index(Event Player, text, 16, Null);
     }
 }
 
@@ -1945,8 +1946,8 @@ rule ("[hanzo/mark.opy]: On death, remove mark") {
     }
     actions {
         Set Player Variable(Event Player, Hanzo_Marked_icon, Null);
-        Destroy In-World Text(Value In Array((Event Player).text, 19));
-        Set Player Variable At Index(Event Player, text, 19, Null);
+        Destroy In-World Text(Value In Array((Event Player).text, 16));
+        Set Player Variable At Index(Event Player, text, 16, Null);
     }
 }
 
@@ -1978,7 +1979,7 @@ rule ("[hanzo/init.opy]: Correct Hanzo other forms of damage") {
     }
 }
 
-rule ("[hazard/spike_guard.opy] Increase damage on block to 230") {
+rule ("[hazard/spike_guard.opy]: Increase damage on block to 230") {
     event {
         Player Dealt Damage;
         All;
@@ -1992,7 +1993,7 @@ rule ("[hazard/spike_guard.opy] Increase damage on block to 230") {
     }
 }
 
-rule ("Hazard Lifesteal heal 2 per spike") {
+rule ("[hazard/spike_guard.opy]: Lifesteal heal 2 per spike") {
     event {
         Player Dealt Damage;
         All;
@@ -2055,23 +2056,6 @@ rule ("[hazard/downpour.opy]: hazard reset reveal enemies") {
     }
 }
 
-rule ("[hazard/downpour.opy]: hazard reset reveal enemies") {
-    event {
-        Ongoing - Each Player;
-        All;
-        All;
-    }
-    conditions {
-        (Event Player).Junkrat_Trap_target == True;
-    }
-    actions {
-        Wait(2.5, Ignore Condition);
-        Destroy In-World Text((Event Player).Junkrat_Trap_effect);
-        Set Player Variable(Event Player, Junkrat_Trap_target, Null);
-        Set Player Variable(Event Player, Junkrat_Trap_effect, Null);
-    }
-}
-
 rule ("[hazard/thorn_wall.opy]: Haz cancel wall") {
     event {
         Ongoing - Each Player;
@@ -2117,7 +2101,7 @@ rule ("[hazard/thorn_wall.opy]: Target Teammate HUD and allow bubble") {
     actions {
         "targeting hud"
         Create In-World Text(If-Then-Else(And(Compare((Event Player).hazard_bubble_target, !=, Null), Compare(Ability Cooldown(Event Player, Button(Ability 2)), ==, 0)), Event Player, Null), Custom String(" \n\n\n\n\n\n     ︿\n〈      〉\n     ﹀ "), Add((Event Player).hazard_bubble_target, Vector(0, 0.7, 0)), 2, Do Not Clip, Visible To Position and String, Custom Color(55, 230, 255, 210), Default Visibility);
-        Set Player Variable At Index(Event Player, text, 16, Last Text ID);
+        Set Player Variable At Index(Event Player, text, 14, Last Text ID);
         Set Ability 2 Enabled(Event Player, True);
         Set Player Variable(Event Player, Hazard_Bubble_Allowed, True);
     }
@@ -2134,7 +2118,7 @@ rule ("[hazard/thorn_wall.opy]: Disallow bubble") {
     }
     actions {
         Set Ability 2 Enabled(Event Player, False);
-        Destroy In-World Text(Value In Array((Event Player).text, 16));
+        Destroy In-World Text(Value In Array((Event Player).text, 14));
         Set Player Variable(Event Player, Hazard_Bubble_Allowed, False);
     }
 }
@@ -2147,6 +2131,7 @@ rule ("[hazard/thorn_wall.opy]: Confirm Target") {
     }
     conditions {
         Is Button Held(Event Player, Button(Ability 2)) == True;
+        Is Alive(Event Player) == True;
     }
     actions {
         If(Compare((Event Player).Hazard_Bubble_Allowed, ==, True));
@@ -2238,6 +2223,7 @@ rule ("[hazard/init.opy]: initHazard()") {
         Set Player Variable At Index(Event Player, macro_pvar, 0, 0.8);
         Set Damage Dealt(Event Player, Multiply(100, First Of((Event Player).macro_pvar)));
         Set Ability 2 Enabled(Event Player, False);
+        Disallow Button(Event Player, Button(Ability 2));
         Set Player Variable(Event Player, hero_initialized, True);
     }
 }
@@ -2267,8 +2253,9 @@ rule ("[hazard/init.opy]: Clean up Hazard") {
     }
     actions {
         Set Player Variable(Event Player, hazard_bubble_target, Null);
-        Destroy In-World Text(Value In Array((Event Player).text, 16));
+        Destroy In-World Text(Value In Array((Event Player).text, 14));
         Set Player Variable(Event Player, Hazard_Bubble_Allowed, Null);
+        Allow Button(Event Player, Button(Ability 2));
     }
 }
 
@@ -2955,9 +2942,9 @@ rule ("[lifeweaver/init.opy]: Initialize Lifeweaver") {
         Create In-World Text(Event Player, Custom String("{0}", Round To Integer((Event Player).Lifeweaver_dash_charges, Up)), Update Every Frame(Add(Eye Position(Event Player), Multiply(100, Add(Add(Multiply(2.535, World Vector Of(Right, Event Player, Rotation)), Multiply(-2.05, Direction From Angles(Horizontal Angle From Direction(Facing Direction Of(Event Player)), Subtract(Vertical Angle From Direction(Facing Direction Of(Event Player)), 90)))), Multiply(3, Facing Direction Of(Event Player)))))), 3, Do Not Clip, Visible To Position String and Color, Color(White), Default Visibility);
         Set Player Variable At Index(Event Player, text, 8, Last Text ID);
         Create In-World Text(Event Player, Custom String("{0} {1}", Round To Integer((Event Player).Lifeweaver_petal_charges, Up), Ability Icon String(Hero(Lifeweaver), Button(Ability 1))), Update Every Frame(Add(Eye Position(Event Player), Multiply(100, Add(Add(Multiply(-0.22, World Vector Of(Right, Event Player, Rotation)), Multiply(-0.6, Direction From Angles(Horizontal Angle From Direction(Facing Direction Of(Event Player)), Subtract(Vertical Angle From Direction(Facing Direction Of(Event Player)), 90)))), Multiply(3, Facing Direction Of(Event Player)))))), 1.3, Do Not Clip, Visible To Position String and Color, Color(White), Default Visibility);
-        Set Player Variable At Index(Event Player, text, 10, Last Text ID);
+        Set Player Variable At Index(Event Player, text, 9, Last Text ID);
         Create In-World Text(Event Player, Custom String("{0} {1}", Round To Integer((Event Player).Lifeweaver_dash_charges, Up), Ability Icon String(Hero(Lifeweaver), Button(Jump))), Update Every Frame(Add(Eye Position(Event Player), Multiply(100, Add(Add(Multiply(0.22, World Vector Of(Right, Event Player, Rotation)), Multiply(-0.6, Direction From Angles(Horizontal Angle From Direction(Facing Direction Of(Event Player)), Subtract(Vertical Angle From Direction(Facing Direction Of(Event Player)), 90)))), Multiply(3, Facing Direction Of(Event Player)))))), 1.3, Do Not Clip, Visible To Position String and Color, Color(White), Default Visibility);
-        Set Player Variable At Index(Event Player, text, 11, Last Text ID);
+        Set Player Variable At Index(Event Player, text, 10, Last Text ID);
         Set Player Variable(Event Player, Lifeweaver_petal_charges, 2);
         Set Player Variable(Event Player, Lifeweaver_dash_charges, 2);
         Set Max Ammo(Event Player, 0, 5);
@@ -3007,8 +2994,8 @@ rule ("[lifeweaver/init.opy]: Clean up lifeweaver") {
     actions {
         Destroy In-World Text(Value In Array((Event Player).text, 7));
         Destroy In-World Text(Value In Array((Event Player).text, 8));
+        Destroy In-World Text(Value In Array((Event Player).text, 9));
         Destroy In-World Text(Value In Array((Event Player).text, 10));
-        Destroy In-World Text(Value In Array((Event Player).text, 11));
     }
 }
 
@@ -3930,9 +3917,9 @@ rule ("[orisa/init.opy]: initOrisa()") {
         Set Knockback Dealt(Event Player, 82);
         Set Player Variable(Event Player, Orisa_Ammo, 100);
         Create Progress Bar In-World Text(Event Player, (Event Player).Orisa_heat, Custom String("Heat"), Update Every Frame(Add(Eye Position(Event Player), Multiply(100, Add(Multiply(-0.7, Direction From Angles(Horizontal Angle From Direction(Facing Direction Of(Event Player)), Subtract(Vertical Angle From Direction(Facing Direction Of(Event Player)), 90))), Multiply(3, Facing Direction Of(Event Player)))))), 0.7, Do Not Clip, Color(Orange), Color(Orange), Visible To Position Values and Color, Default Visibility);
-        Set Player Variable At Index(Event Player, text, 21, Last Text ID);
+        Set Player Variable At Index(Event Player, text, 18, Last Text ID);
         Create In-World Text(Event Player, Custom String("{0}", Round To Integer((Event Player).Orisa_Ammo, Up)), Update Every Frame(Add(Eye Position(Event Player), Multiply(100, Add(Add(Multiply(3.35, World Vector Of(Right, Event Player, Rotation)), Multiply(-1.5, Direction From Angles(Horizontal Angle From Direction(Facing Direction Of(Event Player)), Subtract(Vertical Angle From Direction(Facing Direction Of(Event Player)), 90)))), Multiply(3, Facing Direction Of(Event Player)))))), 2, Do Not Clip, Visible To Position String and Color, Color(White), Default Visibility);
-        Set Player Variable At Index(Event Player, text, 22, Last Text ID);
+        Set Player Variable At Index(Event Player, text, 19, Last Text ID);
         "if not eventPlayer.isDuplicatingAHero():\nsetBaseDamage(eventPlayer, ADJ_ORISA_JAVELIN_DIRECT_DAMAGE / OW2_ORISA_JAVELIN_DIRECT_DAMAGE)"
         Set Player Variable(Event Player, balance_change_check, True);
         Set Player Variable(Event Player, hero_initialized, True);
@@ -3979,8 +3966,8 @@ rule ("[orisa/init.opy]: Clean up Orisa") {
     actions {
         Destroy Effect((Event Player).Orisa_ring_effect);
         Set Player Variable(Event Player, Orisa_Ammo, Null);
-        Destroy Progress Bar In-World Text(Value In Array((Event Player).text, 21));
-        Destroy In-World Text(Value In Array((Event Player).text, 22));
+        Destroy Progress Bar In-World Text(Value In Array((Event Player).text, 18));
+        Destroy In-World Text(Value In Array((Event Player).text, 19));
     }
 }
 
@@ -4320,7 +4307,7 @@ rule ("[roadhog/pigpen.opy]: Buff Teammate and play effects") {
         Start Heal Over Time(Event Player, Players On Hero(Hero(Roadhog), Team Of(Event Player)), 3, 55);
         Modify Player Variable At Index(Event Player, macro_pvar, 3, Subtract, 40);
         Set Damage Received(Event Player, Value In Array((Event Player).macro_pvar, 3));
-        Wait(3, Ignore Condition);
+        Wait Until(Or(Is Dead(Event Player), Compare((Event Player).hero_initialized, ==, False)), 3);
         Modify Player Variable At Index(Event Player, macro_pvar, 3, Add, 40);
         Set Damage Received(Event Player, Value In Array((Event Player).macro_pvar, 3));
         Destroy Effect((Event Player).Roadhog_vape_effect);
@@ -4400,7 +4387,7 @@ rule ("[roadhog/wholehog.opy]: Force autofire while in wholehog") {
     }
 }
 
-rule ("[roadhog/primary.opy]: true damage") {
+rule ("[roadhog/scrap_gun.opy]: true damage") {
     event {
         Player Dealt Damage;
         All;
@@ -4708,7 +4695,7 @@ rule ("[sombra/virus.opy]: Target Teammate HUD and allow Virus") {
     actions {
         "targeting hud"
         Create In-World Text(If-Then-Else(And(Compare((Event Player).Sombra_virus_target, !=, Null), Compare(Ability Cooldown(Event Player, Button(Ability 1)), ==, 0)), Event Player, Null), Custom String(" \n\n\n\n\n\n     ︿\n〈      〉\n     ﹀ "), Add((Event Player).Sombra_virus_target, Vector(0, 0.7, 0)), 2, Do Not Clip, Visible To Position and String, Custom Color(55, 230, 255, 210), Default Visibility);
-        Set Player Variable At Index(Event Player, text, 14, Last Text ID);
+        Set Player Variable At Index(Event Player, text, 12, Last Text ID);
         Allow Button(Event Player, Button(Ability 1));
     }
 }
@@ -4724,7 +4711,7 @@ rule ("[sombra/virus.opy]: Disallow Virus") {
     }
     actions {
         Disallow Button(Event Player, Button(Ability 1));
-        Destroy In-World Text(Value In Array((Event Player).text, 14));
+        Destroy In-World Text(Value In Array((Event Player).text, 12));
     }
 }
 
@@ -4756,7 +4743,7 @@ rule ("[sombra/virus.opy]: Buff Teammate and play effects") {
         Big Message(Event Player, Custom String("HACKED"));
         Set Player Variable(Players On Hero(Hero(Sombra), Team Of(Event Player)), Sombra_virus_target, Null);
         Create In-World Text(All Players(All Teams), Ability Icon String(Hero(Sombra), Button(Ultimate)), Add(Event Player, Vector(0, 2.5, 0)), 2, Clip Against Surfaces, Visible To Position and String, Color(Purple), Default Visibility);
-        Set Player Variable At Index(Event Player, text, 15, Last Text ID);
+        Set Player Variable At Index(Event Player, text, 13, Last Text ID);
         Set Player Variable(Event Player, Sombra_hack_icon, True);
         Start Heal Over Time(Event Player, Players On Hero(Hero(Sombra), Team Of(Event Player)), 5, 30);
         Play Effect(All Players(All Teams), Good Pickup Effect, Color(Purple), Event Player, 90);
@@ -4764,10 +4751,10 @@ rule ("[sombra/virus.opy]: Buff Teammate and play effects") {
         Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 80);
         Modify Player Variable At Index(Event Player, macro_pvar, 2, Add, 30);
         Set Move Speed(Event Player, Value In Array((Event Player).macro_pvar, 2));
-        Wait(5, Ignore Condition);
+        Wait Until(Or(Is Dead(Event Player), Compare((Event Player).hero_initialized, ==, False)), 5);
         Modify Player Variable At Index(Event Player, macro_pvar, 2, Subtract, 30);
         Set Move Speed(Event Player, Value In Array((Event Player).macro_pvar, 2));
-        Destroy In-World Text(Value In Array((Event Player).text, 15));
+        Destroy In-World Text(Value In Array((Event Player).text, 13));
         Set Player Variable(Event Player, Sombra_hack_icon, Null);
     }
 }
@@ -5028,7 +5015,7 @@ rule ("[sombra/init.opy]: initSombra()") {
         Set Damage Dealt(Event Player, Multiply(100, First Of((Event Player).macro_pvar)));
         Set Player Variable(Event Player, Sombra_invisible, False);
         Create In-World Text(Event Player, Custom String("{0} {1}", Count Of(Filtered Array(All Living Players(Team Of(Event Player)), And(And(Compare(Distance Between(Event Player, Current Array Element), <=, 15), Is In Line of Sight(Event Player, Current Array Element, Enemy Barriers Block LOS)), Compare(Hero Of(Current Array Element), !=, Hero(Sombra))))), Icon String(Plus)), Update Every Frame(Add(Eye Position(Event Player), Multiply(100, Add(Multiply(-0.3, Direction From Angles(Horizontal Angle From Direction(Facing Direction Of(Event Player)), Subtract(Vertical Angle From Direction(Facing Direction Of(Event Player)), 90))), Multiply(3, Facing Direction Of(Event Player)))))), 1.8, Do Not Clip, Visible To Position String and Color, Color(White), Default Visibility);
-        Set Player Variable At Index(Event Player, text, 13, Last Text ID);
+        Set Player Variable At Index(Event Player, text, 11, Last Text ID);
         Set Player Variable(Event Player, hero_initialized, True);
     }
 }
@@ -5058,9 +5045,9 @@ rule ("[sombra/init.opy]: Clean up Sombra") {
     }
     actions {
         Set Player Variable(Event Player, Sombra_virus_target, Null);
-        Destroy In-World Text(Value In Array((Event Player).text, 14));
+        Destroy In-World Text(Value In Array((Event Player).text, 12));
         Destroy Effect((Event Player).Sombra_healing_ring);
-        Destroy In-World Text(Value In Array((Event Player).text, 13));
+        Destroy In-World Text(Value In Array((Event Player).text, 11));
     }
 }
 
@@ -5424,7 +5411,7 @@ rule ("[widowmaker/widows_kiss.opy]: force fire after 5s") {
         Set Damage Dealt(Event Player, 87.5);
         Set Player Variable(Event Player, Widow_maxscope_duration, 100);
         Create Progress Bar In-World Text(Event Player, (Event Player).Widow_maxscope_duration, Custom String("Focus"), Update Every Frame(Add(Eye Position(Event Player), Multiply(100, Add(Multiply(0.3, Direction From Angles(Horizontal Angle From Direction(Facing Direction Of(Event Player)), Subtract(Vertical Angle From Direction(Facing Direction Of(Event Player)), 90))), Multiply(3, Facing Direction Of(Event Player)))))), 0.7, Do Not Clip, Color(White), Color(White), Visible To Position Values and Color, Default Visibility);
-        Set Player Variable At Index(Event Player, text, 20, Last Text ID);
+        Set Player Variable At Index(Event Player, text, 17, Last Text ID);
         Chase Player Variable At Rate(Event Player, Widow_maxscope_duration, 0, 25, Destination and Rate);
         Wait Until(Or(Not(Is Firing Secondary(Event Player)), Is Button Held(Event Player, Button(Primary Fire))), 4);
         If(Is Button Held(Event Player, Button(Primary Fire)));
@@ -5434,7 +5421,7 @@ rule ("[widowmaker/widows_kiss.opy]: force fire after 5s") {
             Press Button(Event Player, Button(Secondary Fire));
         End;
         Stop Chasing Player Variable(Event Player, Widow_maxscope_duration);
-        Destroy Progress Bar In-World Text(Value In Array((Event Player).text, 20));
+        Destroy Progress Bar In-World Text(Value In Array((Event Player).text, 17));
         Set Secondary Fire Enabled(Event Player, False);
         Wait(0.34, Ignore Condition);
         Set Secondary Fire Enabled(Event Player, True);
@@ -5453,8 +5440,8 @@ rule ("[widowmaker/widows_kiss.opy]: unscope / reset") {
     actions {
         Wait Until(Not(Is Firing Secondary(Event Player)), 99999);
         Stop Chasing Player Variable(Event Player, Widow_maxscope_duration);
-        Destroy Progress Bar In-World Text(Value In Array((Event Player).text, 20));
-        Set Player Variable At Index(Event Player, text, 20, Null);
+        Destroy Progress Bar In-World Text(Value In Array((Event Player).text, 17));
+        Set Player Variable At Index(Event Player, text, 17, Null);
         Set Player Variable(Event Player, Widow_maxscope_duration, Null);
         Set Damage Dealt(Event Player, Multiply(100, First Of((Event Player).macro_pvar)));
     }

@@ -27,7 +27,7 @@ rule "[hazard/thorn_wall.opy]: Target Teammate HUD and allow bubble":
     
     #targeting hud
     createInWorldText(eventPlayer if eventPlayer.hazard_bubble_target != null and eventPlayer.getAbilityCooldown(Button.ABILITY_2) == 0 else null, " \n\n\n\n\n\n     ︿\n〈      〉\n     ﹀ ", eventPlayer.hazard_bubble_target + vect(0, 0.7, 0), 2, Clip.NONE, WorldTextReeval.VISIBILITY_POSITION_AND_STRING, rgb(55, 230, 255, 210))
-    eventPlayer.text[16] = getLastCreatedText()
+    eventPlayer._hazard_bubble_target_hud = getLastCreatedText()
     eventPlayer.setAbility2Enabled(true)
     eventPlayer.Hazard_Bubble_Allowed = true
 
@@ -38,7 +38,7 @@ rule "[hazard/thorn_wall.opy]: Disallow bubble":
     @Condition eventPlayer.hazard_bubble_target == null
     
     eventPlayer.setAbility2Enabled(false)
-    destroyInWorldText(eventPlayer.text[16])
+    destroyInWorldText(eventPlayer._hazard_bubble_target_hud)
     eventPlayer.Hazard_Bubble_Allowed = false
 
 
@@ -46,7 +46,8 @@ rule "[hazard/thorn_wall.opy]: Confirm Target":
     @Event eachPlayer
     @Hero hazard
     @Condition eventPlayer.isHoldingButton(Button.ABILITY_2) == true
-    
+    @Condition eventPlayer.isAlive() == true
+
     if eventPlayer.Hazard_Bubble_Allowed == true:
         eventPlayer.setAbilityCooldown(Button.ABILITY_2, 10)
         eventPlayer.hazard_bubble_target.hazard_bubble_confirmed = true

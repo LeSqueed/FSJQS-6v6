@@ -3,11 +3,11 @@ rule "[sombra/hack.opy] Hacked healpack bonus speed":
     @Condition eventWasHealthPack == true
     
     if healer.getHero() == Hero.SOMBRA:
-        eventPlayer.macro_pvar[2] = eventPlayer.macro_pvar[2] + 25
-        eventPlayer.setMoveSpeed(eventPlayer.macro_pvar[2])
+        eventPlayer._current_move_speed += 25
+        eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
         wait(2)
-        eventPlayer.macro_pvar[2] = eventPlayer.macro_pvar[2] - 25
-        eventPlayer.setMoveSpeed(eventPlayer.macro_pvar[2])
+        eventPlayer._current_move_speed -= 25
+        eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
 
 
 rule "[sombra/hack.opy] Hack target for 1.8s":
