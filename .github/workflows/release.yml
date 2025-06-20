@@ -1,0 +1,76 @@
+name: Create and Publish Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        description: 'The type of version bump (patch, minor, or major)'
+        required: true
+        type: choice
+        options:
+        - patch
+        - minor
+        - major
+        default: 'patch'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Initialize Overpy Submodule
+        run: git submodule update --init --recursive
+        
+      - name: Configure Git User
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump version and build
+        run: |
+          echo "Bumping version with type: ${{ github.event.inputs.version_bump }}"
+          make version-${{ github.event.inputs.version_bump }}
+          
+      - name: Get the new version from package.json
+        id: get_version
+        run: echo "version_tag=v$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+      - name: Commit version bump
+        run: |
+          git add package.json package-lock.json src/lobby/lobby.opy
+          git commit -m "chore(release): version ${{ steps.get_version.outputs.version_tag }}"
+          
+      - name: Create Git tag
+        run: |
+          git tag -a ${{ steps.get_version.outputs.version_tag }} -m "Release ${{ steps.get_version.outputs.version_tag }}"
+
+      - name: Push changes and tags
+        run: |
+          git push origin main --follow-tags
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.get_version.outputs.version_tag }}
+          name: "Release ${{ steps.get_version.outputs.version_tag }}"
+          body: "New release of the workshop code. See attached artifact."
+          files: |
+            output/workshop.txt
