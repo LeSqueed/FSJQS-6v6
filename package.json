@@ -12,7 +12,8 @@
   "main": "build.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "node build.js"
+    "build": "node build.js",
+    "postversion": "npm run build && git add src/lobby/lobby.opy output/workshop.txt"
   },
   "repository": {
     "type": "git",

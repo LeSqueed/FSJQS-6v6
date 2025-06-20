@@ -2,7 +2,7 @@ settings
 {
 	main
 	{
-		Mode Name: "6v6 Adjustments + Realth 1.16.9"
+		Mode Name: "6v6 Adjustments + Realth 1.17.0"
 	}
 	lobby
 	{
