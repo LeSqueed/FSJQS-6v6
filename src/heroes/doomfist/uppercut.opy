@@ -93,5 +93,6 @@ rule "[doomfist/uppercut.opy]: Shields for Uppercut":
     
     waitUntil(eventPlayer.is_using_uppercut == false, 99999)
     eventPlayer.number_of_victims_uppercut = len(eventPlayer.uppercut_victims)
-    eventPlayer.addHealthPool(Health.NORMAL, eventPlayer.number_of_victims_uppercut * 25, false)
-    eventPlayer.doom_uppercut_shields = getLastCreatedHealthPool()
+    if eventPlayer.number_of_victims_uppercut > 0:
+        eventPlayer.addHealthPool(Health.SHIELDS, eventPlayer.number_of_victims_uppercut * 25, false)
+        eventPlayer.doom_uppercut_shields = getLastCreatedHealthPool()
