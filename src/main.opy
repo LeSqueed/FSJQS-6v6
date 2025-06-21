@@ -2,6 +2,8 @@
 #!include "constants/global.opy"
 #!include "constants/player.opy"
 
+#!optimizeStrict
+
 #Subroutine names
 subroutine clearCustomHp 0
 subroutine applyCustomHp 1
