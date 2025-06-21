@@ -19,7 +19,7 @@ permissions:
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -38,13 +38,13 @@ jobs:
 
       - name: Initialize Overpy Submodule
         run: git submodule update --init --recursive
-        
+
       - name: Configure Git User
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Bump Version, Build, Commit, and Tag
+      - name: Bump Version, Commit, and Tag
         run: "npm version ${{ github.event.inputs.version_bump }} -m 'chore(release): version %s'"
 
       - name: Get the new version tag
@@ -54,12 +54,16 @@ jobs:
       - name: Push changes and tags
         run: git push origin main --follow-tags
 
+      - name: Build Release Artifacts
+        id: build
+        run: npm run build
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.get_version.outputs.version_tag }}
           name: "Release ${{ steps.get_version.outputs.version_tag }}"
-          body: "New release of the workshop code. See attached artifact."
+          generate_release_notes: true
           files: |
             output/workshop.txt
             output/rules.txt
