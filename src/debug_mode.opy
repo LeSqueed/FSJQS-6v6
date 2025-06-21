@@ -88,7 +88,7 @@ rule "[debug_mode.opy]: Change hero":
     eventPlayer.teleport(eventPlayer.position)
 
 
-rule "[debug_mode.opy]: Player Dealt Damage":
+rule "[debug_mode.opy]: Player Dealt Healing":
     @Event playerDealtHealing
     @Condition healee != healer
     @Condition DEBUG_MODE == true
@@ -96,7 +96,7 @@ rule "[debug_mode.opy]: Player Dealt Damage":
     #Inspired by a damage numbers mode by Darwin
     destroyInWorldText(eventPlayer.textID)
     eventPlayer.position = healee.getEyePosition()
-    createInWorldText(eventPlayer, eventHealing, eventPlayer.position, 0.85 + eventDamage / 30, Clip.SURFACES, WorldTextReeval.VISIBILITY_POSITION_AND_STRING, Color.YELLOW)
+    createInWorldText(eventPlayer, eventHealing, eventPlayer.position, 0.85 + eventHealing / 30, Clip.SURFACES, WorldTextReeval.VISIBILITY_POSITION_AND_STRING, Color.YELLOW)
     eventPlayer.textID = getLastCreatedText()
     chaseAtRate(eventPlayer.position, healee.getEyePosition() + Vector.UP, 0.9, ChaseRateReeval.NONE)
     if eventPlayer.time == 0:
