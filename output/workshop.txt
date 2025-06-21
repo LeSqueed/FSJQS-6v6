@@ -2576,6 +2576,29 @@ rule ("[junkrat/trap.opy]: junkrat reveal enemies") {
     }
 }
 
+rule("[junkrat/trap.opy]: junkrat reset reveal enemies")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.Junkrat_Trap_target == True;
+	}
+
+	actions
+	{
+		Wait(2.500, Ignore Condition);
+		Destroy In-World Text(Event Player.Junkrat_Trap_effect);
+		Event Player.Junkrat_Trap_target = Null;
+		Event Player.Junkrat_Trap_effect = Null;
+	}
+}
+
 rule ("[junkrat/init.opy]: initJunkrat()") {
     event {
         Subroutine;
@@ -6663,7 +6686,7 @@ rule ("[debug_mode.opy]: Change hero") {
     }
 }
 
-rule ("[debug_mode.opy]: Player Dealt Damage") {
+rule ("[debug_mode.opy]: Player Dealt Healing") {
     event {
         Player Dealt Healing;
         All;
@@ -6677,7 +6700,7 @@ rule ("[debug_mode.opy]: Player Dealt Damage") {
         "Inspired by a damage numbers mode by Darwin"
         Destroy In-World Text((Event Player).textID);
         Set Player Variable(Event Player, position, Eye Position(Healee));
-        Create In-World Text(Event Player, Event Healing, (Event Player).position, Add(0.85, Divide(Event Damage, 30)), Clip Against Surfaces, Visible To Position and String, Color(Yellow), Default Visibility);
+        Create In-World Text(Event Player, Event Healing, (Event Player).position, Add(0.85, Divide(Event Healing, 30)), Clip Against Surfaces, Visible To Position and String, Color(Yellow), Default Visibility);
         Set Player Variable(Event Player, textID, Last Text ID);
         Chase Player Variable At Rate(Event Player, position, Add(Eye Position(Healee), Up), 0.9, None);
         Skip If(Compare((Event Player).time, ==, 0), 1);
