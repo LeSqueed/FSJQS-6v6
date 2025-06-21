@@ -71,6 +71,7 @@ subroutine executeUppercut 58
 #!include "utilities/anti_crash.opy"
 #!include "utilities/hud.opy"
 #!include "utilities/utilities.opy"
+#!include "utilities/reset.opy"
 #!include "utilities/role_lock.opy"
 #!include "utilities/reset.opy"
 #!include "passives/healing.opy"
