@@ -13,7 +13,6 @@ playervar number_of_victims_uppercut
 #!include "uppercut.opy"
 #!include "seismic_slam.opy" 
 #!include "hand_cannon.opy"
-#!include "dps.opy"
 
 def initDoomfist():
     @Name "[doomfist/init.opy]: initDoomfist()"

@@ -4,7 +4,7 @@
 #!include "bastion/init.opy"
 #!include "brigitte/init.opy"
 #!include "cassidy/init.opy"
-#!include "doomfist/init.opy"
+#!include "doomfist_dps/init.opy"
 #!include "dva/init.opy"
 #!include "echo/init.opy"
 #!include "freja/init.opy"

@@ -213,7 +213,7 @@ settings {
                 "ultGen%": 105
             },
             "ramattra": {
-                "health%": 63,
+                "health%": 63.3,
                 "ability1Cooldown%": 100,
                 "ability2Cooldown%": 85,
                 "ultDuration%": 100,
