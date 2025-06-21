@@ -11,9 +11,9 @@ rule "[junkrat/trap.opy]: junkrat reveal enemies":
 
 rule "[junkrat/trap.opy]: junkrat reset reveal enemies":
 	@Event eachPlayer
-	@Condition Event Player.Junkrat_Trap_target == True;
+	@Condition eventPlayer.Junkrat_Trap_target
 
-		Wait(2.500, Ignore Condition);
-		Destroy In-World Text(Event Player.Junkrat_Trap_effect);
-		Event Player.Junkrat_Trap_target = Null;
-		Event Player.Junkrat_Trap_effect = Null;
+    wait(2.500)
+    destroyInWorldText(eventPlayer.Junkrat_Trap_effect)
+    eventPlayer.Junkrat_Trap_target = null
+    eventPlayer.Junkrat_Trap_effect = null
