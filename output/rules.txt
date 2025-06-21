@@ -5856,6 +5856,139 @@ rule ("[role_lock.opy]: Skip Assemble Heroes") {
     }
 }
 
+rule ("[utilities/reset.opy]: resetHero()") {
+    event {
+        Subroutine;
+        resetHero;
+    }
+    actions {
+        Call Subroutine(clearCustomHp);
+        Call Subroutine(disableAllAbilities);
+        Call Subroutine(resetStats);
+        Call Subroutine(resetUltCharge);
+        Call Subroutine(enableAllAbilities);
+        Set Player Variable(Event Player, hero_initialized, False);
+    }
+}
+
+rule ("[utilities/reset.opy]: enableAllAbilities()") {
+    event {
+        Subroutine;
+        enableAllAbilities;
+    }
+    actions {
+        Allow Button(Event Player, Button(Primary Fire));
+        Allow Button(Event Player, Button(Secondary Fire));
+        Allow Button(Event Player, Button(Ability 1));
+        Allow Button(Event Player, Button(Ability 2));
+        Allow Button(Event Player, Button(Ultimate));
+        Allow Button(Event Player, Button(Melee));
+        Allow Button(Event Player, Button(Jump));
+        Allow Button(Event Player, Button(Crouch));
+        Allow Button(Event Player, Button(Reload));
+        Allow Button(Event Player, Button(Interact));
+        Set Primary Fire Enabled(Event Player, True);
+        Set Secondary Fire Enabled(Event Player, True);
+        Set Ability 1 Enabled(Event Player, True);
+        Set Ability 2 Enabled(Event Player, True);
+        Set Ultimate Ability Enabled(Event Player, True);
+        Set Melee Enabled(Event Player, True);
+        Set Jump Enabled(Event Player, True);
+        Set Crouch Enabled(Event Player, True);
+        Set Reload Enabled(Event Player, True);
+    }
+}
+
+rule ("[utilities/reset.opy]: disableAllAbilities()") {
+    event {
+        Subroutine;
+        disableAllAbilities;
+    }
+    actions {
+        Disallow Button(Event Player, Button(Primary Fire));
+        Disallow Button(Event Player, Button(Secondary Fire));
+        Disallow Button(Event Player, Button(Ability 1));
+        Disallow Button(Event Player, Button(Ability 2));
+        Disallow Button(Event Player, Button(Ultimate));
+        Disallow Button(Event Player, Button(Melee));
+        Disallow Button(Event Player, Button(Jump));
+        Disallow Button(Event Player, Button(Crouch));
+        Disallow Button(Event Player, Button(Reload));
+        Disallow Button(Event Player, Button(Interact));
+        Set Primary Fire Enabled(Event Player, False);
+        Set Secondary Fire Enabled(Event Player, False);
+        Set Ability 1 Enabled(Event Player, False);
+        Set Ability 2 Enabled(Event Player, False);
+        Set Ultimate Ability Enabled(Event Player, False);
+        Set Melee Enabled(Event Player, False);
+        Set Jump Enabled(Event Player, False);
+        Set Crouch Enabled(Event Player, False);
+        Set Reload Enabled(Event Player, False);
+    }
+}
+
+rule ("[utilities/reset.opy]: resetStats()") {
+    event {
+        Subroutine;
+        resetStats;
+    }
+    actions {
+        Set Player Variable At Index(Event Player, macro_pvar, 0, 1);
+        Set Damage Dealt(Event Player, Multiply(100, First Of((Event Player).macro_pvar)));
+        Set Damage Received(Event Player, 100);
+        Set Projectile Speed(Event Player, 100);
+        Set Projectile Gravity(Event Player, 100);
+        Set Player Variable At Index(Event Player, macro_pvar, 1, 1);
+        Set Healing Dealt(Event Player, Multiply(100, Value In Array((Event Player).macro_pvar, 1)));
+        Set Healing Received(Event Player, 100);
+        Set Knockback Received(Event Player, 100);
+        Set Knockback Dealt(Event Player, 100);
+        "eventPlayer.setGravity(100)\neventPlayer.setJumpVerticalSpeed(100) # might be responsible for jump bug"
+        Set Player Variable At Index(Event Player, macro_pvar, 2, 1);
+        Set Move Speed(Event Player, Multiply(100, Value In Array((Event Player).macro_pvar, 2)));
+        Stop Scaling Player(Event Player);
+        Stop Scaling Barriers(Event Player);
+        "prevent wholehog from keeping primary fire held"
+        Stop Holding Button(Event Player, Button(Primary Fire));
+        Set Player Variable(Event Player, max_health_scaler, 1);
+        Stop All Damage Over Time(Event Player);
+        Stop All Heal Over Time(Event Player);
+        Set Player Variable At Index(Event Player, macro_pvar, 3, 100);
+        Set Player Variable At Index(Event Player, macro_pvar, 2, 100);
+    }
+}
+
+rule ("[utilities/reset.opy]: resetStatuses()") {
+    event {
+        Subroutine;
+        resetStatuses;
+    }
+    actions {
+        Clear Status(Event Player, Asleep);
+        Clear Status(Event Player, Burning);
+        Clear Status(Event Player, Frozen);
+        Clear Status(Event Player, Hacked);
+        Clear Status(Event Player, Invincible);
+        Clear Status(Event Player, Knocked Down);
+        Clear Status(Event Player, Phased Out);
+        Clear Status(Event Player, Rooted);
+        Clear Status(Event Player, Stunned);
+        Clear Status(Event Player, Unkillable);
+    }
+}
+
+rule ("[utilities/reset.opy]: Stop DoT/HoT on death") {
+    event {
+        Player Died;
+        All;
+        All;
+    }
+    actions {
+        Stop All Damage Over Time(Event Player);
+        Stop All Heal Over Time(Event Player);
+    }
+}
+
 rule ("[passives/tank/ult_charge.opy]: resetUltCharge()") {
     event {
         Subroutine;

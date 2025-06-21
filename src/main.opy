@@ -72,6 +72,7 @@ subroutine executeUppercut 58
 #!include "utilities/hud.opy"
 #!include "utilities/utilities.opy"
 #!include "utilities/role_lock.opy"
+#!include "utilities/reset.opy"
 #!include "passives/healing.opy"
 #!include "passives/tank/ult_charge.opy"
 #!include "passives/tank/knockback.opy"

@@ -2,5 +2,4 @@
 /.idea
 /.DS_Store
 /node_modules
-./variables.opy
-./variables
+/references
