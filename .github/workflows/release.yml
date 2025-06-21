@@ -17,7 +17,7 @@ permissions:
   contents: write
 
 jobs:
-  build-and-release:
+  create-release:
     runs-on: ubuntu-latest
 
     steps:
@@ -44,26 +44,48 @@ jobs:
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Bump Version, Commit, and Tag
-        run: "npm version ${{ github.event.inputs.version_bump }} -m 'chore(release): version %s'"
+      - name: Update version in package.json
+        run: npm version ${{ github.event.inputs.version_bump }} --no-git-tag-version
 
-      - name: Get the new version tag
+      - name: Read version from package.json
         id: get_version
-        run: echo "version_tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
+        run: echo "new_version=v$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
 
-      - name: Push changes and tags
-        run: git push origin main --follow-tags
+      - name: Create release branch
+        id: create_branch
+        run: |
+          git checkout -b "release/${{ steps.get_version.outputs.new_version }}"
+          echo "branch_name=release/${{ steps.get_version.outputs.new_version }}" >> $GITHUB_OUTPUT
 
-      - name: Build Release Artifacts
-        id: build
-        run: npm run build
+      - name: Commit version bump and create tag
+        run: |
+          git commit -am "chore(release): version ${{ steps.get_version.outputs.new_version }}"
+          # Delete the tag if it was prematurely created by npm version on the wrong commit
+          git tag -d "${{ steps.get_version.outputs.new_version }}" || true
+          # Create the tag on the correct commit on our release branch
+          git tag "${{ steps.get_version.outputs.new_version }}"
+
+      - name: Push release branch and tag
+        run: git push origin "${{ steps.create_branch.outputs.branch_name }}" --tags
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.get_version.outputs.version_tag }}
-          name: "Release ${{ steps.get_version.outputs.version_tag }}"
+          tag_name: ${{ steps.get_version.outputs.new_version }}
+          name: "Release ${{ steps.get_version.outputs.new_version }}"
           generate_release_notes: true
           files: |
             output/workshop.txt
             output/rules.txt
+
+      - name: Merge release branch into main
+        run: |
+          git checkout main
+          git merge --no-ff "${{ steps.create_branch.outputs.branch_name }}"
+          git push origin main
+      
+      - name: Merge release branch into develop
+        run: |
+          git checkout develop
+          git merge --no-ff "${{ steps.create_branch.outputs.branch_name }}"
+          git push origin develop
