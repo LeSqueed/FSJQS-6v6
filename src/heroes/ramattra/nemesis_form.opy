@@ -10,7 +10,7 @@ rule "[ramattra/nemesis_form.opy]: Correct Nemesis Form armor and movement speed
     #for some reason the addHealthPool function doesn't read constants as usable numbers
     eventPlayer.addHealthPool(Health.ARMOR, 11, true, false)
     eventPlayer.Nemesis_armor = getLastCreatedHealthPool()
-    waitUntil(not eventPlayer.isUsingAbility1(), 999999986991104)
+    waitUntil(not eventPlayer.isUsingAbility1(), Math.INFINITY)
     eventPlayer._current_move_speed += 16.6
     eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     eventPlayer.stopScalingSize()

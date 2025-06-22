@@ -61,28 +61,28 @@ def resetStats():
     @Name "[utilities/reset.opy]: resetStats()"
     
     eventPlayer._base_damage_scalar = 1
-    eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
-    eventPlayer.setDamageReceived(100)
-    eventPlayer.setProjectileSpeed(100)
-    eventPlayer.setProjectileGravity(100)
+    eventPlayer.max_health_scaler = 1
+    eventPlayer._current_damage_received = 100
     eventPlayer._base_healing_scalar = 1
-    eventPlayer.setHealingDealt(100 * eventPlayer._base_healing_scalar)
-    eventPlayer.setHealingReceived(100)
+    eventPlayer._current_move_speed = 100
+    eventPlayer.stopForcingButton(Button.PRIMARY_FIRE)
+    eventPlayer.stopAllDamageOverTime()
+    eventPlayer.stopAllHealingOverTime()
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
+    eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
+    eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
     eventPlayer.setKnockbackReceived(100)
     eventPlayer.setKnockbackDealt(100)
+    eventPlayer.setHealingDealt(100 * eventPlayer._base_healing_scalar)
+    eventPlayer.setHealingReceived(100)
+    eventPlayer.setProjectileSpeed(100)
+    eventPlayer.setProjectileGravity(100)
     #eventPlayer.setGravity(100)
     #eventPlayer.setJumpVerticalSpeed(100) # might be responsible for jump bug
-    eventPlayer._current_move_speed = 1
-    eventPlayer.setMoveSpeed(100 * eventPlayer._current_move_speed)
     eventPlayer.stopScalingSize()
     eventPlayer.stopScalingBarriers()
     #prevent wholehog from keeping primary fire held
-    eventPlayer.stopForcingButton(Button.PRIMARY_FIRE)
-    eventPlayer.max_health_scaler = 1
-    eventPlayer.stopAllDamageOverTime()
-    eventPlayer.stopAllHealingOverTime()
-    eventPlayer._current_damage_received = 100
-    eventPlayer._current_move_speed = 100
+
 
 
 def resetStatuses():

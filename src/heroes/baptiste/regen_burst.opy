@@ -15,5 +15,5 @@ rule "[baptiste/regen_burst.opy]: Remove initial burst healing from Regenerative
     @Condition eventPlayer.isUsingAbility1() == true
     
     eventPlayer.setHealingDealt(0)
-    waitUntil(not eventPlayer.isUsingAbility1(), 999999986991104)
+    waitUntil(not eventPlayer.isUsingAbility1(), Math.INFINITY)
     eventPlayer.setHealingDealt(100 * eventPlayer._base_healing_scalar)

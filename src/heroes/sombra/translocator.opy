@@ -37,7 +37,7 @@ rule "[sombra/translocator.opy]: When Translocator is used, begin tracking how l
     
     #eventPlayer.Sombra_invis_damage = 0
     eventPlayer.stealth_timer = 5.5
-    waitUntil(not eventPlayer.isUsingAbility2(), 999999986991104)
+    waitUntil(not eventPlayer.isUsingAbility2(), Math.INFINITY)
     eventPlayer.Sombra_invisible = true
     chaseAtRate(eventPlayer.stealth_timer, 0, 1, ChaseRateReeval.NONE)
     #Sombra can't break stealth during the cast time of stealth
@@ -69,7 +69,7 @@ rule "[sombra/translocator.opy]: When Translocator is used, begin tracking how l
     
     #eventPlayer.Sombra_invis_damage = 0
     eventPlayer.stealth_timer = 4.82
-    waitUntil(not eventPlayer.isUsingAbility2(), 999999986991104)
+    waitUntil(not eventPlayer.isUsingAbility2(), Math.INFINITY)
     eventPlayer.Sombra_invisible = true
     chaseAtRate(eventPlayer.stealth_timer, 0, 1, ChaseRateReeval.NONE)
     #Sombra can't break stealth during the cast time of stealth
