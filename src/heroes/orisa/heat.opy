@@ -11,6 +11,7 @@ rule "[orisa/heat.opy]: subtract ammo generate heat":
 
 
 rule "[orisa/heat.opy]: ammo refresh":
+    @SuppressWarnings w_ow2_rule_condition_chase
     @Event eachPlayer
     @Hero orisa
     @Condition eventPlayer.Orisa_Ammo <= 0
@@ -23,7 +24,7 @@ rule "[orisa/heat.opy]: ammo refresh":
     (getPlayersInRadius(eventPlayer + Vector.UP, 8, getOppositeTeam(eventPlayer.getTeam()), LosCheck.SURFACES_AND_ENEMY_BARRIERS)).startDamageOverTime(eventPlayer, 3, eventPlayer.Orisa_heat / 2.5 / eventPlayer._base_damage_scalar)
     getPlayersInRadius(eventPlayer, 8, getOppositeTeam(eventPlayer.getTeam()), LosCheck.SURFACES).setStatusEffect(eventPlayer, Status.BURNING, 3)
     wait(1)
-    waitUntil(eventPlayer.Orisa_Ammo >= 100, 99999)
+    waitUntil(eventPlayer.Orisa_Ammo >= 100, Math.INFINITY)
     eventPlayer.Orisa_heat = 0
     eventPlayer.setPrimaryFireEnabled(true)
     stopChasingVariable(eventPlayer.Orisa_Ammo)
@@ -38,14 +39,15 @@ rule "[orisa/heat.opy]: reload":
 
 
 rule "[orisa/heat.opy]: lock heat at 100":
+    @SuppressWarnings w_ow2_rule_condition_chase
     @Event eachPlayer
     @Hero orisa
     @Condition eventPlayer.Orisa_heat > 100
     
     eventPlayer.Orisa_heat = 100
 
-
 rule "[orisa/heat.opy]: Heat animation 100":
+    @SuppressWarnings w_ow2_rule_condition_chase
     @Event eachPlayer
     @Hero orisa
     @Condition eventPlayer.Orisa_heat > 90
@@ -78,7 +80,7 @@ rule "[orisa/heat.opy]: heat refresh":
     
     wait(1, Wait.ABORT_WHEN_FALSE)
     chaseAtRate(eventPlayer.Orisa_heat, 0, 25)
-    waitUntil(eventPlayer.isFiringPrimaryFire(), 99999)
+    waitUntil(eventPlayer.isFiringPrimaryFire(), Math.INFINITY)
     stopChasingVariable(eventPlayer.Orisa_heat)
 
 rule "[orisa/heat.opy]: reset heat on death":

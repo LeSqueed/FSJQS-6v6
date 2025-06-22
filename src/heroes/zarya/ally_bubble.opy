@@ -18,6 +18,7 @@ def hideAllyBubbleCD():
 
 
 rule "[zarya/ally_bubble.opy]: OW1 zarya ally bubble cooldown":
+    @SuppressWarnings w_ow2_rule_condition_chase
     @Event eachPlayer
     @Hero zarya
     @Condition eventPlayer.isUsingAbility2() == true
@@ -29,9 +30,12 @@ rule "[zarya/ally_bubble.opy]: OW1 zarya ally bubble cooldown":
     wait(2)
     eventPlayer.ally_bubble_cooldown = 8
     chaseAtRate(eventPlayer.ally_bubble_cooldown, 0, 1, ChaseRateReeval.NONE)
+    waitUntil(eventPlayer.ally_bubble_cooldown <= 0, 10)
+    stopChasingVariable(eventPlayer.ally_bubble_cooldown)
 
 
 rule "[zarya/ally_bubble.opy]: Disable ally bubble if on cooldown":
+    @SuppressWarnings w_ow2_rule_condition_chase
     @Event eachPlayer
     @Hero zarya
     @Condition eventPlayer.ally_bubble_cooldown > 0
@@ -41,6 +45,7 @@ rule "[zarya/ally_bubble.opy]: Disable ally bubble if on cooldown":
 
 
 rule "[zarya/ally_bubble.opy]: Enable ally bubble if not on cooldown":
+    @SuppressWarnings w_ow2_rule_condition_chase
     @Event eachPlayer
     @Hero zarya
     @Condition eventPlayer.ally_bubble_cooldown <= 0

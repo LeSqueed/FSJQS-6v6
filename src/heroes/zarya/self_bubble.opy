@@ -18,6 +18,7 @@ def hideSelfBubbleCD():
 
 
 rule "[zarya/self_bubble.opy]: OW1 zarya self bubble cooldown":
+    @SuppressWarnings w_ow2_rule_condition_chase
     @Event eachPlayer
     @Hero zarya
     @Condition eventPlayer.isUsingAbility1() == true
@@ -30,9 +31,12 @@ rule "[zarya/self_bubble.opy]: OW1 zarya self bubble cooldown":
     eventPlayer.self_bubble_cooldown = 9
     eventPlayer.allowButton(Button.ABILITY_1)
     chaseAtRate(eventPlayer.self_bubble_cooldown, 0, 1, ChaseRateReeval.NONE)
+    waitUntil(eventPlayer.self_bubble_cooldown <= 0, 10)
+    stopChasingVariable(eventPlayer.self_bubble_cooldown)
 
 
 rule "[zarya/self_bubble.opy]: Disable self bubble if on cooldown":
+    @SuppressWarnings w_ow2_rule_condition_chase
     @Event eachPlayer
     @Hero zarya
     @Condition eventPlayer.self_bubble_cooldown > 0
@@ -42,6 +46,7 @@ rule "[zarya/self_bubble.opy]: Disable self bubble if on cooldown":
 
 
 rule "[zarya/self_bubble.opy]: Enable self bubble if not on cooldown":
+    @SuppressWarnings w_ow2_rule_condition_chase
     @Event eachPlayer
     @Hero zarya
     @Condition eventPlayer.hero_setup == Hero.ZARYA

@@ -43,8 +43,11 @@ rule "[mercy/imbue.opy]: Mercy imbue":
     if eventPlayer.getHero() != Hero.MERCY:
         return
     eventPlayer.setAbility2Enabled(false)
+    waitUntil(eventPlayer.ImbueDuration <= 0, 10)
+    stopChasingVariable(eventPlayer.ImbueDuration)
 
 rule "[mercy/imbue.opy]: Mercy imbue AOE":
+    @SuppressWarnings w_ow2_rule_condition_chase
     @Event eachPlayer
     @Hero mercy
     @Condition eventPlayer.ImbueDuration > 0
