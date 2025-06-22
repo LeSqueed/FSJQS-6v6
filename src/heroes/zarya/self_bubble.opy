@@ -12,7 +12,7 @@ def hideSelfBubbleCD():
     @Name "[zarya/self_bubble.opy]: hideSelfBubbleCD()"
     
     destroyInWorldText(eventPlayer._zarya_self_bubble_cd)
-    eventPlayer._zarya_ally_bubble_cd = null
+    eventPlayer._zarya_self_bubble_cd = null
     destroyInWorldText(eventPlayer._zarya_self_bubble_icon)
     eventPlayer._zarya_self_bubble_icon = null
 
