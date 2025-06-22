@@ -2,7 +2,7 @@ rule "[kiriko/swift_step.opy]: Force swift step cooldown after spawning":
     @Event playerDied
     @Hero kiriko
     
-    waitUntil(eventPlayer.isAlive() and eventPlayer.isInSpawnRoom(), 999999986991104)
+    waitUntil(eventPlayer.isAlive() and eventPlayer.isInSpawnRoom(), Math.INFINITY)
     eventPlayer.setAbilityCooldown(Button.ABILITY_1, 5)
 
 

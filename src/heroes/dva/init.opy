@@ -15,7 +15,7 @@ def initDva():
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer.self_destruct_charge = 0
     eventPlayer.max_health_scaler = 0.857
-    waitUntil(not eventPlayer.isInAlternateForm(), 999999986991104)
+    waitUntil(not eventPlayer.isInAlternateForm(), Math.INFINITY)
     eventPlayer.custom_hp_pvar[0] = 169
     eventPlayer.custom_hp_pvar[1] = 0
     eventPlayer.custom_hp_pvar[2] = 0

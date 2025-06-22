@@ -21,5 +21,5 @@ rule "[widowmaker/init.opy]: Reduce Scoped Shot damage":
     @Disabled
     
     eventPlayer.setDamageDealt(87.5)
-    waitUntil(not eventPlayer.isFiringSecondaryFire(), 999999986991104)
+    waitUntil(not eventPlayer.isFiringSecondaryFire(), Math.INFINITY)
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)

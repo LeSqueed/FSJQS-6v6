@@ -4,7 +4,7 @@ rule "[ana/sleep.opy]: Sleep tanks as long as other heroes":
     @Condition eventAbility == Button.ABILITY_1
     @Condition victim.getHero() in getTankHeroes() == true
     
-    waitUntil(victim.hasStatus(Status.ASLEEP), 999999986991104)
+    waitUntil(victim.hasStatus(Status.ASLEEP), Math.INFINITY)
     wait(0.2)
     victim.setStatusEffect(attacker, Status.KNOCKED_DOWN, 4.8)
     victim.Ana_Sleepdart_Target = true

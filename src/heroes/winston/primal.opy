@@ -5,7 +5,7 @@ rule "[winston/primal.opy]: Remove bonus Primal Rage health":
     
     clearCustomHp()
     eventPlayer.addHealthPool(Health.ARMOR, 15, true, false)
-    waitUntil(not eventPlayer.isUsingUltimate(), 999999986991104)
+    waitUntil(not eventPlayer.isUsingUltimate(), Math.INFINITY)
     clearCustomHp()
     applyCustomHp()
 
@@ -16,7 +16,7 @@ rule "[winston/primal.opy]: Reduce Primal Rage damage":
     @Condition eventPlayer.isUsingUltimate() == true
     
     eventPlayer.setDamageDealt(80)
-    waitUntil(not eventPlayer.isUsingUltimate(), 999999986991104)
+    waitUntil(not eventPlayer.isUsingUltimate(), Math.INFINITY)
     #revert damage back after Primal Rage concludes
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
 
