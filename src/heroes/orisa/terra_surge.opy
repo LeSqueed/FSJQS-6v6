@@ -6,7 +6,7 @@ rule "[orisa/terra_surge.opy]: Reduce Terra Surge base damage and add bonus over
     eventPlayer.addHealthPool(Health.NORMAL, 181, false)
     eventPlayer.terra_overhealth_id = getLastCreatedHealthPool()
     eventPlayer.setDamageDealt(80)
-    waitUntil(not eventPlayer.isUsingUltimate(), 999999986991104)
+    waitUntil(not eventPlayer.isUsingUltimate(), Math.INFINITY)
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     removeHealthPool(eventPlayer.terra_overhealth_id)
 

@@ -13,7 +13,7 @@ def applyCustomHp():
     #eventPlayer.addHealthPool(Health.NORMAL, 1, true)
     #eventPlayer.addHealthPool(Health.ARMOR, 1, true)
     #eventPlayer.addHealthPool(Health.SHIELDS, 1, true)
-    eventPlayer.setStatusEffect(null, Status.INVINCIBLE, 999999986991104)
+    eventPlayer.setStatusEffect(null, Status.INVINCIBLE, Math.INFINITY)
     #eventPlayer.removeAllHealthPools()
     #wait(0.064)
     wait()
@@ -26,5 +26,5 @@ def applyCustomHp():
     if eventPlayer.custom_hp_pvar[2] > 0:
         eventPlayer.addHealthPool(Health.SHIELDS, max(1, eventPlayer.custom_hp_pvar[2]), true)
     #eventPlayer.setHealingReceived(100)
-    heal(eventPlayer, null, 999999986991104)
+    heal(eventPlayer, null, Math.INFINITY)
     eventPlayer.clearStatusEffect(Status.INVINCIBLE)

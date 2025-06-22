@@ -4,5 +4,5 @@ rule "[cassidy/deadeye.opy]: Set damage during deadeye":
     @Condition eventPlayer.isUsingUltimate() == true
     
     eventPlayer.setDamageDealt(100)
-    waitUntil(not eventPlayer.isUsingUltimate(), 999999986991104)
+    waitUntil(not eventPlayer.isUsingUltimate(), Math.INFINITY)
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)

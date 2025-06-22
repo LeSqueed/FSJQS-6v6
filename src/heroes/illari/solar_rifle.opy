@@ -15,5 +15,5 @@ rule "[illari/solar_rifle.opy]: Correct Solar Rifle healing":
     @Condition eventPlayer.isHoldingButton(Button.SECONDARY_FIRE) == true
     
     eventPlayer.setHealingDealt(100)
-    waitUntil(not eventPlayer.isHoldingButton(Button.SECONDARY_FIRE), 999999986991104)
+    waitUntil(not eventPlayer.isHoldingButton(Button.SECONDARY_FIRE), Math.INFINITY)
     eventPlayer.setHealingDealt(75)

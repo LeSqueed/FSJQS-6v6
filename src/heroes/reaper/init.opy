@@ -29,5 +29,5 @@ rule "[reaper/init.opy]: Reduce Death Blossom damage":
     @Condition eventPlayer.isUsingUltimate() == true
     
     eventPlayer.setDamageDealt(91.892)
-    waitUntil(not eventPlayer.isUsingUltimate(), 999999986991104)
+    waitUntil(not eventPlayer.isUsingUltimate(), Math.INFINITY)
     eventPlayer.setDamageDealt(98.148)

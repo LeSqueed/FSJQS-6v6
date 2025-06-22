@@ -41,7 +41,7 @@ rule "[mercy/init.opy]: Reduce Valkyrie healing and force self-healing":
     eventPlayer.setHealingDealt(138.462)
     wait(2)
     eventPlayer.setHealingDealt(92.308)
-    waitUntil(not eventPlayer.isUsingUltimate(), 999999986991104)
+    waitUntil(not eventPlayer.isUsingUltimate(), Math.INFINITY)
     eventPlayer.setHealingDealt(100 * eventPlayer._base_healing_scalar)
 
 

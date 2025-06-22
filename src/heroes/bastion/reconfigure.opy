@@ -9,7 +9,7 @@ rule "[bastion/reconfigure.opy]: Reduce assault form damage and movement speed":
     wait(0.95)
     eventPlayer.startHealingOverTime(eventPlayer, 8, 15)
     eventPlayer.sentry_healing_id = getLastHealingOverTimeId()
-    waitUntil(not eventPlayer.isUsingAbility1(), 999999986991104)
+    waitUntil(not eventPlayer.isUsingAbility1(), Math.INFINITY)
     eventPlayer.setDamageReceived(100)
     eventPlayer._current_move_speed = eventPlayer._current_move_speed + 15
     eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)

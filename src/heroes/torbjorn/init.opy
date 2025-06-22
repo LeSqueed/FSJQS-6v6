@@ -33,6 +33,6 @@ rule "[torbjorn/init.opy]: Increase Overload overhealth":
     
     eventPlayer.addHealthPool(Health.NORMAL, 22.3, false)
     eventPlayer.overload_overhealth = getLastCreatedHealthPool()
-    waitUntil(not eventPlayer.isUsingAbility2(), 999999986991104)
+    waitUntil(not eventPlayer.isUsingAbility2(), Math.INFINITY)
     removeHealthPool(eventPlayer.overload_overhealth)
 
