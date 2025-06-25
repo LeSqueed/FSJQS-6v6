@@ -13,7 +13,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node build.js",
-    "postversion": "npm run build && git add src/lobby/lobby.opy"
+    "postversion": "npm run build && git add src/lobby/lobby.opy",
+    "webtool": "serve -l 8000 . & start http://localhost:8000/tools/hero-settings-editor.html"
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,8 @@
   "homepage": "https://github.com/LeSqueed/FSJQS-6v6#readme",
   "dependencies": {
     "colors": "^1.4.0"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
   }
 }

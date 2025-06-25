@@ -1,0 +1,102 @@
+{
+  "health%": {
+    "name": "Health",
+    "type": "ratio",
+    "description": "Hero health as a percent of base health."
+  },
+  "ammoClipSize%": {
+    "name": "Ammo Clip Size",
+    "type": "ratio",
+    "description": "Ammunition clip size as a percent of base."
+  },
+  "ultGen%": {
+    "name": "Ultimate Generation",
+    "type": "percent",
+    "description": "Ultimate charge generation rate."
+  },
+  "ability1Cooldown%": {
+    "name": "Ability 1 Cooldown",
+    "type": "cooldownRatio",
+    "description": "Cooldown for ability 1 as a percent of base."
+  },
+  "ability2Cooldown%": {
+    "name": "Ability 2 Cooldown",
+    "type": "cooldownRatio",
+    "description": "Cooldown for ability 2 as a percent of base."
+  },
+  "ultDuration%": {
+    "name": "Ultimate Duration",
+    "type": "percent",
+    "description": "Duration of ultimate ability as a percent of base."
+  },
+  "secondaryFireCooldown%": {
+    "name": "Secondary Fire Cooldown",
+    "type": "cooldownRatio",
+    "description": "Cooldown for secondary fire as a percent of base."
+  },
+  "secondaryFireMaximumTime%": {
+    "name": "Secondary Fire Max Time",
+    "type": "percent",
+    "description": "Maximum time for secondary fire as a percent of base."
+  },
+  "secondaryFireRechargeRate%": {
+    "name": "Secondary Fire Recharge Rate",
+    "type": "percent",
+    "description": "Recharge rate for secondary fire as a percent of base."
+  },
+  "ability1Health%": {
+    "name": "Ability 1 Health",
+    "type": "percent",
+    "description": "Health for ability 1 as a percent of base."
+  },
+  "secondaryFireHealth%": {
+    "name": "Secondary Fire Health",
+    "type": "percent",
+    "description": "Health for secondary fire as a percent of base."
+  },
+  "ultHealth%": {
+    "name": "Ultimate Health",
+    "type": "percent",
+    "description": "Health for ultimate as a percent of base."
+  },
+  "enablePassive": {
+    "name": "Enable Passive",
+    "type": "boolean",
+    "description": "Enable or disable passive ability."
+  },
+  "enableInfiniteAmmo": {
+    "name": "Enable Infinite Ammo",
+    "type": "boolean",
+    "description": "Enable or disable infinite ammo."
+  },
+  "ability2Healing%": {
+    "name": "Ability 2 Healing",
+    "type": "percent",
+    "description": "Healing for ability 2 as a percent of base."
+  },
+  "primaryFireIgniteDamage": {
+    "name": "Primary Fire Ignite Damage",
+    "type": "number",
+    "description": "Ignite damage for primary fire."
+  },
+  "primaryFireIgniteDuration": {
+    "name": "Primary Fire Ignite Duration",
+    "type": "number",
+    "description": "Ignite duration for primary fire."
+  },
+  "ability1Kb%": {
+    "name": "Ability 1 Knockback",
+    "type": "percent",
+    "description": "Knockback for ability 1 as a percent of base."
+  },
+  "ability3Cooldown%": {
+    "name": "Ability 3 Cooldown",
+    "type": "cooldownRatio",
+    "description": "Cooldown for ability 3 as a percent of base."
+  },
+  "passiveHealthRegen": {
+    "name": "Passive Health Regen",
+    "type": "boolean",
+    "description": "Enable or disable passive health regeneration."
+  }
+}

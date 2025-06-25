@@ -1,0 +1,67 @@
+{
+  "heroes": {
+    "ana": [
+      {
+        "name": "Health",
+        "opyKey": "health%",
+        "type": "ratio",
+        "base": 250,
+        "desired": 200
+      },
+      {
+        "name": "Ammo",
+        "opyKey": "ammoClipSize%",
+        "type": "ratio",
+        "base": 15,
+        "desired": 12
+      },
+      {
+        "name": "Ultimate Generation",
+        "opyKey": "ultGen%",
+        "type": "percent",
+        "value": 100
+      },
+      {
+        "name": "Biotic Grenade Cooldown",
+        "opyKey": "ability1Cooldown%",
+        "type": "cooldownRatio",
+        "base": 14,
+        "desired": 12
+      },
+      {
+        "name": "Sleep Dart Cooldown",
+        "opyKey": "ability2Cooldown%",
+        "type": "cooldownRatio",
+        "base": 14,
+        "desired": 12
+      }
+    ],
+    "baptiste": [
+      {
+        "name": "Health",
+        "opyKey": "health%",
+        "type": "ratio",
+        "base": 250,
+        "desired": 200
+      }
+    ],
+    "brigitte": [
+      {
+        "name": "Health",
+        "opyKey": "health%",
+        "type": "ratio",
+        "base": 250,
+        "desired": 225
+      }
+    ],
+    "illari": [
+      {
+        "name": "Health",
+        "opyKey": "health%",
+        "type": "ratio",
+        "base": 250,
+        "desired": 200
+      }
+    ]
+  }
+}

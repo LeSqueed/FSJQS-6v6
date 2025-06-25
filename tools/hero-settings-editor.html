@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hero Settings Editor</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #181c24;
+      color: #f3f6fa;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #23283a;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px #000a  ;
+      padding: 32px 24px 24px 24px;
+    }
+    h1 {
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 32px;
+      color: #7ecfff;
+    }
+    .hero-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+    .hero-card {
+      background: #2a3147;
+      border-radius: 8px;
+      padding: 16px 24px;
+      min-width: 120px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px #0004;
+    }
+    .hero-card:hover {
+      background: #36405c;
+      box-shadow: 0 4px 16px #0006;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      background: #23283a;
+      border-radius: 10px;
+      padding: 32px 24px 24px 24px;
+      min-width: 320px;
+      max-width: 600px;
+      max-height: 80vh;
+      width: 90vw;
+      box-shadow: 0 8px 32px #000a;
+      position: relative;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid #2a3147;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      color: #b6d6ff;
+      font-weight: 600;
+      font-size: 1em;
+      padding: 8px 18px 8px 18px;
+      cursor: pointer;
+      border-radius: 8px 8px 0 0;
+      transition: background 0.2s, color 0.2s;
+    }
+    .tab-btn.active {
+      background: #36405c;
+      color: #7ecfff;
+    }
+    .settings-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .setting-card {
+      background: #2a3147;
+      border-radius: 8px;
+      padding: 16px 18px 18px 18px;
+      box-shadow: 0 2px 8px #0002;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      overflow: visible;
+      box-sizing: border-box;
+    }
+    .setting-card label,
+    .setting-card input,
+    .setting-card select {
+      box-sizing: border-box;
+      position: static;
+    }
+    .setting-card input,
+    .setting-card select {
+      margin-bottom: 8px;
+    }
+    .setting-card input:last-child,
+    .setting-card select:last-child {
+      margin-bottom: 0;
+    }
+    .setting-card .remove-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #e55;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 2px 10px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    .setting-card .remove-btn:hover {
+      background: #c22;
+    }
+    .setting-card label {
+      font-weight: 500;
+      color: #b6d6ff;
+      margin-bottom: 2px;
+    }
+    .setting-card input, .setting-card select {
+      background: #1a1e29;
+      color: #f3f6fa;
+      border: 1px solid #444a5a;
+      border-radius: 4px;
+      padding: 6px 10px;
+      font-size: 1em;
+      margin-bottom: 4px;
+    }
+    .setting-card input[type="checkbox"] {
+      width: auto;
+      transform: scale(1.2);
+      margin-right: 8px;
+    }
+    .add-setting-btn {
+      background: #7ecfff;
+      color: #23283a;
+      border: none;
+      border-radius: 4px;
+      padding: 6px 16px;
+      font-size: 1em;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+    .copy-btn {
+      background: #7ecfff;
+      color: #23283a;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 18px;
+      font-size: 1em;
+      font-weight: 700;
+      cursor: pointer;
+      margin-left: 10px;
+      transition: background 0.2s;
+    }
+    .copy-btn:hover {
+      background: #5dbbe6;
+    }
+    .settings-form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .setting-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0;
+    }
+    @media (max-width: 700px) {
+      .modal-content {
+        max-width: 98vw;
+        padding: 18px 6px 12px 6px;
+      }
+    }
+    .settings-form label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 500;
+      color: #b6d6ff;
+    }
+    .settings-form input[type="number"],
+    .settings-form input[type="text"] {
+      width: 100%;
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: 1px solid #444a5a;
+      background: #1a1e29;
+      color: #f3f6fa;
+      font-size: 1em;
+    }
+    .settings-form input[type="checkbox"] {
+      transform: scale(1.2);
+      margin-right: 8px;
+    }
+    .settings-form .form-actions {
+      grid-column: 1 / -1;
+      margin-top: 24px;
+      text-align: right;
+    }
+    .settings-form button {
+      background: #7ecfff;
+      color: #23283a;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 18px;
+      font-size: 1em;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .settings-form button:hover {
+      background: #5dbbe6;
+    }
+    .settings-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 18px;
+    }
+    .settings-table th, .settings-table td {
+      padding: 6px 8px;
+      text-align: left;
+      border-bottom: 1px solid #2a3147;
+    }
+    .settings-table th {
+      color: #7ecfff;
+      font-weight: 600;
+      background: #23283a;
+    }
+    .settings-table td input, .settings-table td select {
+      width: 100%;
+      background: #1a1e29;
+      color: #f3f6fa;
+      border: 1px solid #444a5a;
+      border-radius: 4px;
+      padding: 4px 6px;
+      font-size: 1em;
+    }
+    .settings-table td input[type="checkbox"] {
+      width: auto;
+      transform: scale(1.2);
+    }
+    .settings-table .remove-btn {
+      background: #e55;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 2px 10px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    .settings-table .remove-btn:hover {
+      background: #c22;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Hero Settings Editor</h1>
+    <div id="loadFileSection" style="text-align:center;margin-bottom:18px;">
+      <button id="loadHeroFileBtn" style="background:#7ecfff;color:#23283a;border:none;border-radius:4px;padding:8px 18px;font-size:1em;font-weight:700;cursor:pointer;">Load heroes.json</button>
+      <input type="file" id="fileInput" accept="application/json" style="display:none;" />
+      <span id="fileStatus" style="margin-left:12px;color:#7ecfff;"></span>
+    </div>
+    <div style="text-align:center;margin-bottom:18px;display:none;" id="addHeroSection">
+      <button id="addHeroBtn" style="background:#7ecfff;color:#23283a;border:none;border-radius:4px;padding:8px 18px;font-size:1em;font-weight:700;cursor:pointer;">+ Add Hero</button>
+      <button id="downloadBtn" style="background:#7ecfff;color:#23283a;border:none;border-radius:4px;padding:8px 18px;font-size:1em;font-weight:700;cursor:pointer;margin-left:10px;display:none;">Download heroes.json</button>
+      <button id="copyJsonBtn" class="copy-btn">Copy JSON</button>
+    </div>
+    <div class="hero-list" id="heroList"></div>
+  </div>
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <h2 id="modalHeroName"></h2>
+      <form class="settings-form" id="settingsForm"></form>
+    </div>
+  </div>
+  <script>
+    let schema = {};
+    let heroData = {};
+    let currentHero = null;
+    let fileHandle = null;
+    let useFileSystemAPI = 'showOpenFilePicker' in window;
+    let fileInput = document.getElementById('fileInput');
+    let downloadBtn = document.getElementById('downloadBtn');
+
+    async function loadSchema() {
+      const res = await fetch('hero-settings-schema.json');
+      schema = await res.json();
+    }
+    async function loadHeroData() {
+        fileInput.style.display = '';
+        document.getElementById('fileStatus').textContent = 'No file loaded. Please select a file.';
+        document.getElementById('addHeroSection').style.display = 'none';
+        heroData = {};
+        renderHeroList();
+    }
+    fileInput.onchange = function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        try {
+          heroData = JSON.parse(evt.target.result).heroes || {};
+          document.getElementById('fileStatus').textContent = 'Loaded: ' + file.name;
+          document.getElementById('addHeroSection').style.display = '';
+          downloadBtn.style.display = '';
+          renderHeroList();
+        } catch (err) {
+          alert('Invalid JSON file.');
+        }
+      };
+      reader.readAsText(file);
+    };
+    async function saveHeroData() {
+      if (useFileSystemAPI && fileHandle) {
+        const writable = await fileHandle.createWritable();
+        await writable.write(JSON.stringify({heroes: heroData}, null, 2));
+        await writable.close();
+      } else {
+        // Fallback: trigger download
+        const blob = new Blob([JSON.stringify({heroes: heroData}, null, 2)], {type: 'application/json'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'heroes.json';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }, 100);
+      }
+    }
+    downloadBtn.onclick = saveHeroData;
+    const copyJsonBtn = document.getElementById('copyJsonBtn');
+    copyJsonBtn.onclick = function() {
+      const json = JSON.stringify({heroes: heroData}, null, 2);
+      navigator.clipboard.writeText(json).then(() => {
+        copyJsonBtn.textContent = 'Copied!';
+        setTimeout(() => { copyJsonBtn.textContent = 'Copy JSON'; }, 1200);
+      });
+    }
+    function renderHeroList() {
+      const heroList = document.getElementById('heroList');
+      heroList.innerHTML = '';
+      const heroes = Object.keys(heroData).sort();
+      if (heroes.length === 0) {
+        heroList.innerHTML = '<div style="text-align:center;color:#aaa;">No heroes loaded. Please load a file.</div>';
+        return;
+      }
+      for (const hero of heroes) {
+        const card = document.createElement('div');
+        card.className = 'hero-card';
+        card.textContent = hero.charAt(0).toUpperCase() + hero.slice(1);
+        card.onclick = () => openModal(hero);
+        heroList.appendChild(card);
+      }
+    }
+    function openModal(hero) {
+      currentHero = hero;
+      document.getElementById('modalHeroName').textContent = hero.charAt(0).toUpperCase() + hero.slice(1);
+      const form = document.getElementById('settingsForm');
+      form.innerHTML = '';
+      const settingsArr = heroData[hero] || [];
+      // Group settings by category
+      const categories = {
+        Health: [],
+        Ammo: [],
+        Cooldowns: [],
+        Booleans: [],
+        Misc: []
+      };
+      for (const setting of settingsArr) {
+        const opyKey = setting.opyKey || '';
+        const meta = schema[opyKey] || {};
+        if (opyKey.includes('health')) categories.Health.push(setting);
+        else if (opyKey.includes('ammo')) categories.Ammo.push(setting);
+        else if (meta.type === 'cooldownRatio' || opyKey.includes('cooldown')) categories.Cooldowns.push(setting);
+        else if (setting.type === 'boolean') categories.Booleans.push(setting);
+        else categories.Misc.push(setting);
+      }
+      // Tab bar
+      const tabBar = document.createElement('div');
+      tabBar.className = 'tab-bar';
+      const tabNames = Object.keys(categories).filter(cat => categories[cat].length > 0);
+      let activeTab = tabNames[0] || 'Health';
+      function renderTabs() {
+        tabBar.innerHTML = '';
+        tabNames.forEach(tab => {
+          const btn = document.createElement('button');
+          btn.className = 'tab-btn' + (tab === activeTab ? ' active' : '');
+          btn.textContent = tab;
+          btn.onclick = () => {
+            activeTab = tab;
+            renderTabs();
+            renderTabContent();
+          };
+          tabBar.appendChild(btn);
+        });
+      }
+      form.appendChild(tabBar);
+      // Tab content
+      const tabContent = document.createElement('div');
+      tabContent.className = 'settings-cards';
+      form.appendChild(tabContent);
+      function renderTabContent() {
+        tabContent.innerHTML = '';
+        for (const setting of categories[activeTab]) {
+          const opyKey = setting.opyKey || '';
+          const meta = schema[opyKey] || {};
+          const card = document.createElement('div');
+          card.className = 'setting-card';
+          // Remove button
+          const btnRemove = document.createElement('button');
+          btnRemove.className = 'remove-btn';
+          btnRemove.textContent = '✕';
+          btnRemove.onclick = () => {
+            const idx = settingsArr.indexOf(setting);
+            if (idx !== -1) settingsArr.splice(idx, 1);
+            const catIdx = categories[activeTab].indexOf(setting);
+            if (catIdx !== -1) categories[activeTab].splice(catIdx, 1);
+            renderTabContent();
+            renderTabs();
+          };
+          card.appendChild(btnRemove);
+          // Name
+          const labelName = document.createElement('label');
+          labelName.textContent = 'Name';
+          card.appendChild(labelName);
+          const inputName = document.createElement('input');
+          inputName.type = 'text';
+          inputName.value = setting.name || '';
+          inputName.oninput = e => { setting.name = e.target.value; };
+          card.appendChild(inputName);
+          // opyKey
+          const labelKey = document.createElement('label');
+          labelKey.textContent = 'opyKey';
+          card.appendChild(labelKey);
+          const inputKey = document.createElement('input');
+          inputKey.type = 'text';
+          inputKey.value = setting.opyKey || '';
+          inputKey.oninput = e => { setting.opyKey = e.target.value; };
+          card.appendChild(inputKey);
+          // Type
+          const labelType = document.createElement('label');
+          labelType.textContent = 'Type';
+          card.appendChild(labelType);
+          const selectType = document.createElement('select');
+          ["ratio","percent","cooldownRatio","number","boolean"].forEach(typeOpt => {
+            const opt = document.createElement('option');
+            opt.value = typeOpt;
+            opt.textContent = typeOpt;
+            if (setting.type === typeOpt) opt.selected = true;
+            selectType.appendChild(opt);
+          });
+          selectType.onchange = e => {
+            setting.type = e.target.value;
+            if (setting.type === 'boolean') {
+              delete setting.base; delete setting.desired; delete setting.value;
+            } else if (setting.type === 'percent' || setting.type === 'number') {
+              delete setting.base; delete setting.desired;
+            } else {
+              delete setting.value;
+            }
+            renderTabContent();
+          };
+          card.appendChild(selectType);
+          // Fields for type
+          if (setting.type === 'ratio' || setting.type === 'cooldownRatio') {
+            const labelBase = document.createElement('label');
+            labelBase.textContent = 'Base';
+            card.appendChild(labelBase);
+            const inputBase = document.createElement('input');
+            inputBase.type = 'number';
+            inputBase.value = setting.base !== undefined ? setting.base : '';
+            inputBase.step = 'any';
+            inputBase.oninput = e => { setting.base = Number(e.target.value); };
+            card.appendChild(inputBase);
+            const labelDes = document.createElement('label');
+            labelDes.textContent = 'Desired';
+            card.appendChild(labelDes);
+            const inputDes = document.createElement('input');
+            inputDes.type = 'number';
+            inputDes.value = setting.desired !== undefined ? setting.desired : '';
+            inputDes.step = 'any';
+            inputDes.oninput = e => { setting.desired = Number(e.target.value); };
+            card.appendChild(inputDes);
+          } else if (setting.type === 'percent' || setting.type === 'number') {
+            const labelVal = document.createElement('label');
+            labelVal.textContent = 'Value';
+            card.appendChild(labelVal);
+            const inputVal = document.createElement('input');
+            inputVal.type = 'number';
+            inputVal.value = setting.value !== undefined ? setting.value : '';
+            inputVal.step = 'any';
+            inputVal.oninput = e => { setting.value = Number(e.target.value); };
+            card.appendChild(inputVal);
+          } else if (setting.type === 'boolean') {
+            const labelBool = document.createElement('label');
+            labelBool.textContent = 'Value';
+            card.appendChild(labelBool);
+            const inputBool = document.createElement('input');
+            inputBool.type = 'checkbox';
+            inputBool.checked = !!setting.value;
+            inputBool.onchange = e => { setting.value = inputBool.checked; };
+            card.appendChild(inputBool);
+          }
+          tabContent.appendChild(card);
+        }
+      }
+      renderTabs();
+      renderTabContent();
+      // Add setting button
+      const addBtn = document.createElement('button');
+      addBtn.type = 'button';
+      addBtn.className = 'add-setting-btn';
+      addBtn.textContent = '+ Add Setting';
+      addBtn.onclick = () => {
+        // Add to the current tab's category only
+        const newSetting = {name:'',opyKey:'',type:'ratio',base:0,desired:0};
+        categories[activeTab].push(newSetting);
+        settingsArr.push(newSetting);
+        renderTabContent();
+        renderTabs();
+      };
+      form.appendChild(addBtn);
+      // Close modal button
+      const btnClose = document.createElement('button');
+      btnClose.type = 'button';
+      btnClose.className = 'remove-btn';
+      btnClose.textContent = '✕ Close';
+      btnClose.onclick = () => {
+        document.getElementById('modal').classList.remove('active');
+        currentHero = null;
+      };
+      form.appendChild(btnClose);
+      document.getElementById('modal').classList.add('active');
+    }
+    document.getElementById('closeModal').onclick = () => {
+      document.getElementById('modal').classList.remove('active');
+      currentHero = null;
+    };
+    document.getElementById('loadHeroFileBtn').onclick = () => { loadHeroData(); };
+    document.getElementById('addHeroBtn').onclick = () => {
+      const newHero = 'hero' + (Object.keys(heroData).length + 1);
+      heroData[newHero] = [];
+      renderHeroList();
+      openModal(newHero);
+    };
+    loadSchema();
+    // Set UI to initial state
+    document.getElementById('addHeroSection').style.display = 'none';
+    downloadBtn.style.display = 'none';
+    renderHeroList();
+  </script>
+</body>
+</html>
