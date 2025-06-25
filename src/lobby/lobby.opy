@@ -3,6 +3,8 @@
 #!include "../utilities/macro_functions.opy"
 #!include "../utilities/texts.opy"
 
+# Version number and hero settings are updated in the build process.
+# To update hero settings modify the `src/data/heroes.json` file instead. Then run a build to update this file.
 settings {
     "main": {
         "modeName": "6v6 Adjustments + Realth 1.17.10"
