@@ -30,7 +30,7 @@ rule "[lifeweaver/dash.opy]: Disable Dash":
     @Condition eventPlayer.isInAir() == true
     
     eventPlayer.disallowButton(Button.JUMP)
-    waitUntil(eventPlayer.isOnGround() or eventPlayer.Lifeweaver_dash_charges != 0, 99999)
+    waitUntil(eventPlayer.isOnGround() or eventPlayer.Lifeweaver_dash_charges != 0, Math.INFINITY)
     eventPlayer.allowButton(Button.JUMP)
 
 

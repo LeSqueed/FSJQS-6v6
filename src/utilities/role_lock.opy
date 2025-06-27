@@ -22,7 +22,7 @@ rule "[role_lock.opy]: Tank":
     if eventPlayer.Echo_Copy == false:
         eventPlayer.AllowedHeroes.remove(AllTankHeroes)
         eventPlayer.setAllowedHeroes(eventPlayer.AllowedHeroes)
-        waitUntil(len(([player for player in getPlayers(eventPlayer.getTeam()) if player.getHero() in AllTankHeroes]).exclude(eventPlayer)) < AllRoles[0], 99999)
+        waitUntil(len(([player for player in getPlayers(eventPlayer.getTeam()) if player.getHero() in AllTankHeroes]).exclude(eventPlayer)) < AllRoles[0], Math.INFINITY)
         eventPlayer.AllowedHeroes.append(AllTankHeroes)
         eventPlayer.setAllowedHeroes(eventPlayer.AllowedHeroes)
 
@@ -35,7 +35,7 @@ rule "[role_lock.opy]: Damage":
     if eventPlayer.Echo_Copy == false:
         eventPlayer.AllowedHeroes.remove(AllDpsHeroes)
         eventPlayer.setAllowedHeroes(eventPlayer.AllowedHeroes)
-        waitUntil(len(([player for player in getPlayers(eventPlayer.getTeam()) if player.getHero() in AllDpsHeroes]).exclude(eventPlayer)) < AllRoles[1], 99999)
+        waitUntil(len(([player for player in getPlayers(eventPlayer.getTeam()) if player.getHero() in AllDpsHeroes]).exclude(eventPlayer)) < AllRoles[1], Math.INFINITY)
         eventPlayer.AllowedHeroes.append(AllDpsHeroes)
         eventPlayer.setAllowedHeroes(eventPlayer.AllowedHeroes)
 
@@ -48,7 +48,7 @@ rule "[role_lock.opy]: Support":
     if eventPlayer.Echo_Copy == false:
         eventPlayer.AllowedHeroes.remove(AllSupportHeroes)
         eventPlayer.setAllowedHeroes(eventPlayer.AllowedHeroes)
-        waitUntil(len(([player for player in getPlayers(eventPlayer.getTeam()) if player.getHero() in AllSupportHeroes]).exclude(eventPlayer)) < AllRoles[2], 99999)
+        waitUntil(len(([player for player in getPlayers(eventPlayer.getTeam()) if player.getHero() in AllSupportHeroes]).exclude(eventPlayer)) < AllRoles[2], Math.INFINITY)
         eventPlayer.AllowedHeroes.append(AllSupportHeroes)
         eventPlayer.setAllowedHeroes(eventPlayer.AllowedHeroes)
 
@@ -58,5 +58,5 @@ rule "[role_lock.opy]: Skip Assemble Heroes":
     
     wait(1)
     setMatchTime(1)
-    waitUntil(not isAssemblingHeroes(), 99999)
+    waitUntil(not isAssemblingHeroes(), Math.INFINITY)
     setMatchTime(60)

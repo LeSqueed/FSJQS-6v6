@@ -13,7 +13,7 @@ rule "[orisa/fortify.opy]: -10% damage reduction and shorter cooldown = 10s":
     playEffect(getAllPlayers(), DynamicEffect.RING_EXPLOSION, Color.ORANGE, eventPlayer, 8)
     createEffect(getAllPlayers(), Effect.RING, Color.ORANGE, eventPlayer, 8, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
     eventPlayer.Orisa_ring_effect = getLastCreatedEntity()
-    waitUntil(not eventPlayer.isUsingAbility1(), 99999)
+    waitUntil(not eventPlayer.isUsingAbility1(), Math.INFINITY)
     eventPlayer.setAbilityCooldown(Button.ABILITY_1, 10)
     eventPlayer._current_damage_received -= 30
     destroyEffect(eventPlayer.Orisa_ring_effect)
@@ -30,7 +30,7 @@ rule "[orisa/fortify.opy]: Orisa Fortify others by 20%":
     
     eventPlayer._current_damage_received -= 20
     eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
-    waitUntil(distance(eventPlayer, getPlayersOnHero(Hero.ORISA, eventPlayer.getTeam())) > 8 or not getPlayersOnHero(Hero.ORISA, eventPlayer.getTeam()).isUsingAbility1(), 99999)
+    waitUntil(distance(eventPlayer, getPlayersOnHero(Hero.ORISA, eventPlayer.getTeam())) > 8 or not getPlayersOnHero(Hero.ORISA, eventPlayer.getTeam()).isUsingAbility1(), Math.INFINITY)
     eventPlayer._current_damage_received += 20
     eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
 

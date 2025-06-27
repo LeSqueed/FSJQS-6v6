@@ -5,7 +5,7 @@
 
 settings {
     "main": {
-        "modeName": "6v6 Adjustments + Realth 1.17.10"
+        "modeName": "6v6 Adjustments + Realth 1.17.12"
     },
     "lobby": {
         "mapRotation": "afterGame",
@@ -193,10 +193,12 @@ settings {
             "mercy": {
                 "ability1Cooldown%": 73,
                 "health%": 89,
+                "projectileSpeed%": 120,
                 "ability2Cooldown%": 50,
                 "enablePassive": false
             },
             "moira": {
+                "primaryFireMaximumTime%": 85,
                 "health%": 89,
                 "ultGen%": 104
             },
@@ -257,7 +259,7 @@ settings {
             },
             "sombra": {
                 "secondaryFireCooldown%": 134,
-                "health%": 89,
+                "health%": 33,
                 "ability2Cooldown%": 100,
                 "ultGen%": 49,
                 "ability1Cooldown%": 150

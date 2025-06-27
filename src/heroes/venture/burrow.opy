@@ -9,7 +9,7 @@ rule "[venture/burrow.opy]: Burrow speed decrease and dash cooldown 0":
         eventPlayer.setAbilityCooldown(Button.SECONDARY_FIRE, 0)
     eventPlayer._current_move_speed -= 70
     eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
-    waitUntil(not eventPlayer.isUsingAbility1(), 99999)
+    waitUntil(not eventPlayer.isUsingAbility1(), Math.INFINITY)
     eventPlayer._current_move_speed += 70
     eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     if eventPlayer.getAbilityCooldown(Button.SECONDARY_FIRE) != 0 and not eventPlayer.isFiringSecondaryFire():
@@ -24,7 +24,7 @@ rule "[venture/burrow.opy]: Burrow speed increase when dashing":
     
     eventPlayer._current_move_speed += 110
     eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
-    waitUntil(not eventPlayer.isFiringSecondaryFire(), 99999)
+    waitUntil(not eventPlayer.isFiringSecondaryFire(), Math.INFINITY)
     eventPlayer._current_move_speed -= 110
     eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
 

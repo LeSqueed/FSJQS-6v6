@@ -11,7 +11,7 @@ def initMauga():
     @Name "[mauga/init.opy]: initMauga()"
     
     eventPlayer.custom_hp_pvar[0] = 21
-    eventPlayer.custom_hp_pvar[1] = 50
+    eventPlayer.custom_hp_pvar[1] = 25
     eventPlayer.custom_hp_pvar[2] = 0
     applyCustomHp()
     eventPlayer.ult_charge_pvar[1] = 2650
