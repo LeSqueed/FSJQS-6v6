@@ -11,7 +11,7 @@ rule "[junkerqueen/commanding_shout.opy]: increase overhealth for allies":
     @Event eachPlayer
     @Condition eventPlayer.within_shout_radius == true
     
-    eventPlayer.addHealthPool(Health.NORMAL, 6.75, false, false)
+    eventPlayer.addHealthPool(Health.NORMAL, 75 - 75 * eventPlayer._max_health_scalar, false, false)
     eventPlayer.Junkerqueen_overhealth = getLastCreatedHealthPool()
     wait(4)
     removeHealthPool(eventPlayer.Junkerqueen_overhealth)

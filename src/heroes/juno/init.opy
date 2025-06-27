@@ -10,7 +10,7 @@ playervar orbital_ray_final_z
 def initJuno():
     @Name "[juno/init.opy]: initJuno()"
     
-    eventPlayer.custom_hp_pvar[0] = 87
+    eventPlayer.custom_hp_pvar[0] = 87.5
     eventPlayer.custom_hp_pvar[1] = 0
     eventPlayer.custom_hp_pvar[2] = 0
     applyCustomHp()

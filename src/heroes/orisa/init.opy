@@ -15,7 +15,7 @@ playervar terra_overhealth_id
 def initOrisa():
     @Name "[orisa/init.opy]: initOrisa()"
     
-    eventPlayer.custom_hp_pvar[0] = 121
+    eventPlayer.custom_hp_pvar[0] = 121.2
     eventPlayer.custom_hp_pvar[1] = 0
     eventPlayer.custom_hp_pvar[2] = 0
     applyCustomHp()

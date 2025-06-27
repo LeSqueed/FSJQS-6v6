@@ -17,7 +17,7 @@ playervar hazard_bubble_icon
 def initHazard():
     @Name "[hazard/init.opy]: initHazard()"
     
-    eventPlayer.custom_hp_pvar[0] = 116
+    eventPlayer.custom_hp_pvar[0] = 116.95
     eventPlayer.custom_hp_pvar[1] = 0
     eventPlayer.custom_hp_pvar[2] = 0
     applyCustomHp()

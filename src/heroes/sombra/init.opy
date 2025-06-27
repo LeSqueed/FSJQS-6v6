@@ -23,7 +23,7 @@ def initSombra():
     
     eventPlayer.custom_hp_pvar[0] = 0
     eventPlayer.custom_hp_pvar[1] = 0
-    eventPlayer.custom_hp_pvar[2] = 125
+    eventPlayer.custom_hp_pvar[2] = 100
     applyCustomHp()
     eventPlayer.ult_charge_pvar[1] = 2800
     eventPlayer._base_damage_scalar = 0.875

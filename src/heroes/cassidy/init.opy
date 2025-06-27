@@ -7,7 +7,7 @@
 def initCassidy():
     @Name "[cassidy/init.opy]: initCassidy()"
     
-    eventPlayer.custom_hp_pvar[0] = 1
+    eventPlayer.custom_hp_pvar[0] = 2
     eventPlayer.custom_hp_pvar[1] = 0
     eventPlayer.custom_hp_pvar[2] = 0
     applyCustomHp()

@@ -9,7 +9,7 @@ playervar EchoUltSeconds
 def initEcho():
     @Name "[echo/init.opy]: initEcho()"
     
-    eventPlayer.custom_hp_pvar[0] = 125
+    eventPlayer.custom_hp_pvar[0] = 125.05
     eventPlayer.custom_hp_pvar[1] = 0
     eventPlayer.custom_hp_pvar[2] = 0
     applyCustomHp()
