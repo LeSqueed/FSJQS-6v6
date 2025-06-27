@@ -47,7 +47,7 @@ rule "[baptiste/init.opy]: Healing indicator":
     
     createInWorldText(eventPlayer, "{0} {1}".format(len([player for player in getLivingPlayers(eventPlayer.getTeam()) if distance(eventPlayer, player) <= 12 and isInLoS(eventPlayer, player, BarrierLos.BLOCKED_BY_ENEMY_BARRIERS) and player.getHero() != Hero.BAPTISTE]), abilityIconString(Hero.BAPTISTE, Button.ABILITY_1)), updateEveryFrame(eventPlayer.getEyePosition() + (100 * (-0.35 * (directionFromAngles(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90)) + 3 * eventPlayer.getFacingDirection()))), 2)
     eventPlayer.Baptiste_hud = getLastCreatedText()
-    waitUntil(eventPlayer.getAbilityCooldown(Button.ABILITY_1) != 0, 99999)
+    waitUntil(eventPlayer.getAbilityCooldown(Button.ABILITY_1) != 0, Math.INFINITY)
     destroyInWorldText(eventPlayer.Baptiste_hud)
 
     

@@ -84,7 +84,7 @@ rule "[debug_mode.opy]: Change hero":
     wait(0.1)
     eventPlayer.setAllowedHeroes(getAllHeroes())
     destroyInWorldText(eventPlayer.textID)
-    waitUntil(eventPlayer.hasSpawned(), 99999)
+    waitUntil(eventPlayer.hasSpawned(), Math.INFINITY)
     eventPlayer.teleport(eventPlayer.position)
 
 

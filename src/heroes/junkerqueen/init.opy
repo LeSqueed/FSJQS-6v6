@@ -36,7 +36,7 @@ rule "[junkerqueen/init.opy]: Shout indicator":
     
     createInWorldText(eventPlayer, "{0} {1}".format(len([player for player in getLivingPlayers(eventPlayer.getTeam()) if distance(eventPlayer, player) <= 15 and isInLoS(eventPlayer, player) and player.getHero() != Hero.JUNKER_QUEEN]), abilityIconString(Hero.JUNKER_QUEEN, Button.ABILITY_1)), updateEveryFrame(eventPlayer.getEyePosition() + (100 * (-0.5 * (directionFromAngles(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90)) + 3 * eventPlayer.getFacingDirection()))), 2)
     eventPlayer._junker_queen_commanding_shout_text = getLastCreatedText()
-    waitUntil(eventPlayer.isUsingAbility1(), 99999)
+    waitUntil(eventPlayer.isUsingAbility1(), Math.INFINITY)
     destroyInWorldText(eventPlayer._junker_queen_commanding_shout_text)
     eventPlayer._junker_queen_commanding_shout_text = null
 

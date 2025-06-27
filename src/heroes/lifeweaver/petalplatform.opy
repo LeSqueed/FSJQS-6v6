@@ -7,7 +7,7 @@ rule "[lifeweaver/petalplatform.opy]: Lose charges and reset cooldown":
     
     eventPlayer.Lifeweaver_petal_charges--
     if eventPlayer.Lifeweaver_petal_charges != 0:
-        #waitUntil(eventPlayer.isUsingAbility1(), 99999)
+        #waitUntil(eventPlayer.isUsingAbility1(), Math.INFINITY)
         wait(0.25)
         eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
 

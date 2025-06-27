@@ -4,9 +4,9 @@ rule "[passives/damage/damage_passive.opy]: Remove DPS Passive":
     @Condition attacker != victim
     
     if victim.getHero() in getTankHeroes():
-        eventPlayer.setHealingReceived(112.5)
+        eventPlayer.setHealingReceived(115)
     else:
-        eventPlayer.setHealingReceived(125)
+        eventPlayer.setHealingReceived(130)
     wait(0.5)
     wait(2.5, Wait.RESTART_WHEN_TRUE)
     eventPlayer.setHealingReceived(100)

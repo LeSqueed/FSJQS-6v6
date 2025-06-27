@@ -8,7 +8,7 @@ def initReaper():
     eventPlayer.custom_hp_pvar[2] = 0
     applyCustomHp()
     eventPlayer.ult_charge_pvar[1] = 1900
-    eventPlayer._base_damage_scalar = 0.981
+    eventPlayer._base_damage_scalar = 0.922
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer._base_healing_scalar = 1.2
     eventPlayer.setHealingDealt(100 * eventPlayer._base_healing_scalar)

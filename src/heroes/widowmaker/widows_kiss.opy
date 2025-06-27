@@ -18,7 +18,7 @@ rule "[widowmaker/widows_kiss.opy]: beam":
     wait(0.9, Wait.ABORT_WHEN_FALSE)
     createBeam(getPlayers(getOppositeTeam(eventPlayer.getTeam())), Beam.BAD, eventPlayer.getEyePosition() + worldVector(vect(0, -0.14, 0), eventPlayer, Transform.ROTATION), raycast(eventPlayer.getEyePosition(), eventPlayer.getEyePosition() + eventPlayer.getFacingDirection() * 70, getAllPlayers(), eventPlayer, true).getHitPosition(), Color.RED, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
     eventPlayer.Widowmaker_beam_effect = getLastCreatedEntity()
-    waitUntil(not eventPlayer.isFiringSecondaryFire(), 99999)
+    waitUntil(not eventPlayer.isFiringSecondaryFire(), Math.INFINITY)
     destroyEffect(eventPlayer.Widowmaker_beam_effect)
     eventPlayer.Widowmaker_beam_effect = null
 
@@ -52,7 +52,7 @@ rule "[widowmaker/widows_kiss.opy]: unscope / reset":
     @Hero widowmaker
     @Condition eventPlayer.isFiringSecondaryFire() == true
     
-    waitUntil(not eventPlayer.isFiringSecondaryFire(), 99999)
+    waitUntil(not eventPlayer.isFiringSecondaryFire(), Math.INFINITY)
     stopChasingVariable(eventPlayer.Widow_maxscope_duration)
     destroyProgressBarInWorldText(eventPlayer._widowmaker_scope_duration_bar)
     eventPlayer._widowmaker_scope_duration_bar = null

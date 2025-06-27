@@ -3,7 +3,7 @@ rule "[orisa/spin.opy]: Movementspeed increase during Spin":
     @Hero orisa
     @Condition eventPlayer.isUsingAbility2() == true
     
-    waitUntil(not eventPlayer.isUsingAbility2(), 99999)
+    waitUntil(not eventPlayer.isUsingAbility2(), Math.INFINITY)
     eventPlayer._current_move_speed += 35
     eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     wait(1)
