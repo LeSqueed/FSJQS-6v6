@@ -61,7 +61,7 @@ def resetStats():
     @Name "[utilities/reset.opy]: resetStats()"
     
     eventPlayer._base_damage_scalar = 1
-    eventPlayer.max_health_scaler = 1
+    eventPlayer._max_health_scalar = 1
     eventPlayer._current_damage_received = 100
     eventPlayer._base_healing_scalar = 1
     eventPlayer._current_move_speed = 100

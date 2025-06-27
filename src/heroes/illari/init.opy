@@ -10,7 +10,7 @@ def initIllari():
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer._base_healing_scalar = 0.75
     eventPlayer.setHealingDealt(100 * eventPlayer._base_healing_scalar)
-    eventPlayer.max_health_scaler = 0.8
+    eventPlayer._max_health_scalar = HeroHealthPercentage.ILLARI / 100
     eventPlayer.hero_initialized = true
 
 rule "[illari/init.opy]: Correct Outburst and melee damage":

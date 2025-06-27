@@ -14,6 +14,7 @@ def initBastion():
     applyCustomHp()
     eventPlayer.ult_charge_pvar[1] = 2300
     eventPlayer.startScalingSize(1.06)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.BASTION / 100
     eventPlayer.hero_initialized = true
 
 rule "[bastion/init.opy]: Reduce grenade self-damage":

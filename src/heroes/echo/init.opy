@@ -20,6 +20,7 @@ def initEcho():
     eventPlayer.disallowButton(Button.ULTIMATE)
     eventPlayer._current_move_speed = 100
     eventPlayer.setMoveSpeed(100)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.ECHO / 100
     eventPlayer.hero_initialized = true
 
 

@@ -141,7 +141,7 @@ settings {
             "junkerQueen": {
                 "ability2Cooldown%": 88,
                 "ability1Cooldown%": 108,
-                "health%": HeroHealthPercentage.JUNKERQUEEN,
+                "health%": HeroHealthPercentage.JUNKER_QUEEN,
                 "ultGen%": 117
             },
             "junkrat": {
@@ -154,7 +154,8 @@ settings {
                 "health%": HeroHealthPercentage.JUNO,
                 "ability2Cooldown%": 136,
                 "secondaryFireCooldown%": 100,
-                "ultGen%": 110
+                "ultGen%": 110,
+                "ammoClipSize%": 66.6
             },
             "kiriko": {
                 "health%": HeroHealthPercentage.KIRIKO,

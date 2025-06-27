@@ -11,4 +11,5 @@ def initZenyatta():
     eventPlayer.setAmmo(0, 20)
     eventPlayer.setMaxAmmo(0, 20)
     eventPlayer.setKnockbackDealt(4)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.ZENYATTA / 100
     eventPlayer.hero_initialized = true

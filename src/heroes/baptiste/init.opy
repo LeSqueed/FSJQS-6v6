@@ -14,7 +14,7 @@ def initBaptiste():
     eventPlayer._base_healing_scalar = 0.584
     eventPlayer.setHealingDealt(100 * eventPlayer._base_healing_scalar)
     eventPlayer.baptiste_balance_change_check = true
-    eventPlayer.max_health_scaler = 0.8
+    eventPlayer._max_health_scalar = HeroHealthPercentage.BAPTISTE / 100
     eventPlayer.hero_initialized = true
 
 

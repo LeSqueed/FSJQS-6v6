@@ -14,4 +14,5 @@ def initJunkrat():
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     #check mayhem.opy
     eventPlayer.disallowButton(Button.ULTIMATE)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.JUNKRAT / 100
     eventPlayer.hero_initialized = true

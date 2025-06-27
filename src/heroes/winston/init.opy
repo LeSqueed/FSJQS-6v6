@@ -13,7 +13,7 @@ def initWinston():
     removeTankPassive()
     eventPlayer._base_damage_scalar = 0.821
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
-    eventPlayer.max_health_scaler = 0.923
+    eventPlayer._max_health_scalar = HeroHealthPercentage.WINSTON / 100
     eventPlayer.setMaxAmmo(0, 100)
     eventPlayer.setAmmo(0, 100)
     eventPlayer.hero_initialized = true

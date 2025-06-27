@@ -15,6 +15,7 @@ def initTorbjorn():
     eventPlayer.setAmmo(0, 18)
     eventPlayer.setMaxAmmo(0, 18)
     eventPlayer.overhealth_check = false
+    eventPlayer._max_health_scalar = HeroHealthPercentage.TORBJORN / 100
     eventPlayer.hero_initialized = true
 
 

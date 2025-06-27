@@ -26,6 +26,7 @@ def initHazard():
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer.setAbility2Enabled(false)
     eventPlayer.disallowButton(Button.ABILITY_2)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.HAZARD / 100
     eventPlayer.hero_initialized = true
 
 

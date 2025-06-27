@@ -14,6 +14,7 @@ def initKiriko():
     eventPlayer._current_move_speed += 9.1
     eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     eventPlayer.setAbilityCooldown(Button.ABILITY_1, 5)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.KIRIKO / 100
     eventPlayer.hero_initialized = true
     
 rule "[kiriko/init.opy]: Correct Kiriko melee damage":

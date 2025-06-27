@@ -23,6 +23,7 @@ def initJuno():
     eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     eventPlayer.setAmmo(0, 120)
     eventPlayer.setMaxAmmo(0, 120)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.JUNO / 100
     eventPlayer.hero_initialized = true
 
 

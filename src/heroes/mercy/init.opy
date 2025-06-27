@@ -28,6 +28,7 @@ def initMercy():
     eventPlayer.setAmmo(0, 20)
     eventPlayer.setMaxAmmo(0, 20)
     eventPlayer.setAbility2Enabled(false)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.MERCY / 100
     eventPlayer.hero_initialized = true
 
 rule "[mercy/init.opy]: Reduce Valkyrie healing and force self-healing":

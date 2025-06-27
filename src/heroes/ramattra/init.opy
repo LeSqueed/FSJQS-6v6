@@ -13,5 +13,5 @@ def initRamattra():
     applyCustomHp()
     eventPlayer.ult_charge_pvar[1] = 2016
     removeTankPassive()
-    eventPlayer.max_health_scaler = 0.632
+    eventPlayer._max_health_scalar = HeroHealthPercentage.RAMATTRA / 100
     eventPlayer.hero_initialized = true

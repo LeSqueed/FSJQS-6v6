@@ -7,6 +7,7 @@ def initFreja():
     eventPlayer._base_damage_scalar = 0.667
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer.startScalingSize(0.96)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.FREJA / 100
     eventPlayer.hero_initialized = true
 
 

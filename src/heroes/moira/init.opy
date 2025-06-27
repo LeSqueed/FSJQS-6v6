@@ -8,6 +8,7 @@ def initMoira():
     eventPlayer.ult_charge_pvar[1] = 2800
     eventPlayer._base_damage_scalar = 0.923
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.MOIRA / 100
     eventPlayer.hero_initialized = true
 
 rule "[moira/init.opy]: Increase Moira other forms of damage":

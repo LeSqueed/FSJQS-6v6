@@ -12,6 +12,7 @@ def initReaper():
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer._base_healing_scalar = 1.2
     eventPlayer.setHealingDealt(100 * eventPlayer._base_healing_scalar)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.REAPER / 100
     eventPlayer.hero_initialized = true
 
 

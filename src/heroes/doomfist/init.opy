@@ -25,7 +25,7 @@ def initDoomfist():
     removeTankPassive()
     eventPlayer._base_damage_scalar = 0.8
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
-    eventPlayer.max_health_scaler = 0.625
+    eventPlayer._max_health_scalar = HeroHealthPercentage.DOOMFIST / 100
     eventPlayer.punched_victims = []
     eventPlayer.wall_impacted_victims = []
     eventPlayer.uppercut_victims = []
