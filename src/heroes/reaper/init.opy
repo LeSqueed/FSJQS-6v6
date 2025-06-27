@@ -3,10 +3,6 @@
 def initReaper():
     @Name "[reaper/init.opy]: initReaper()"
     
-    eventPlayer.custom_hp_pvar[0] = 0
-    eventPlayer.custom_hp_pvar[1] = 0
-    eventPlayer.custom_hp_pvar[2] = 0
-    applyCustomHp()
     eventPlayer.ult_charge_pvar[1] = 1900
     eventPlayer._base_damage_scalar = 0.922
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
