@@ -3,9 +3,12 @@
 #!include "../utilities/macro_functions.opy"
 #!include "../utilities/texts.opy"
 
+macro VERSION = "1.17.12"
+macro PERKS_ENABLED = false
+
 settings {
     "main": {
-        "modeName": "6v6 Adjustments + Realth 1.17.12"
+        "modeName": "6v6 Adjustments + Realth {VERSION}"
     },
     "lobby": {
         "mapRotation": "afterGame",
@@ -20,7 +23,7 @@ settings {
             "enabledMaps": [],
             "captureSpeed%": 120,
             "enableCompetitiveRules": true,
-            "enablePerks": false
+            "enablePerks": PERKS_ENABLED
         },
         "clash": {
             "enabled": false,
@@ -29,28 +32,28 @@ settings {
         "control": {
             "enabledMaps": [],
             "enableCompetitiveRules": true,
-            "enablePerks": false
+            "enablePerks": PERKS_ENABLED
         },
         "escort": {
             "enabledMaps": [],
             "enableCompetitiveRules": true,
-            "enablePerks": false
+            "enablePerks": PERKS_ENABLED
         },
         "flashpoint": {
             "enabledMaps": [],
             "enableCompetitiveRules": true,
-            "enablePerks": false,
+            "enablePerks": PERKS_ENABLED,
             "scoringSpeed%": 85
         },
         "hybrid": {
             "enabledMaps": [],
             "enableCompetitiveRules": true,
-            "enablePerks": false
+            "enablePerks": PERKS_ENABLED
         },
         "push": {
             "enabledMaps": [],
             "enableCompetitiveRules": true,
-            "enablePerks": false,
+            "enablePerks": PERKS_ENABLED,
             "ts1PushSpeedModifier%": 100
         },
         "general": {
@@ -66,48 +69,48 @@ settings {
             "ana": {
                 "ammoClipSize%": 80,
                 "ability2Cooldown%": 86,
-                "health%": 80,
+                "health%": HeroHealthPercentage.ANA,
                 "ability1Cooldown%": 86,
                 "ultGen%": 100
             },
             "ashe": {
-                "health%": 80,
+                "health%": HeroHealthPercentage.ASHE,
                 "ultGen%": 109
             },
             "baptiste": {
                 "ammoClipSize%": 130,
-                "health%": 80,
+                "health%": HeroHealthPercentage.BAPTISTE,
                 "ultGen%": 105
             },
             "bastion": {
-                "health%": 70,
+                "health%": HeroHealthPercentage.BASTION,
                 "ability1Cooldown%": 100,
                 "ultGen%": 96
             },
             "brigitte": {
-                "health%": 80,
+                "health%": HeroHealthPercentage.BRIGITTE,
                 "ability2Cooldown%": 100,
                 "ultGen%": 103
             },
             "cassidy": {
-                "health%": 72,
+                "health%": HeroHealthPercentage.CASSIDY,
                 "ultGen%": 107
             },
             "dva": {
                 "ability1Cooldown%": 114,
                 "secondaryFireMaximumTime%": 67,
                 "secondaryFireRechargeRate%": 90,
-                "health%": 69,
+                "health%": HeroHealthPercentage.DVA,
                 "ultGen%": 110
             },
             "doomfist": {
-                "health%": 63,
+                "health%": HeroHealthPercentage.DOOMFIST,
                 "ability2Cooldown%": 100,
                 "ultGen%": 113
             },
             "echo": {
                 "ability2Cooldown%": 125,
-                "health%": 33,
+                "health%": HeroHealthPercentage.ECHO,
                 "ultGen%": 98
             },
             "freja": {
@@ -115,53 +118,53 @@ settings {
             },
             "genji": {
                 "ammoClipSize%": 125,
-                "health%": 80,
+                "health%": HeroHealthPercentage.GENJI,
                 "ultDuration%": 50,
                 "ultGen%": 145
             },
             "hanzo": {
-                "health%": 80,
+                "health%": HeroHealthPercentage.HANZO,
                 "ability2Quantity%": 4,
                 "ultGen%": 110
             },
             "hazard": {
-                "health%": 67,
+                "health%": HeroHealthPercentage.HAZARD,
                 "ability1Cooldown%": 116
             },
             "illari": {
                 "ammoClipSize%": 85,
                 "ability2Cooldown%": 114,
-                "health%": 80,
+                "health%": HeroHealthPercentage.ILLARI,
                 "solarEnergyMax%": 86,
                 "ultGen%": 121
             },
             "junkerQueen": {
                 "ability2Cooldown%": 88,
                 "ability1Cooldown%": 108,
-                "health%": 71,
+                "health%": HeroHealthPercentage.JUNKERQUEEN,
                 "ultGen%": 117
             },
             "junkrat": {
                 "ability1Cooldown%": 100,
-                "health%": 80,
+                "health%": HeroHealthPercentage.JUNKRAT,
                 "ultGen%": 109
             },
             "juno": {
                 "ability1Cooldown%": 133,
-                "health%": 50,
+                "health%": HeroHealthPercentage.JUNO,
                 "ability2Cooldown%": 136,
                 "secondaryFireCooldown%": 100,
                 "ultGen%": 110
             },
             "kiriko": {
-                "health%": 89,
+                "health%": HeroHealthPercentage.KIRIKO,
                 "ability2Cooldown%": 93,
                 "ability1Cooldown%": 100,
                 "ultGen%": 117
             },
             "lifeweaver": {
                 "ammoClipSize%": 80,
-                "health%": 50,
+                "health%": HeroHealthPercentage.LIFEWEAVER,
                 "secondaryFireCooldown%": 100,
                 "secondaryFireHealth%": 133,
                 "ability1Cooldown%": 0,
@@ -170,7 +173,7 @@ settings {
                 "ultGen%": 110
             },
             "lucio": {
-                "health%": 89,
+                "health%": HeroHealthPercentage.LUCIO,
                 "secondaryFireCooldown%": 105,
                 "secondaryFireKb%": 100,
                 "ultGen%": 90
@@ -179,43 +182,43 @@ settings {
                 "ammoClipSize%": 100,
                 "ability2Cooldown%": 84,
                 "ability2Healing%": 0,
-                "health%": 83,
+                "health%": HeroHealthPercentage.MAUGA,
                 "primaryFireIgniteDamage": 223,
                 "primaryFireIgniteDuration": 75,
                 "ability1Cooldown%": 120,
                 "ultGen%": 108
             },
             "mei": {
-                "health%": 80,
+                "health%": HeroHealthPercentage.MEI,
                 "ultGen%": 120,
                 "primaryFireFreezeRate%": 130
             },
             "mercy": {
                 "ability1Cooldown%": 73,
-                "health%": 89,
+                "health%": HeroHealthPercentage.MERCY,
                 "projectileSpeed%": 120,
                 "ability2Cooldown%": 50,
                 "enablePassive": false
             },
             "moira": {
                 "primaryFireMaximumTime%": 85,
-                "health%": 89,
+                "health%": HeroHealthPercentage.MOIRA,
                 "ultGen%": 104
             },
             "orisa": {
                 "secondaryFireCooldown%": 117,
                 "ability1Cooldown%": 79,
-                "health%": 69,
+                "health%": HeroHealthPercentage.ORISA,
                 "ability2Cooldown%": 75,
                 "enableInfiniteAmmo": true,
                 "ultGen%": 119
             },
             "pharah": {
-                "health%": 89,
+                "health%": HeroHealthPercentage.PHARAH,
                 "ultGen%": 105
             },
             "ramattra": {
-                "health%": 63.3,
+                "health%": HeroHealthPercentage.RAMATTRA,
                 "ability1Cooldown%": 100,
                 "ability2Cooldown%": 85,
                 "ultDuration%": 100,
@@ -223,7 +226,7 @@ settings {
                 "secondaryFireCooldown%": 81
             },
             "reaper": {
-                "health%": 75,
+                "health%": HeroHealthPercentage.REAPER,
                 "ability2Cooldown%": 80,
                 "ultGen%": 98
             },
@@ -235,7 +238,7 @@ settings {
             },
             "roadhog": {
                 "ability1Cooldown%": 117,
-                "health%": 92,
+                "health%": HeroHealthPercentage.ROADHOG,
                 "ability2Cooldown%": 75,
                 "secondaryFireCooldown%": 480,
                 "secondaryFireMaximumTime%": 89,
@@ -244,37 +247,37 @@ settings {
             },
             "sigma": {
                 "secondaryFireRechargeRate%": 94,
-                "health%": 86,
+                "health%": HeroHealthPercentage.SIGMA,
                 "ability1Cooldown%": 108,
                 "ultGen%": 101
             },
             "sojourn": {
-                "health%": 80,
+                "health%": HeroHealthPercentage.SOJOURN,
                 "ability1Cooldown%": 75,
                 "ultGen%": 110
             },
             "soldier": {
-                "health%": 80,
+                "health%": HeroHealthPercentage.SOLDIER,
                 "ultGen%": 119
             },
             "sombra": {
                 "secondaryFireCooldown%": 134,
-                "health%": 33,
+                "health%": HeroHealthPercentage.SOMBRA,
                 "ability2Cooldown%": 100,
                 "ultGen%": 49,
                 "ability1Cooldown%": 150
             },
             "symmetra": {
-                "health%": 75,
+                "health%": HeroHealthPercentage.SYMMETRA,
                 "ultGen%": 121
             },
             "torbjorn": {
                 "ability1Cooldown%": 83,
-                "health%": 78,
+                "health%": HeroHealthPercentage.TORBJORN,
                 "ultGen%": 110
             },
             "tracer": {
-                "health%": 86,
+                "health%": HeroHealthPercentage.TRACER,
                 "ability2Cooldown%": 103,
                 "ultGen%": 110
             },
@@ -283,19 +286,19 @@ settings {
                 "ultGen%": 137
             },
             "widowmaker": {
-                "health%": 89,
+                "health%": HeroHealthPercentage.WIDOWMAKER,
                 "ultGen%": 101,
                 "ability2Cooldown%": 80
             },
             "winston": {
-                "health%": 92,
+                "health%": HeroHealthPercentage.WINSTON,
                 "ability1Cooldown%": 120,
                 "ultGen%": 138
             },
             "wreckingBall": {
                 "secondaryFireCooldown%": 120,
                 "ability1Kb%": 85,
-                "health%": 50,
+                "health%": HeroHealthPercentage.WRECKINGBALL,
                 "ability3Cooldown%": 125,
                 "ultGen%": 120
             },
@@ -304,7 +307,7 @@ settings {
                 "ultGen%": 119
             },
             "zenyatta": {
-                "health%": 67,
+                "health%": HeroHealthPercentage.ZENYATTA,
                 "ultGen%": 104
             },
             "general": {
