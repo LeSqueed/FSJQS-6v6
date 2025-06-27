@@ -6,6 +6,7 @@ playervar Cardiac_overdrive_active
 
 #!include "cardiac.opy"
 #!include "cage.opy"
+#!include "overrun.opy"
 
 def initMauga():
     @Name "[mauga/init.opy]: initMauga()"
