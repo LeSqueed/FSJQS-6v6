@@ -3,7 +3,7 @@
 #!include "../utilities/macro_functions.opy"
 #!include "../utilities/texts.opy"
 
-macro VERSION = "1.17.12"
+macro VERSION = "1.17.13"
 macro PERKS_ENABLED = false
 
 settings {
