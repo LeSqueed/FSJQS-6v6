@@ -21,3 +21,5 @@ playervar text
 #!defineMember _widowmaker_scope_duration_bar text[17]
 #!defineMember _orisa_ammo_bar text[18]
 #!defineMember _orisa_ammo_text text[19]
+#!defineMember _mercy_momentum_bar text[20]
+#!defineMember _mercy_rez_hud text[21]
