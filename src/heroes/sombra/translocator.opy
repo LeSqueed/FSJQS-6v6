@@ -5,7 +5,7 @@ rule "[sombra/translocator.opy]: Sombra Invis Increase move Speed":
     
     eventPlayer._current_move_speed = eventPlayer._current_move_speed + 10
     eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
-    waitUntil(eventPlayer.Sombra_invisible == false, 99999)
+    waitUntil(eventPlayer.Sombra_invisible == false, Math.INFINITY)
     eventPlayer._current_move_speed = eventPlayer._current_move_speed - 10
     eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
 

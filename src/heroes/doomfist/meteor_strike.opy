@@ -12,5 +12,5 @@ rule "[doomfist/meteor_strike.opy]: Doomfist ult remove self healing":
     @Condition eventPlayer.isUsingUltimate() == true
     
     eventPlayer.setHealingDealt(0)
-    waitUntil(not eventPlayer.isUsingUltimate(), 99999)
+    waitUntil(not eventPlayer.isUsingUltimate(), Math.INFINITY)
     eventPlayer.setHealingDealt(100)
