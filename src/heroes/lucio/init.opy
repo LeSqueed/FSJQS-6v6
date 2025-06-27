@@ -10,6 +10,8 @@ def initLucio():
     eventPlayer.ult_charge_pvar[1] = 2940
     eventPlayer._base_damage_scalar = 0.444
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
+    eventPlayer._base_healing_scalar = 0.8
+    eventPlayer.setHealingDealt(100 * eventPlayer._base_healing_scalar)
     eventPlayer.startScalingSize(0.96)
     eventPlayer.hero_initialized = true
 
