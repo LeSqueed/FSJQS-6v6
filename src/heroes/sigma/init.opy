@@ -16,6 +16,7 @@ def initSigma():
     eventPlayer._base_damage_scalar = 0.75
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer.balance_change_check = 0
+    eventPlayer._max_health_scalar = HeroHealthPercentage.SIGMA / 100
     eventPlayer.hero_initialized = true
 
 

@@ -7,7 +7,7 @@ def initTracer():
     eventPlayer._base_damage_scalar = 0.883
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer.startScalingSize(0.96)
-    eventPlayer.max_health_scaler = 0.857
+    eventPlayer._max_health_scalar = HeroHealthPercentage.TRACER / 100
     eventPlayer.hero_initialized = true
 
 

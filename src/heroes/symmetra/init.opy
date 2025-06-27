@@ -8,7 +8,7 @@ def initSymmetra():
     eventPlayer.custom_hp_pvar[2] = 12.5
     applyCustomHp()
     eventPlayer.ult_charge_pvar[1] = 1680
-    eventPlayer.max_health_scaler = 0.75
+    eventPlayer._max_health_scalar = HeroHealthPercentage.SYMMETRA / 100
     eventPlayer.hero_initialized = true
 
 

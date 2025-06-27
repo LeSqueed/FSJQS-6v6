@@ -12,7 +12,7 @@ def initAshe():
     eventPlayer.ult_charge_pvar[1] = 2240
     eventPlayer._base_damage_scalar = 0.934
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
-    eventPlayer.max_health_scaler = 0.8
+    eventPlayer._max_health_scalar = HeroHealthPercentage.ASHE / 100
     eventPlayer.hero_initialized = true
 
 rule "[ashe/init.opy]: Correct damage numbers":

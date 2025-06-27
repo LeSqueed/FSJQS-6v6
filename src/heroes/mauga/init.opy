@@ -20,6 +20,7 @@ def initMauga():
     eventPlayer._base_damage_scalar = 0.75
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer.balance_change_check = false
+    eventPlayer._max_health_scalar = HeroHealthPercentage.MAUGA / 100
     eventPlayer.hero_initialized = true
 
 rule "[mauga/init.opy]: Increase Mauga melee damage":

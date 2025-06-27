@@ -9,6 +9,7 @@ def initSoldier():
     eventPlayer.setHealingDealt(100 * eventPlayer._base_healing_scalar)
     eventPlayer.setAmmo(0, 30)
     eventPlayer.setMaxAmmo(0, 30)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.SOLDIER / 100
     eventPlayer.hero_initialized = true
 
 

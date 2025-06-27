@@ -10,7 +10,7 @@ playervar orbital_ray_final_z
 def initJuno():
     @Name "[juno/init.opy]: initJuno()"
     
-    eventPlayer.custom_hp_pvar[0] = 87
+    eventPlayer.custom_hp_pvar[0] = 87.5
     eventPlayer.custom_hp_pvar[1] = 0
     eventPlayer.custom_hp_pvar[2] = 0
     applyCustomHp()
@@ -23,6 +23,7 @@ def initJuno():
     eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     eventPlayer.setAmmo(0, 120)
     eventPlayer.setMaxAmmo(0, 120)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.JUNO / 100
     eventPlayer.hero_initialized = true
 
 

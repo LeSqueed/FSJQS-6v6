@@ -32,6 +32,7 @@ def initLifeweaver():
     eventPlayer.Lifeweaver_dash_charges = 2
     eventPlayer.setMaxAmmo(0, 5)
     eventPlayer.setAmmo(0, 5)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.LIFEWEAVER / 100
     eventPlayer.hero_initialized = true
 
 

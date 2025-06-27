@@ -13,6 +13,7 @@ def initAna():
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer._base_healing_scalar = 0.933
     eventPlayer.setHealingDealt(100 * eventPlayer._base_healing_scalar)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.ANA / 100
     eventPlayer.hero_initialized = true
 
 rule "[ana/init.opy]: Correct Sleep Dart and Ana Melee damage":

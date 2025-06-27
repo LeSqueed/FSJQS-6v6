@@ -22,7 +22,7 @@ def initVenture():
     eventPlayer.setKnockbackDealt(80)
     eventPlayer.setAmmo(0, 6)
     eventPlayer.setMaxAmmo(0, 6)
-    eventPlayer.max_health_scaler = 0.833
+    eventPlayer._max_health_scalar = HeroHealthPercentage.VENTURE / 100
     eventPlayer.startScalingSize(1.18)
     eventPlayer.hero_initialized = true
 

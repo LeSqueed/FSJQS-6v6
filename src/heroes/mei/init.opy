@@ -14,7 +14,7 @@ def initMei():
     eventPlayer.ult_charge_pvar[1] = 1610
     eventPlayer._base_damage_scalar = 0.882
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
-    eventPlayer.max_health_scaler = 0.8
+    eventPlayer._max_health_scalar = HeroHealthPercentage.MEI / 100
     eventPlayer.hero_initialized = true
 
 
@@ -31,7 +31,7 @@ def initMei():
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer.startScalingSize(1.15)
     eventPlayer.hero_initialized = true
-    eventPlayer.max_health_scaler = 1.1
+    eventPlayer._max_health_scalar = 1.1
 
 
 rule "[mei/init.opy]: Reduce Headshot damage taken Mei":

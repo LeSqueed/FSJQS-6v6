@@ -8,4 +8,5 @@ def initPharah():
     eventPlayer.custom_hp_pvar[2] = 0
     applyCustomHp()
     eventPlayer.ult_charge_pvar[1] = 2100
+    eventPlayer._max_health_scalar = HeroHealthPercentage.PHARAH / 100
     eventPlayer.hero_initialized = true

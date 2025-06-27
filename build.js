@@ -15,9 +15,9 @@ const RULES_ONLY_OUTPUT_FILE = path.join('output/rules.txt');
 
 async function updateVersion() {
   let lobbyFileText = fs.readFileSync(LOBBY_FILE, 'utf8');
-  const modeNameRegex = /("modeName":\s*"6v6 Adjustments \+ Realth\s*)[^"]*"/;
-  if (modeNameRegex.test(lobbyFileText)) {
-      lobbyFileText = lobbyFileText.replace(modeNameRegex, `$1${version}"`);
+  const versionRegex = /(macro\sVERSION\s=\s")(\d+.\d+.\d+)/;
+  if (versionRegex.test(lobbyFileText)) {
+      lobbyFileText = lobbyFileText.replace(versionRegex, `$1${version}`);
       fs.writeFileSync(LOBBY_FILE, lobbyFileText);
       console.log(colors.green(`Updated version in lobby.opy to ${version}`));
   } else {

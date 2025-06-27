@@ -23,7 +23,7 @@ def initSombra():
     
     eventPlayer.custom_hp_pvar[0] = 0
     eventPlayer.custom_hp_pvar[1] = 0
-    eventPlayer.custom_hp_pvar[2] = 125
+    eventPlayer.custom_hp_pvar[2] = 100
     applyCustomHp()
     eventPlayer.ult_charge_pvar[1] = 2800
     eventPlayer._base_damage_scalar = 0.875
@@ -31,6 +31,7 @@ def initSombra():
     eventPlayer.Sombra_invisible = false
     createInWorldText(eventPlayer, "{0} {1}".format(len([player for player in getLivingPlayers(eventPlayer.getTeam()) if distance(eventPlayer, player) <= 15 and isInLoS(eventPlayer, player, BarrierLos.BLOCKED_BY_ENEMY_BARRIERS) == true and player.getHero() != Hero.SOMBRA]), iconString(Icon.PLUS)), updateEveryFrame(eventPlayer.getEyePosition() + (100 * (0 * worldVector(Vector.RIGHT, eventPlayer, Transform.ROTATION) + (-0.3 * (directionFromAngles(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 1.8)
     eventPlayer._sombra_healing_radius_targets_text = getLastCreatedText()
+    eventPlayer._max_health_scalar = HeroHealthPercentage.SOMBRA / 100
     eventPlayer.hero_initialized = true
 
 

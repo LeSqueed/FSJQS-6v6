@@ -25,7 +25,7 @@ def initJunkerQueen():
     eventPlayer.setMaxAmmo(0, 8)
     eventPlayer.setAmmo(0, 8)
     eventPlayer.overhealth_check = false
-    eventPlayer.max_health_scaler = 0.714
+    eventPlayer._max_health_scalar = HeroHealthPercentage.JUNKER_QUEEN / 100
     eventPlayer.hero_initialized = true
 
 rule "[junkerqueen/init.opy]: Shout indicator":

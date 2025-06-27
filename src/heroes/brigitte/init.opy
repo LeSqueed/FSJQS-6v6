@@ -18,6 +18,7 @@ def initBrigitte():
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer._base_healing_scalar = 0.8
     eventPlayer.setHealingDealt(100 * eventPlayer._base_healing_scalar)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.BRIGITTE / 100
     eventPlayer.hero_initialized = true
 
 rule "[brigitte/init.opy]: Correct Whipshot damage":

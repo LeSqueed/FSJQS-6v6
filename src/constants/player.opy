@@ -3,7 +3,6 @@ playervar regen_passive_id 14
 playervar self_heal_pvar 15
 playervar ult_charge_pvar 16
 playervar hero_initialized 4
-playervar max_health_scaler 6
 playervar hero_switch_pvar 7
 playervar hero_setup 8
 playervar overhealth_check 24

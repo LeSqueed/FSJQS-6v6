@@ -6,6 +6,7 @@ def initGenji():
     @Name "[genji/init.opy]: initGenji()"
     
     eventPlayer.ult_charge_pvar[1] = 1150
+    eventPlayer._max_health_scalar = HeroHealthPercentage.GENJI / 100
     eventPlayer.hero_initialized = true
 
 rule "[genji/init.opy]: Reduce Deflect duration":

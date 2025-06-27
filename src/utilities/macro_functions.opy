@@ -5,6 +5,7 @@ playervar macro_pvar
 #!defineMember _base_healing_scalar macro_pvar[1]
 #!defineMember _current_move_speed macro_pvar[2]
 #!defineMember _current_damage_received macro_pvar[3]
+#!defineMember _max_health_scalar macro_pvar[4]
 
 # Macro function for retrieving id of hero
 #!define heroID(h) (getAllHeroes().index(h))

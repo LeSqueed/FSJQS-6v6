@@ -17,7 +17,7 @@ playervar hazard_bubble_icon
 def initHazard():
     @Name "[hazard/init.opy]: initHazard()"
     
-    eventPlayer.custom_hp_pvar[0] = 116
+    eventPlayer.custom_hp_pvar[0] = 116.95
     eventPlayer.custom_hp_pvar[1] = 0
     eventPlayer.custom_hp_pvar[2] = 0
     applyCustomHp()
@@ -26,6 +26,7 @@ def initHazard():
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer.setAbility2Enabled(false)
     eventPlayer.disallowButton(Button.ABILITY_2)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.HAZARD / 100
     eventPlayer.hero_initialized = true
 
 

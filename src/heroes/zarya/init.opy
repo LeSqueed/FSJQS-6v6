@@ -15,7 +15,7 @@ def initZarya():
     eventPlayer.ally_bubble_cooldown = 0
     eventPlayer._base_damage_scalar = 0.895
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
-    eventPlayer.max_health_scaler = 1
+    eventPlayer._max_health_scalar = HeroHealthPercentage.ZARYA / 100
     eventPlayer.hero_initialized = true
 
 rule "[zarya/init.opy]: Clean up Zarya":

@@ -15,7 +15,7 @@ playervar terra_overhealth_id
 def initOrisa():
     @Name "[orisa/init.opy]: initOrisa()"
     
-    eventPlayer.custom_hp_pvar[0] = 121
+    eventPlayer.custom_hp_pvar[0] = 121.2
     eventPlayer.custom_hp_pvar[1] = 0
     eventPlayer.custom_hp_pvar[2] = 0
     applyCustomHp()
@@ -32,6 +32,7 @@ def initOrisa():
     #if not eventPlayer.isDuplicatingAHero():
     #setBaseDamage(eventPlayer, ADJ_ORISA_JAVELIN_DIRECT_DAMAGE / OW2_ORISA_JAVELIN_DIRECT_DAMAGE)
     eventPlayer.balance_change_check = true
+    eventPlayer._max_health_scalar = HeroHealthPercentage.ORISA / 100
     eventPlayer.hero_initialized = true
 
 

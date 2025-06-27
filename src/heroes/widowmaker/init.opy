@@ -11,6 +11,7 @@ def initWidowmaker():
     @Name "[widowmaker/init.opy]: initWidowmaker()"
     
     eventPlayer.ult_charge_pvar[1] = 1540
+    eventPlayer._max_health_scalar = HeroHealthPercentage.WIDOWMAKER / 100
     eventPlayer.hero_initialized = true
 
 

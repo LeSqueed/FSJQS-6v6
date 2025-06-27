@@ -13,6 +13,7 @@ def initLucio():
     eventPlayer._base_healing_scalar = 0.8
     eventPlayer.setHealingDealt(100 * eventPlayer._base_healing_scalar)
     eventPlayer.startScalingSize(0.96)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.LUCIO / 100
     eventPlayer.hero_initialized = true
 
 

@@ -16,6 +16,7 @@ def initHanzo():
     eventPlayer.ult_charge_pvar[1] = 1680
     eventPlayer._base_damage_scalar = 0.6
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.HANZO / 100
     eventPlayer.hero_initialized = true
     
 rule "[hanzo/init.opy]: Correct Hanzo other forms of damage":
