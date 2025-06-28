@@ -9,8 +9,8 @@ rule "[mercy/ressurect.opy]: Mercy rez":
     
     eventPlayer.MercyUltTrack = 0
     eventPlayer.setUltCharge(0)
-    destroyHudText(eventPlayer.RezHUD)
-    eventPlayer.RezHUD = null
+    destroyHudText(eventPlayer._mercy_rez_hud)
+    eventPlayer._mercy_rez_hud = null
     eventPlayer.communicate(Comms.HELLO)
     #Set rez target
     eventPlayer.RezTarget = sorted(getPlayersInRadius(eventPlayer, 5.5, eventPlayer.getTeam(), LosCheck.SURFACES).exclude(getLivingPlayers(eventPlayer.getTeam())), lambda i: angleBetweenVectors(eventPlayer.getFacingDirection(), directionTowards(eventPlayer, i)))[0]
@@ -62,9 +62,9 @@ rule "[mercy/ressurect.opy]: Mercy rez HUD":
     @Event eachPlayer
     @Hero mercy
     @Condition eventPlayer.isUsingUltimate() == true
-    @Condition eventPlayer.RezHUD == null
+    @Condition eventPlayer._mercy_rez_hud == null
     @Condition eventPlayer.isUsingUltimate() == true
     @Condition eventPlayer.Mercy_Rez_charges == 1
     
     hudHeader(eventPlayer if eventPlayer.isAlive() and len(getPlayersInRadius(eventPlayer, 5.5, eventPlayer.getTeam(), LosCheck.SURFACES).exclude(getLivingPlayers(Team.ALL))) > 0 else null, "Resurrect {0}".format(heroIcon(sorted(getPlayersInRadius(eventPlayer, 5.5, eventPlayer.getTeam(), LosCheck.SURFACES).exclude(getLivingPlayers(eventPlayer.getTeam())), lambda i: angleBetweenVectors(eventPlayer.getFacingDirection(), directionTowards(eventPlayer, i)))[0].getHero())), HudPosition.TOP, 0, Color.YELLOW, HudReeval.VISIBILITY_AND_STRING)
-    eventPlayer.RezHUD = getLastCreatedText()
+    eventPlayer._mercy_rez_hud = getLastCreatedText()
