@@ -16,6 +16,7 @@ rule "[mercy/momentum.opy]: Healing beam drains momentum":
     @Event eachPlayer
     @Hero mercy
     @Condition eventPlayer.isFiringPrimaryFire() == true
+    @Condition eventPlayer.getCurrentWeapon() == 1
 
 
     while eventPlayer.isFiringPrimaryFire() == true and eventPlayer.Overloaded == false:
