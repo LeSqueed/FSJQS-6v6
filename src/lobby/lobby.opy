@@ -8,7 +8,7 @@ macro PERKS_ENABLED = false
 
 settings {
     "main": {
-        "modeName": "6v6 Adjustments + Realth {VERSION}"
+        "modeName": f"6v6 Adjustments + Realth {VERSION}"
     },
     "lobby": {
         "mapRotation": "afterGame",

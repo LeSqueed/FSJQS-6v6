@@ -1,3 +1,5 @@
+#!mainFile "../../main.opy"
+
 rule "[hanzo/mark.opy]: Mark enemy play effects":
     @Event eachPlayer
     @Condition eventPlayer.Hanzo_Marked_icon == true
@@ -30,7 +32,7 @@ rule "[hanzo/mark.opy]: Mark enemy on damage":
 
 rule "[hanzo/mark.opy]: On death, remove mark":
     @Event playerDied
-    @Hero hanzo
+    @Condition eventPlayer.Hanzo_Marked_icon == true
     
     eventPlayer.Hanzo_Marked_icon = null
     destroyInWorldText(eventPlayer._hanzo_marked_icon)
