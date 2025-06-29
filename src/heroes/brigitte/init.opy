@@ -27,3 +27,4 @@ rule "[brigitte/init.opy]: Correct Whipshot damage":
     @Condition eventAbility == Button.ABILITY_1
     
     damage(victim, attacker, (eventDamage / eventPlayer._base_damage_scalar - eventDamage) / eventPlayer._base_damage_scalar)
+

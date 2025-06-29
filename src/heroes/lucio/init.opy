@@ -1,6 +1,6 @@
 #!mainFile "../../main.opy"
 
-playervar Within_speed_radius
+playervar within_speed_radius
 
 #!include "ampitup.opy"
 

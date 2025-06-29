@@ -309,7 +309,7 @@ settings {
             },
             "zenyatta": {
                 "health%": HeroHealthPercentage.ZENYATTA,
-                "ultGen%": 104
+                "ultGen%": 119
             },
             "general": {
                 "passiveHealthRegen": false

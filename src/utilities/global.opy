@@ -1,3 +1,4 @@
+#!mainFile "../main.opy"
 
 rule "[utilities/global.opy] Initialize global variables":
     DEBUG_MODE = createWorkshopSettingBool("Dev Tools", "debug mode", true)
@@ -17,6 +18,6 @@ rule "[utilities/global.opy] Initialize player variables":
     eventPlayer._current_damage_received = 100
     eventPlayer._current_move_speed = 100
     eventPlayer.Echo_Copy = false
-    eventPlayer.Within_speed_radius = false
+    eventPlayer.within_speed_radius = false
 
 

@@ -16,10 +16,3 @@ def initKiriko():
     eventPlayer.setAbilityCooldown(Button.ABILITY_1, 5)
     eventPlayer._max_health_scalar = HeroHealthPercentage.KIRIKO / 100
     eventPlayer.hero_initialized = true
-    
-rule "[kiriko/init.opy]: Correct Kiriko melee damage":
-    @Event playerDealtDamage
-    @Hero kiriko
-    @Condition eventAbility == Button.MELEE
-    
-    damage(victim, attacker, (eventDamage / eventPlayer._base_damage_scalar - eventDamage) / eventPlayer._base_damage_scalar)

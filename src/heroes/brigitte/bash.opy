@@ -1,3 +1,5 @@
+#!mainFile "../../main.opy"
+
 rule "[brigitte/bash.opy]: Correct Shield Bash damage":
     @Event playerDealtDamage
     @Hero brigitte
@@ -23,3 +25,12 @@ rule "[brigitte/bash.opy]: Force cooldown for Bash in Rally":
     @Condition eventPlayer.isUsingUltimate() == true
     
     eventPlayer.setAbilityCooldown(Button.PRIMARY_FIRE, eventPlayer.bash_cooldown)
+    eventPlayer.removeAllHealthPools()
+    eventPlayer.setMaxHealth(125)
+    wait()
+    heal(eventPlayer, null, 70)
+    waitUntil(not eventPlayer.isUsingUltimate(), Math.INFINITY)
+    eventPlayer.setMaxHealth(100)
+    eventPlayer._max_health_scalar = HeroHealthPercentage.BRIGITTE / 100
+    applyCustomHp()
+
