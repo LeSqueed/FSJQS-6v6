@@ -1,10 +1,13 @@
 #!mainFile "../../main.opy"
 
 playervar bash_cooldown
+playervar Brig_Rally_Overhealth_amount
+playervar within_rally_radius
 
 #!include "bash.opy"
 #!include "inspire.opy"
 #!include "repair_pack.opy"
+#!include "rally.opy"
 
 def initBrigitte():
     @Name "[brigitte/init.opy]: initBrigitte()"

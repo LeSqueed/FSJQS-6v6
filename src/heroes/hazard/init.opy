@@ -8,6 +8,8 @@ playervar hazard_bubble_confirmed
 playervar hazard_bubble_effect
 playervar hazard_bubble_effect2
 playervar hazard_bubble_icon
+playervar hazard_overhealth_converted
+playervar hazard_overhealth_id
 
 #!include "spike_guard.opy"
 #!include "violent_leap.opy"

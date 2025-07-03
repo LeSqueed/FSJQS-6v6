@@ -1,3 +1,5 @@
+#!mainFile "../../main.opy"
+
 rule "[hazard/thorn_wall.opy]: Haz cancel wall":
     @Event eachPlayer
     @Hero hazard
@@ -58,7 +60,7 @@ rule "[hazard/thorn_wall.opy]: Buff Teammate and play effects":
     @Condition eventPlayer.hazard_bubble_confirmed == true
     
     eventPlayer.hazard_bubble_confirmed = false
-    createEffect([player for player in getAllPlayers() if player != eventPlayer], Effect.BAD_AURA, Color.PURPLE, eventPlayer, 0.5, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
+    createEffect(getAllPlayers(), Effect.BAD_AURA, Color.PURPLE, eventPlayer, 0.5, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
     eventPlayer.hazard_bubble_effect = getLastCreatedEntity()
     createEffect([player for player in getAllPlayers() if player != eventPlayer], Effect.SPHERE, Color.PURPLE, eventPlayer, 1.2, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
     eventPlayer.hazard_bubble_effect2 = getLastCreatedEntity()
@@ -84,7 +86,8 @@ rule "[hazard/thorn_wall.opy]: Return Damage to attacker and heal hazard":
     
     damage(attacker, getPlayersOnHero(Hero.HAZARD, eventPlayer.getTeam()), eventDamage / 2)
     playEffect(eventPlayer, DynamicEffect.DEBUFF_IMPACT_SOUND, Color.WHITE, eventPlayer, 80)
-    heal(getPlayersOnHero(Hero.HAZARD, eventPlayer.getTeam()), null, eventDamage / 4)
+    playEffect(victim, DynamicEffect.DEBUFF_IMPACT_SOUND, Color.WHITE, victim, 70)
+    getPlayersOnHero(Hero.HAZARD, eventPlayer.getTeam()).hazard_overhealth_converted = getPlayersOnHero(Hero.HAZARD, eventPlayer.getTeam()).hazard_overhealth_converted + eventDamage / 4
 
 
 rule "[hazard/thorn_wall.opy]: Make immune to CC after 0.1s":
@@ -99,3 +102,18 @@ rule "[hazard/thorn_wall.opy]: Make immune to CC after 0.1s":
         eventPlayer.clearStatusEffect(Status.FROZEN)
         eventPlayer.clearStatusEffect(Status.ROOTED)
         eventPlayer.clearStatusEffect(Status.STUNNED)
+
+
+rule "[hazard/thorn_wall.opy]: Wait and give Hazard Overhealth":
+    @Event eachPlayer
+    @Hero hazard
+    @Condition eventPlayer.getAbilityCooldown(Button.ABILITY_2) != 0
+
+    wait(2.25)
+    eventPlayer.hazard_overhealth_converted = min(eventPlayer.hazard_overhealth_converted, 150)
+    eventPlayer.addHealthPool(Health.NORMAL, ceil(eventPlayer.hazard_overhealth_converted), false, false)
+    eventPlayer.hazard_overhealth_id = getLastCreatedHealthPool()
+    eventPlayer.hazard_overhealth_converted = null
+    wait(5)
+    removeHealthPool(eventPlayer.hazard_overhealth_id)
+    eventPlayer.hazard_overhealth_id = null

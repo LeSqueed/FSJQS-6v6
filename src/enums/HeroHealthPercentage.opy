@@ -34,7 +34,7 @@ enum HeroHealthPercentage:
     SIGMA = 85.7
     SOJOURN = 80
     SOLDIER = 80
-    SOMBRA = 44.4
+    SOMBRA = 77.7
     SYMMETRA = 75
     TORBJORN = 77.7
     TRACER = 85.7

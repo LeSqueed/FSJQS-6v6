@@ -5,7 +5,6 @@ playervar Widowmaker_beam_effect
 playervar Widow_maxscope_duration
 
 #!include "widows_kiss.opy"
-#!include "grapple.opy"
 
 def initWidowmaker():
     @Name "[widowmaker/init.opy]: initWidowmaker()"

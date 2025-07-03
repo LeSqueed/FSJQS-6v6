@@ -1,4 +1,3 @@
-
 #!mainFile "../../main.opy"
 
 playervar Sombra_invisible
@@ -23,7 +22,7 @@ def initSombra():
     
     eventPlayer.custom_hp_pvar[0] = 0
     eventPlayer.custom_hp_pvar[1] = 0
-    eventPlayer.custom_hp_pvar[2] = 100
+    eventPlayer.custom_hp_pvar[2] = 25
     applyCustomHp()
     eventPlayer.ult_charge_pvar[1] = 2800
     eventPlayer._base_damage_scalar = 0.875

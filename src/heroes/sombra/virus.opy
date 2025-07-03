@@ -1,3 +1,5 @@
+#!mainFile "../../main.opy"
+
 rule "[sombra/virus.opy]: Sombra Virus Cancel":
     @Event eachPlayer
     @Hero sombra
@@ -51,7 +53,7 @@ rule "[sombra/virus.opy]: Buff Teammate and play effects":
     @Condition eventPlayer.Sombra_virus_confirmed == true
     
     eventPlayer.Sombra_virus_confirmed = false
-    bigMessage(eventPlayer, "HACKED")
+    bigMessage(eventPlayer, "{0} HACKED".format(heroIcon(Hero.SOMBRA)))
     getPlayersOnHero(Hero.SOMBRA, eventPlayer.getTeam()).Sombra_virus_target = null
     createInWorldText(getAllPlayers(), abilityIconString(Hero.SOMBRA, Button.ULTIMATE), eventPlayer + vect(0, 2.5, 0), 2, Clip.SURFACES, WorldTextReeval.VISIBILITY_POSITION_AND_STRING, Color.PURPLE)
     eventPlayer._sombra_ally_hack_icon = getLastCreatedText()

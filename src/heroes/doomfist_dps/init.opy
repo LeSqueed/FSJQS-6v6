@@ -6,6 +6,7 @@ playervar uppercut_victims
 playervar is_using_uppercut
 playervar doom_uppercut_shields
 playervar number_of_victims_uppercut
+playervar doom_uppercut_shield_decay
 
 #!include "../doomfist/meteor_strike.opy"
 #!include "../doomfist/punch.opy"

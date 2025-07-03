@@ -105,6 +105,7 @@ settings {
             },
             "doomfist": {
                 "health%": HeroHealthPercentage.DOOMFIST,
+                "secondaryFireCooldown%": 125,
                 "ability2Cooldown%": 100,
                 "ultGen%": 113
             },
@@ -288,6 +289,7 @@ settings {
             },
             "widowmaker": {
                 "health%": HeroHealthPercentage.WIDOWMAKER,
+                "ammoClipSize%": 114,
                 "ultGen%": 101,
                 "ability2Cooldown%": 80
             },
@@ -322,6 +324,7 @@ settings {
         "Damage Role Cap": 2,
         "debug mode": false,
         "Support Role Cap": 2,
-        "Tank Role Cap": 2
+        "Tank Role Cap": 2,
+        "Percent of Stealth Timer Remaining Refunded Towards Translocator Cooldown": 33,
     }
 }

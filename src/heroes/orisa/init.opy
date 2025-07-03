@@ -1,8 +1,6 @@
 #!mainFile "../../main.opy"
 
 playervar Orisa_Ammo
-playervar Orisa_heat
-playervar Orisa_Overheating
 playervar Orisa_ring_effect
 playervar terra_overhealth_id
 
@@ -24,10 +22,8 @@ def initOrisa():
     eventPlayer._base_damage_scalar = 0.858
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer.setKnockbackDealt(82)
-    eventPlayer.Orisa_Ammo = 100
-    createProgressBarInWorldText(eventPlayer, eventPlayer.Orisa_heat, "Heat", updateEveryFrame(eventPlayer.getEyePosition() + (100 * (-0.7 * (directionFromAngles(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90)) + 3 * eventPlayer.getFacingDirection()))), 0.7, Clip.NONE, Color.ORANGE, Color.ORANGE)
-    eventPlayer._orisa_ammo_bar = getLastCreatedText()
-    createInWorldText(eventPlayer, "{0}".format(ceil(eventPlayer.Orisa_Ammo)), updateEveryFrame(eventPlayer.getEyePosition() + (100 * (3.35 * worldVector(Vector.RIGHT, eventPlayer, Transform.ROTATION) + (-1.5 * (directionFromAngles(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 2)
+    eventPlayer.Orisa_Ammo = 80
+    createInWorldText(eventPlayer, "{0} | 80".format(ceil(eventPlayer.Orisa_Ammo)), updateEveryFrame(eventPlayer.getEyePosition() + (100 * (3.35 * worldVector(Vector.RIGHT, eventPlayer, Transform.ROTATION) + (-1.5 * (directionFromAngles(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 2)
     eventPlayer._orisa_ammo_text = getLastCreatedText()
     #if not eventPlayer.isDuplicatingAHero():
     #setBaseDamage(eventPlayer, ADJ_ORISA_JAVELIN_DIRECT_DAMAGE / OW2_ORISA_JAVELIN_DIRECT_DAMAGE)

@@ -19,5 +19,7 @@ rule "[utilities/global.opy] Initialize player variables":
     eventPlayer._current_move_speed = 100
     eventPlayer.Echo_Copy = false
     eventPlayer.within_speed_radius = false
+    eventPlayer.within_rally_radius = false
+    eventPlayer.Brig_Rally_Overhealth_amount = 0
 
 

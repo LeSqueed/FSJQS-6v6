@@ -1,3 +1,5 @@
+#!mainFile "../../main.opy"
+
 rule "[roadhog/pigpen.opy]: Cancel Pigpen Animation":
     @Event eachPlayer
     @Hero roadhog
@@ -55,7 +57,7 @@ rule "[roadhog/pigpen.opy]: Buff Teammate and play effects":
     eventPlayer.Roadhog_vape_effect = getLastCreatedEntity()
     getPlayersOnHero(Hero.ROADHOG, eventPlayer.getTeam()).Roadhog_vape_target = null
     eventPlayer.Roadhog_vape_hud_icon = true
-    bigMessage(eventPlayer, "VAPED")
+    bigMessage(eventPlayer, "{0} VAPED".format(heroIcon(Hero.ROADHOG)))
     playEffect(getAllPlayers(), DynamicEffect.EXPLOSION_SOUND, Color.WHITE, eventPlayer, 80)
     eventPlayer.startHealingOverTime(getPlayersOnHero(Hero.ROADHOG, eventPlayer.getTeam()), 3, 55)
     eventPlayer._current_damage_received -= 40

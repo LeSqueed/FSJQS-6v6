@@ -1,3 +1,5 @@
+#!mainFile "../../main.opy"
+
 rule "[sombra/heal.opy]: Healing Ring sombra":
     @Event eachPlayer
     @Hero sombra
@@ -9,13 +11,13 @@ rule "[sombra/heal.opy]: Healing Ring sombra":
     destroyEffect(eventPlayer.Sombra_healing_ring)
 
 
-rule "[sombra/heal.opy]: If visible heal 15m 32 - players *5 self for 12 - amount of players x 2":
+rule "[sombra/heal.opy]: Self Heal sombra":
     @Event eachPlayer
     @Hero sombra
     @Condition eventPlayer.Sombra_invisible == false
     @Condition eventPlayer.isAlive() == true
     
-    ([player for player in getLivingPlayers(eventPlayer.getTeam()) if distance(eventPlayer, player) <= 15 and isInLoS(eventPlayer, player) == true and player != eventPlayer]).startHealingOverTime(eventPlayer, 1, 32 - ((len([player for player in getLivingPlayers(eventPlayer.getTeam()) if distance(eventPlayer, player) <= 15 and isInLoS(eventPlayer, player, BarrierLos.BLOCKED_BY_ENEMY_BARRIERS) == true and player != eventPlayer])) * 5))
+    eventPlayer.startHealingOverTime(null, 1, 12 - ((len([player for player in getLivingPlayers(eventPlayer.getTeam()) if distance(eventPlayer, player) <= 15 and isInLoS(eventPlayer, player, BarrierLos.BLOCKED_BY_ENEMY_BARRIERS) and player != eventPlayer])) * 5))
     wait(1)
     if ruleCondition:
         loop()
