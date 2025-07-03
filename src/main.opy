@@ -5,6 +5,7 @@ rule "Copyright (c) 2024 Overwatch 1 Emulator & 6v6 Adjustments. See github.com/
 #!include "lobby/lobby.opy"
 #!include "constants/global.opy"
 #!include "constants/player.opy"
+#!include "utilities/health_pools.opy"
 
 #!optimizeStrict
 

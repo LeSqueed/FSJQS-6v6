@@ -1,10 +1,12 @@
 #!mainFile "../../main.opy"
 
 playervar bash_cooldown
+playervar within_rally_radius
 
 #!include "bash.opy"
 #!include "inspire.opy"
 #!include "repair_pack.opy"
+#!include "rally.opy"
 
 def initBrigitte():
     @Name "[brigitte/init.opy]: initBrigitte()"
@@ -19,6 +21,7 @@ def initBrigitte():
     eventPlayer._base_healing_scalar = 0.8
     eventPlayer.setHealingDealt(100 * eventPlayer._base_healing_scalar)
     eventPlayer._max_health_scalar = HeroHealthPercentage.BRIGITTE / 100
+    eventPlayer._total_rally_health = 0
     eventPlayer.hero_initialized = true
 
 rule "[brigitte/init.opy]: Correct Whipshot damage":
