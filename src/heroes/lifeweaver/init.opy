@@ -12,7 +12,7 @@ playervar Lifeweaver_petal_charges
 
 def initLifeweaver():
     @Name "[lifeweaver/init.opy]: Initialize Lifeweaver"
-    
+
     eventPlayer.custom_hp_pvar[0] = 37.5
     eventPlayer.custom_hp_pvar[1] = 0
     eventPlayer.custom_hp_pvar[2] = 25
@@ -40,7 +40,7 @@ rule "[lifeweaver/init.opy]: Reduce Lifeweaver melee damage":
     @Event playerDealtDamage
     @Hero lifeweaver
     @Condition eventAbility == Button.MELEE
-    
+
     heal(victim, null, eventDamage - eventDamage / eventPlayer._base_damage_scalar)
 
 
@@ -48,14 +48,15 @@ rule "[lifeweaver/init.opy]: Reduce Tree of Life duration":
     @Event eachPlayer
     @Hero lifeweaver
     @Condition eventPlayer.isUsingUltimate() == true
-    
+
     wait(11)
     eventPlayer.forceButtonPress(Button.ULTIMATE)
+
 
 rule "[lifeweaver/init.opy]: Clean up lifeweaver":
     @Event eachPlayer
     @Condition eventPlayer.hero_setup != Hero.LIFEWEAVER
-    
+
     destroyInWorldText(eventPlayer._lifeweaver_petal_charges_text)
     destroyInWorldText(eventPlayer._lifeweaver_dash_charges_text)
     destroyInWorldText(eventPlayer._lifeweaver_petal_charges_icon)

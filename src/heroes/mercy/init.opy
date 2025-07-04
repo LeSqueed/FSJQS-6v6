@@ -19,7 +19,7 @@ playervar Mercy_Rez_charges
 
 def initMercy():
     @Name "[mercy/init.opy]: initMercy()"
-    
+
     eventPlayer.ult_charge_pvar[1] = 2000
     eventPlayer._base_damage_scalar = 1.1
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
@@ -31,11 +31,12 @@ def initMercy():
     eventPlayer._max_health_scalar = HeroHealthPercentage.MERCY / 100
     eventPlayer.hero_initialized = true
 
+
 rule "[mercy/init.opy]: Reduce Valkyrie healing and force self-healing":
     @Event eachPlayer
     @Hero mercy
     @Condition eventPlayer.isUsingUltimate() == true
-    
+
     eventPlayer.stopAllHealingOverTime()
     eventPlayer.startHealingOverTime(null, 15, 20)
     heal(eventPlayer, null, 50)
@@ -50,7 +51,7 @@ rule "[mercy/init.opy]: Mercy swap hero":
     @Event eachPlayer
     @Condition eventPlayer.getHero() != Hero.MERCY
     @Condition eventPlayer.hasSpawned() == true
-    
+
     eventPlayer.allowButton(Button.ULTIMATE)
     destroyHudText(eventPlayer.RezHUD)
     destroyInWorldText(eventPlayer.ImbueTargetIcon)

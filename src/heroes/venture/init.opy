@@ -11,7 +11,7 @@ playervar is_firing_excavator
 
 def initVenture():
     @Name "[venture/init.opy]: initVenture()"
-    
+
     eventPlayer.custom_hp_pvar[0] = 100
     eventPlayer.custom_hp_pvar[1] = 50
     eventPlayer.custom_hp_pvar[2] = 0
@@ -31,5 +31,5 @@ rule "[venture/init.opy]: Reduce Headshot damage taken Venture":
     @Event playerTookDamage
     @Hero venture
     @Condition eventWasCriticalHit == true
-    
+
     heal(eventPlayer, null, eventDamage * 0.3)

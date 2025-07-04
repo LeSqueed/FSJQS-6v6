@@ -5,7 +5,7 @@
 
 def initJunkrat():
     @Name "[junkrat/init.opy]: initJunkrat()"
-    
+
     resetStats()
     resetStatuses()
     enableAllAbilities()

@@ -1,9 +1,11 @@
+#!mainFile "../../main.opy"
+
 rule "[lucio/ampitup.opy]: begin ally tracking":
     @Event eachPlayer
     @Hero lucio
     @Condition eventPlayer.isUsingAbility1() == true
     @Condition eventPlayer.isUsingAbility2() == true
-    
+
     getPlayersInRadius(eventPlayer, 12, eventPlayer.getTeam(), LosCheck.SURFACES).exclude(eventPlayer).within_speed_radius = true
     wait(0.125)
     if ruleCondition:
@@ -13,7 +15,7 @@ rule "[lucio/ampitup.opy]: begin ally tracking":
 rule "[lucio/ampitup.opy]: decrease speed for allies":
     @Event eachPlayer
     @Condition eventPlayer.within_speed_radius == true
-    
+
     eventPlayer._current_move_speed -= 6.25
     eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     wait(0.125)
@@ -21,12 +23,13 @@ rule "[lucio/ampitup.opy]: decrease speed for allies":
     eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     eventPlayer.within_speed_radius = false
 
+
 rule "[lucio/ampitup.opy]: decrease speed for Lucio":
     @Event eachPlayer
     @Hero lucio
     @Condition eventPlayer.isUsingAbility1() == true
     @Condition eventPlayer.isUsingAbility2() == true
-    
+
     eventPlayer._current_move_speed -= 6.25
     eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     wait(3)

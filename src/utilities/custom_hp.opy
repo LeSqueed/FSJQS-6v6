@@ -1,13 +1,14 @@
+#!mainFile "../main.opy"
 
 def clearCustomHp():
     @Name "[utilities/custom_hp.opy]: clearCustomHp()"
-    
+
     eventPlayer.removeAllHealthPools()
 
 
 def applyCustomHp():
     @Name "[utilities/custom_hp.opy]: applyCustomHp()"
-    
+
     #eventPlayer.setHealingReceived(0)
     #eventPlayer.setHealth(1)
     #eventPlayer.addHealthPool(Health.NORMAL, 1, true)

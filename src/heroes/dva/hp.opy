@@ -1,9 +1,11 @@
+#!mainFile "../../main.opy"
+
 rule "[dva/hp.opy]: Correct DVa mech health":
     @Event eachPlayer
     @Condition eventPlayer.hero_setup == Hero.DVA
     @Condition eventPlayer.isInAlternateForm() == false
     @Condition eventPlayer.hero_initialized != false
-    
+
     clearCustomHp()
     eventPlayer.custom_hp_pvar[0] = 169
     eventPlayer.custom_hp_pvar[1] = 0
@@ -17,7 +19,7 @@ rule "[dva/hp.opy]: Correct DVa pilot health":
     @Condition eventPlayer.isInAlternateForm() == true
     @Condition eventPlayer.getMaxHealthOfType(Health.NORMAL) != 150
     @Condition eventPlayer.hero_initialized != false
-    
+
     clearCustomHp()
     eventPlayer.custom_hp_pvar[0] = 28
     eventPlayer.custom_hp_pvar[1] = 0

@@ -1,9 +1,11 @@
+#!mainFile "../../main.opy"
+
 rule "[doomfist/punch.opy]: Initialize rocket punch":
     @Event eachPlayer
     @Hero doomfist
     @Condition eventPlayer.isFiringSecondaryFire() == true
     @Condition eventPlayer.isHoldingButton(Button.SECONDARY_FIRE) == true
-    
+
     eventPlayer._base_damage_scalar = 0.5
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer.punched_victims = []
@@ -20,7 +22,7 @@ rule "[doomfist/punch.opy]: Find wall impacted victims":
     @Condition eventAbility == Button.SECONDARY_FIRE
     @Condition victim in attacker.punched_victims == true
     @Condition victim in attacker.wall_impacted_victims == false
-    
+
     attacker.wall_impacted_victims.append(victim)
     victim.clearStatusEffect(Status.STUNNED)
     #OW1 single punch victim
@@ -35,7 +37,7 @@ rule "[doomfist/punch.opy]: Find punched victims":
     @Hero doomfist
     @Condition eventAbility == Button.SECONDARY_FIRE
     @Condition victim in attacker.punched_victims == false
-    
+
     attacker.punched_victims.append(victim)
     #OW1 single punch victim
     if len(attacker.punched_victims) == 1:

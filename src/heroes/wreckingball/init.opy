@@ -8,7 +8,7 @@ playervar adaptive_overhealth_id
 
 def initWreckingBall():
     @Name "[wreckingball/init.opy]: initWreckingBall()"
-    
+
     eventPlayer.custom_hp_pvar[0] = 175
     eventPlayer.custom_hp_pvar[1] = 12.5
     eventPlayer.custom_hp_pvar[2] = 0
@@ -22,9 +22,10 @@ def initWreckingBall():
     eventPlayer._max_health_scalar = HeroHealthPercentage.WRECKINGBALL / 100
     eventPlayer.hero_initialized = true
 
+
 rule "[wreckingball/init.opy]: Correct fireball, melee damage":
     @Event playerDealtDamage
     @Hero wreckingBall
     @Condition eventAbility in [Button.ABILITY_1, Button.MELEE] == true
-    
+
     damage(victim, attacker, (eventDamage / eventPlayer._base_damage_scalar - eventDamage) / eventPlayer._base_damage_scalar)

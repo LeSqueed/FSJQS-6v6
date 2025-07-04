@@ -1,8 +1,10 @@
+#!mainFile "../../main.opy"
+
 rule "[orisa/fortify.opy]: -10% damage reduction and shorter cooldown = 10s":
     @Event eachPlayer
     @Hero orisa
     @Condition eventPlayer.isUsingAbility1() == true
-    
+
     #I don't know where this value comes from or how to calculate it
     damage(eventPlayer, null, 125.7)
     eventPlayer.Orisa_fortified = true
@@ -27,7 +29,7 @@ rule "[orisa/fortify.opy]: Orisa Fortify others by 20%":
     @Event eachPlayer
     @Condition getPlayersOnHero(Hero.ORISA, eventPlayer.getTeam()).isUsingAbility1() == true
     @Condition distance(eventPlayer, getPlayersOnHero(Hero.ORISA, eventPlayer.getTeam())) < 8
-    
+
     eventPlayer._current_damage_received -= 20
     eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
     waitUntil(distance(eventPlayer, getPlayersOnHero(Hero.ORISA, eventPlayer.getTeam())) > 8 or not getPlayersOnHero(Hero.ORISA, eventPlayer.getTeam()).isUsingAbility1(), Math.INFINITY)
@@ -39,7 +41,7 @@ rule "[orisa/fortify.opy]: Orisa cancel fortify after 3s":
     @Event eachPlayer
     @Hero orisa
     @Condition eventPlayer.isUsingAbility1() == true
-    
+
     wait(3)
     eventPlayer.forceButtonPress(Button.ABILITY_1)
 
@@ -48,7 +50,7 @@ rule "[orisa/fortify.opy]: Orisa cancel spin after 1s":
     @Event eachPlayer
     @Hero orisa
     @Condition eventPlayer.isUsingAbility2() == true
-    
+
     eventPlayer.setDamageDealt(100)
     waitUntil(not eventPlayer.isUsingAbility2(), 1)
     eventPlayer.forceButtonPress(Button.ABILITY_2)

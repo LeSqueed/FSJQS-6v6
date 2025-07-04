@@ -2,7 +2,7 @@ rule "[roadhog/wholehog.opy]: Disable abilities during wholehog":
     @Event eachPlayer
     @Hero roadhog
     @Condition eventPlayer.isUsingUltimate() == true
-    
+
     eventPlayer.setMeleeEnabled(false)
     eventPlayer.setSecondaryFireEnabled(false)
     eventPlayer.setAbility1Enabled(false)
@@ -15,7 +15,7 @@ rule "[roadhog/wholehog.opy]: Enable abilities after wholehog":
     @Event eachPlayer
     @Hero roadhog
     @Condition eventPlayer.isUsingUltimate() == false
-    
+
     eventPlayer.setMeleeEnabled(true)
     eventPlayer.setSecondaryFireEnabled(true)
     eventPlayer.setAbility1Enabled(true)
@@ -30,5 +30,5 @@ rule "[roadhog/wholehog.opy]: Force autofire while in wholehog":
     @Hero roadhog
     @Condition eventPlayer.isUsingUltimate() == true
     @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) == false
-    
+
     eventPlayer.startForcingButton(Button.PRIMARY_FIRE)

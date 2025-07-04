@@ -4,7 +4,7 @@
 
 def initWinston():
     @Name "[winston/init.opy]: initWinston()"
-    
+
     eventPlayer.custom_hp_pvar[0] = 46.175
     eventPlayer.custom_hp_pvar[1] = 15.4
     eventPlayer.custom_hp_pvar[2] = 0
@@ -23,5 +23,5 @@ rule "[winston/init.opy]: Correct Jump Pack, Melee, Primal Rage damage":
     @Hero winston
     @Condition eventPlayer.isUsingUltimate() == false
     @Condition eventAbility in [Button.ABILITY_1, Button.MELEE, Button.SECONDARY_FIRE] == true
-    
+
     damage(victim, attacker, (eventDamage / eventPlayer._base_damage_scalar - eventDamage) / eventPlayer._base_damage_scalar)

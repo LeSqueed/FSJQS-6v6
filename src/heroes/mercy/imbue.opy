@@ -1,11 +1,14 @@
+#!mainFile "../../main.opy"
+
 rule "[mercy/imbue.opy]: Mercy imbue target icon":
     @Event eachPlayer
     @Hero mercy
     @Condition eventPlayer.getAbilityCooldown(Button.ABILITY_2) == 0
     @Condition eventPlayer.ImbueTargetIcon == null
-    
+
     createInWorldText(eventPlayer if ((sorted([player for player in getPlayersInRadius(eventPlayer, 20.5, eventPlayer.getTeam(), LosCheck.SURFACES_AND_ENEMY_BARRIERS) if eventPlayer.isInViewAngle(player.getPosition(), 2.5 + 120 / distance(eventPlayer, player)) and player != eventPlayer and player.isAlive()], lambda i: angleBetweenVectors(eventPlayer.getFacingDirection(), directionTowards(eventPlayer.getPosition(), i.getPosition()))))[0]) != null and not eventPlayer.isInAlternateForm() else null, "+", (((sorted([player for player in getPlayersInRadius(eventPlayer, 20.5, eventPlayer.getTeam(), LosCheck.SURFACES_AND_ENEMY_BARRIERS) if eventPlayer.isInViewAngle(player.getPosition(), 2.5 + 120 / distance(eventPlayer, player)) and player != eventPlayer and player.isAlive()], lambda i: angleBetweenVectors(eventPlayer.getFacingDirection(), directionTowards(eventPlayer.getPosition(), i.getPosition()))))[0]).getEyePosition()) + vect(0, 1, 0), 2, Clip.NONE, WorldTextReeval.VISIBILITY_POSITION_STRING_AND_COLOR, Color.BLUE if eventPlayer.isFiringSecondaryFire() else Color.YELLOW)
     eventPlayer.ImbueTargetIcon = getLastCreatedText()
+
 
 rule "[mercy/imbue.opy]: Mercy imbue":
     @Event eachPlayer
@@ -13,7 +16,7 @@ rule "[mercy/imbue.opy]: Mercy imbue":
     @Condition eventPlayer.isHoldingButton(Button.ABILITY_2) == true
     @Condition eventPlayer.getAbilityCooldown(Button.ABILITY_2) == 0
     @Condition ((sorted([i for i in getPlayersInRadius(eventPlayer, 20.5, eventPlayer.getTeam(), LosCheck.SURFACES_AND_ENEMY_BARRIERS).exclude(eventPlayer).exclude(getDeadPlayers(eventPlayer.getTeam())) if eventPlayer.isInViewAngle(i.getPosition(), 2.5 + 120 / distance(eventPlayer, i))], lambda i: angleBetweenVectors(eventPlayer.getFacingDirection(), directionTowards(eventPlayer.getPosition(), i.getPosition()))))[0] != null or eventPlayer.isInAlternateForm()) == true
-    
+
     #Vanilla rez cd hero setting needs to be changed if cooldown is changed so icon matches
     eventPlayer.setAbilityCooldown(Button.ABILITY_2, 15)
     eventPlayer.setAbility2Enabled(true)
@@ -44,12 +47,13 @@ rule "[mercy/imbue.opy]: Mercy imbue":
         return
     eventPlayer.setAbility2Enabled(false)
 
+
 rule "[mercy/imbue.opy]: Mercy imbue AOE":
     @Event eachPlayer
     @Hero mercy
     @Condition eventPlayer.ImbueDuration > 0
     @Condition eventPlayer.ImbueTarget != null
-    
+
     #Aura visuals
     createEffect(getPlayers(Team.ALL if eventPlayer.ImbueSecondary else eventPlayer.getTeam()), Effect.RING, (Color.TEAM_1 if eventPlayer.getTeam() == Team.1 else Color.TEAM_2) if eventPlayer.ImbueSecondary else Color.YELLOW, eventPlayer.ImbueTarget, 8 if eventPlayer.ImbueSecondary else 10, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
     eventPlayer.ImbueAOERing = getLastCreatedEntity()

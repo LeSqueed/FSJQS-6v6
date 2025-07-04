@@ -13,7 +13,7 @@ rule "[utilities/global.opy] Initialize global variables":
 
 rule "[utilities/global.opy] Initialize player variables":
     @Event eachPlayer
-    
+
     eventPlayer.within_shout_radius = false
     eventPlayer._current_damage_received = 100
     eventPlayer._current_move_speed = 100

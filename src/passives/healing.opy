@@ -1,7 +1,9 @@
+#!mainFile "../../main.opy"
+
 rule "[passives/healing.opy]: Track Health != 100% stop healing then start healing after 5s":
     @Event playerTookDamage
     @Condition enable_regeneration == true
-    
+
     stopHealingOverTime(eventPlayer.regen_passive_id)
     if eventPlayer.getHero() == Hero.BASTION:
         stopHealingOverTime(eventPlayer.Bastion_healing_id)
@@ -14,7 +16,7 @@ rule "[passives/healing.opy]: Healing passive amount and ID":
     @Event eachPlayer
     @Condition eventPlayer.self_heal_pvar != false
     @Condition enable_regeneration == true
-    
+
     eventPlayer.startHealingOverTime(null, Math.INFINITY, ADJ_REGEN_HPS)
     eventPlayer.regen_passive_id = getLastHealingOverTimeId()
     if eventPlayer.getHero() == Hero.BASTION:
@@ -26,7 +28,7 @@ rule "[passives/healing.opy]: If health = max health stop healing":
     @Event eachPlayer
     @Condition eventPlayer.getNormalizedHealth() >= 1
     @Condition enable_regeneration == true
-    
+
     stopHealingOverTime(eventPlayer.regen_passive_id)
     if eventPlayer.getHero() == Hero.BASTION:
         stopHealingOverTime(eventPlayer.Bastion_healing_id)

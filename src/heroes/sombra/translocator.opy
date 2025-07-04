@@ -1,8 +1,10 @@
+#!mainFile "../../main.opy"
+
 rule "[sombra/translocator.opy]: Sombra Invis Increase move Speed":
     @Event eachPlayer
     @Hero sombra
     @Condition eventPlayer.Sombra_invisible == true
-    
+
     eventPlayer._current_move_speed = eventPlayer._current_move_speed + 10
     eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
     waitUntil(eventPlayer.Sombra_invisible == false, Math.INFINITY)
@@ -16,7 +18,7 @@ rule "[sombra/translocator.opy] Sombra stealth damage cancel count damage":
     @Condition eventPlayer.stealth_timer > 0
     @Condition eventPlayer.stealth_timer <= 5
     @Disabled
-    
+
     #eventPlayer.Sombra_invis_damage += eventDamage
     #if eventPlayer.Sombra_invis_damage >= 40:
     eventPlayer.setStatusEffect(null, Status.ROOTED, 0.001)
@@ -34,7 +36,7 @@ rule "[sombra/translocator.opy]: When Translocator is used, begin tracking how l
     @Condition eventPlayer.getHero() == Hero.SOMBRA
     @Condition eventPlayer.isUsingAbility2() == true
     @Disabled
-    
+
     #eventPlayer.Sombra_invis_damage = 0
     eventPlayer.stealth_timer = 5.5
     waitUntil(not eventPlayer.isUsingAbility2(), Math.INFINITY)
@@ -66,7 +68,7 @@ rule "[sombra/translocator.opy]: When Translocator is used, begin tracking how l
     @Event eachPlayer
     @Condition eventPlayer.getHero() == Hero.SOMBRA
     @Condition eventPlayer.isUsingAbility2() == true
-    
+
     #eventPlayer.Sombra_invis_damage = 0
     eventPlayer.stealth_timer = 4.82
     waitUntil(not eventPlayer.isUsingAbility2(), Math.INFINITY)
@@ -93,7 +95,7 @@ rule "[sombra/translocator.opy] Sombra stealth self cancel":
     @Hero sombra
     @Condition (eventPlayer.stealth_timer <= 5 and eventPlayer.stealth_timer > 0 and eventPlayer.isHoldingButton(Button.ABILITY_2)) == true
     @Condition eventPlayer.Sombra_invisible == true
-    
+
     eventPlayer.setStatusEffect(null, Status.ROOTED, 0.001)
     eventPlayer.Sombra_invisible = false
     #printLog("Current Translocator Cooldown: {0} | Target Translocator Cooldown: {1}".format(eventPlayer.getAbilityCooldown(Button.ABILITY_2), eventPlayer._stealth_max_cooldown - 5 + (eventPlayer.stealth_timer * (1 - STEALTH_REFUND_FRACTION))))
@@ -105,5 +107,5 @@ rule "[sombra/translocator.opy]: Set max stealth cooldown observed":
     @Event eachPlayer
     @Condition eventPlayer.getHero() == Hero.SOMBRA
     @Condition eventPlayer.getAbilityCooldown(Button.ABILITY_2) > eventPlayer.stealth_pvar[0]
-    
+
     eventPlayer.stealth_pvar[0] = round(eventPlayer.getAbilityCooldown(Button.ABILITY_2))

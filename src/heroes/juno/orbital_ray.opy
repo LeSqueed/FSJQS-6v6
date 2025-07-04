@@ -1,3 +1,5 @@
+#!mainFile "../../main.opy"
+
 rule "[juno/orbital_ray.opy]: Adjust Orbital Ray Healing":
     @Event eachPlayer
     @Hero juno
@@ -7,7 +9,7 @@ rule "[juno/orbital_ray.opy]: Adjust Orbital Ray Healing":
     @Condition eventPlayer.hasStatus(Status.FROZEN) == false
     @Condition eventPlayer.hasStatus(Status.KNOCKED_DOWN) == false
     @Condition eventPlayer.hasStatus(Status.STUNNED) == false
-    
+
     wait(0.469)
     eventPlayer.orbital_ray_x = (eventPlayer.getPosition() + 1.625 * directionFromAngles(eventPlayer.getHorizontalFacingAngle(), 0)).x
     eventPlayer.orbital_ray_z = (eventPlayer.getPosition() + 1.625 * directionFromAngles(eventPlayer.getHorizontalFacingAngle(), 0)).z

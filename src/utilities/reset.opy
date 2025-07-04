@@ -1,6 +1,8 @@
+#!mainFile "../main.opy"
+
 def resetHero():
     @Name "[utilities/reset.opy]: resetHero()"
-    
+
     clearCustomHp()
     disableAllAbilities()
     resetStats()
@@ -11,7 +13,7 @@ def resetHero():
 
 def enableAllAbilities():
     @Name "[utilities/reset.opy]: enableAllAbilities()"
-    
+
     eventPlayer.allowButton(Button.PRIMARY_FIRE)
     eventPlayer.allowButton(Button.SECONDARY_FIRE)
     eventPlayer.allowButton(Button.ABILITY_1)
@@ -35,7 +37,7 @@ def enableAllAbilities():
 
 def disableAllAbilities():
     @Name "[utilities/reset.opy]: disableAllAbilities()"
-    
+
     eventPlayer.disallowButton(Button.PRIMARY_FIRE)
     eventPlayer.disallowButton(Button.SECONDARY_FIRE)
     eventPlayer.disallowButton(Button.ABILITY_1)
@@ -59,7 +61,7 @@ def disableAllAbilities():
 
 def resetStats():
     @Name "[utilities/reset.opy]: resetStats()"
-    
+
     eventPlayer._base_damage_scalar = 1
     eventPlayer._max_health_scalar = 1
     eventPlayer._current_damage_received = 100
@@ -87,7 +89,7 @@ def resetStats():
 
 def resetStatuses():
     @Name "[utilities/reset.opy]: resetStatuses()"
-    
+
     eventPlayer.clearStatusEffect(Status.ASLEEP)
     eventPlayer.clearStatusEffect(Status.BURNING)
     eventPlayer.clearStatusEffect(Status.FROZEN)
@@ -102,6 +104,6 @@ def resetStatuses():
 
 rule "[utilities/reset.opy]: Stop DoT/HoT on death":
     @Event playerDied
-    
+
     eventPlayer.stopAllDamageOverTime()
     eventPlayer.stopAllHealingOverTime()

@@ -2,7 +2,7 @@
 
 def initZenyatta():
     @Name "[zenyatta/init.opy]: initZenyatta()"
-    
+
     eventPlayer.custom_hp_pvar[0] = 0
     eventPlayer.custom_hp_pvar[1] = 0
     eventPlayer.custom_hp_pvar[2] = 33.45

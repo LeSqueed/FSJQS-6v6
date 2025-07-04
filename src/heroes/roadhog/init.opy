@@ -12,7 +12,7 @@ playervar Roadhog_vape_hud_icon
 
 def initRoadhog():
     @Name "[roadhog/init.opy]: initRoadhog()"
-    
+
     eventPlayer.ult_charge_pvar[1] = 2380
     removeTankPassive()
     eventPlayer._base_damage_scalar = 0.831
@@ -22,17 +22,18 @@ def initRoadhog():
     eventPlayer._max_health_scalar = HeroHealthPercentage.ROADHOG / 100
     eventPlayer.hero_initialized = true
 
+
 rule "[roadhog/init.opy]: Correct other forms of damage":
     @Event playerDealtDamage
     @Hero roadhog
     @Condition eventAbility in [Button.MELEE, Button.ABILITY_1] == true
-    
+
     damage(victim, attacker, (eventDamage / eventPlayer._base_damage_scalar - eventDamage) / eventPlayer._base_damage_scalar)
 
 
 rule "[roadhog/init.opy]: Clean up Roadhog":
     @Event eachPlayer
     @Condition eventPlayer.hero_setup != Hero.ROADHOG
-    
+
     eventPlayer.Roadhog_vape_target = null
     destroyInWorldText(eventPlayer._roadhog_vape_target_hud)

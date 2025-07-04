@@ -12,7 +12,7 @@ playervar terra_overhealth_id
 
 def initOrisa():
     @Name "[orisa/init.opy]: initOrisa()"
-    
+
     eventPlayer.custom_hp_pvar[0] = 121.2
     eventPlayer.custom_hp_pvar[1] = 0
     eventPlayer.custom_hp_pvar[2] = 0
@@ -36,7 +36,7 @@ rule "[orisa/init.opy]: Correct Orisa Spin, Melee damage":
     @Event playerDealtDamage
     @Hero orisa
     @Condition eventAbility in [Button.ABILITY_1, Button.ABILITY_2, Button.MELEE] == true
-    
+
     damage(victim, attacker, (eventDamage / eventPlayer._base_damage_scalar - eventDamage) / eventPlayer._base_damage_scalar)
 
 
@@ -44,13 +44,14 @@ rule "[orisa/init.opy]: Correct Orisa Javelin damage":
     @Event playerDealtDamage
     @Hero orisa
     @Condition eventAbility == Button.SECONDARY_FIRE
-    
+
     damage(victim, attacker, (0.929 * (eventDamage / eventPlayer._base_damage_scalar) - eventDamage) / eventPlayer._base_damage_scalar)
+
 
 rule "[orisa/init.opy]: Clean up Orisa":
     @Event eachPlayer
     @Condition eventPlayer.hero_setup != Hero.ORISA
-    
+
     destroyEffect(eventPlayer.Orisa_ring_effect)
     eventPlayer.Orisa_Ammo = null
     destroyProgressBarInWorldText(eventPlayer._orisa_ammo_bar)

@@ -19,7 +19,7 @@ playervar stealth_pvar
 
 def initSombra():
     @Name "[sombra/init.opy]: initSombra()"
-    
+
     eventPlayer.custom_hp_pvar[0] = 0
     eventPlayer.custom_hp_pvar[1] = 0
     eventPlayer.custom_hp_pvar[2] = 25
@@ -38,14 +38,14 @@ rule "[sombra/init.opy]: Increase Sombra melee damage":
     @Event playerDealtDamage
     @Hero sombra
     @Condition eventAbility == Button.MELEE
-    
+
     damage(victim, attacker, (eventDamage / eventPlayer._base_damage_scalar - eventDamage) / eventPlayer._base_damage_scalar)
 
 
 rule "[sombra/init.opy]: Clean up Sombra":
     @Event eachPlayer
     @Condition eventPlayer.hero_setup != Hero.SOMBRA
-    
+
     eventPlayer.Sombra_virus_target = null
     destroyInWorldText(eventPlayer._sombra_virus_target_hud)
     destroyEffect(eventPlayer.Sombra_healing_ring)

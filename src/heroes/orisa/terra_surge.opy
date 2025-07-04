@@ -1,8 +1,10 @@
+#!mainFile "../../main.opy"
+
 rule "[orisa/terra_surge.opy]: Reduce Terra Surge base damage and add bonus overhealth":
     @Event eachPlayer
     @Hero orisa
     @Condition eventPlayer.isUsingUltimate() == true
-    
+
     eventPlayer.addHealthPool(Health.NORMAL, 181, false)
     eventPlayer.terra_overhealth_id = getLastCreatedHealthPool()
     eventPlayer.setDamageDealt(80)
@@ -17,5 +19,5 @@ rule "[orisa/terra_surge.opy]: Increase Terra Surge damage":
     @Condition eventAbility == Button.ULTIMATE
     #do not include wind-up damage
     @Condition eventDamage >= 50
-    
+
     damage(victim, attacker, 100 - eventDamage)

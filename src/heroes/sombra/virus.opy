@@ -4,7 +4,7 @@ rule "[sombra/virus.opy]: Sombra Virus Cancel":
     @Event eachPlayer
     @Hero sombra
     @Condition eventPlayer.isUsingAbility1() == true
-    
+
     wait(0.04)
     eventPlayer.cancelPrimaryAction()
 
@@ -13,7 +13,7 @@ rule "[sombra/virus.opy]: Target Teammate":
     @Event eachPlayer
     @Hero sombra
     @Condition eventPlayer.getAbilityCooldown(Button.ABILITY_1) == 0
-    
+
     eventPlayer.Sombra_virus_target = (sorted([player for player in getLivingPlayers(eventPlayer.getTeam()) if angleBetweenVectors(eventPlayer.getFacingDirection(), directionTowards(eventPlayer.getEyePosition(), player)) <= 30 and player.hasSpawned() and distance(eventPlayer, player) <= 20 and player != eventPlayer and isInLoS(eventPlayer, player)], lambda i: angleBetweenVectors(eventPlayer.getFacingDirection(), directionTowards(eventPlayer.getEyePosition(), i))))[0]
     wait(0.16)
     if ruleCondition:
@@ -24,7 +24,7 @@ rule "[sombra/virus.opy]: Target Teammate HUD and allow Virus":
     @Event eachPlayer
     @Hero sombra
     @Condition eventPlayer.Sombra_virus_target != null
-    
+
     #targeting hud
     createInWorldText(eventPlayer if eventPlayer.Sombra_virus_target != null and eventPlayer.getAbilityCooldown(Button.ABILITY_1) == 0 else null, " \n\n\n\n\n\n     ︿\n〈      〉\n     ﹀ ", eventPlayer.Sombra_virus_target + vect(0, 0.7, 0), 2, Clip.NONE, WorldTextReeval.VISIBILITY_POSITION_AND_STRING, rgb(55, 230, 255, 210))
     eventPlayer._sombra_virus_target_hud = getLastCreatedText()
@@ -35,7 +35,7 @@ rule "[sombra/virus.opy]: Disallow Virus":
     @Event eachPlayer
     @Hero sombra
     @Condition eventPlayer.Sombra_virus_target == null
-    
+
     eventPlayer.disallowButton(Button.ABILITY_1)
     destroyInWorldText(eventPlayer._sombra_virus_target_hud)
 
@@ -44,14 +44,14 @@ rule "[sombra/virus.opy]: Confirm Target":
     @Event eachPlayer
     @Hero sombra
     @Condition eventPlayer.isUsingAbility1() == true
-    
+
     eventPlayer.Sombra_virus_target.Sombra_virus_confirmed = true
 
 
 rule "[sombra/virus.opy]: Buff Teammate and play effects":
     @Event eachPlayer
     @Condition eventPlayer.Sombra_virus_confirmed == true
-    
+
     eventPlayer.Sombra_virus_confirmed = false
     bigMessage(eventPlayer, "{0} HACKED".format(heroIcon(Hero.SOMBRA)))
     getPlayersOnHero(Hero.SOMBRA, eventPlayer.getTeam()).Sombra_virus_target = null

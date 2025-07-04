@@ -6,7 +6,7 @@
 
 def initMei():
     @Name "[mei/init.opy]: initMei()"
-    
+
     eventPlayer.custom_hp_pvar[0] = 10
     eventPlayer.custom_hp_pvar[1] = 0
     eventPlayer.custom_hp_pvar[2] = 0
@@ -21,7 +21,7 @@ def initMei():
 def initMei():
     @Name "[mei/init.opy]: Initialize Mei TANK"
     @Disabled
-    
+
     eventPlayer.custom_hp_pvar[0] = 70
     eventPlayer.custom_hp_pvar[1] = 0
     eventPlayer.custom_hp_pvar[2] = 0
@@ -38,13 +38,14 @@ rule "[mei/init.opy]: Reduce Headshot damage taken Mei":
     @Event playerTookDamage
     @Hero mei
     @Condition eventWasCriticalHit == true
-    
+
     heal(eventPlayer, null, eventDamage * 0.3)
+
 
 rule "[mei/init.opy]: Increase Mei other forms of damage":
     @Event playerDealtDamage
     @Hero mei
     @Condition eventAbility in [Button.PRIMARY_FIRE, Button.MELEE] == true
-    
+
     damage(victim, attacker, (eventDamage / eventPlayer._base_damage_scalar - eventDamage) / eventPlayer._base_damage_scalar)
 

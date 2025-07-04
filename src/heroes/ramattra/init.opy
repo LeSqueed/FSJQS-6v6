@@ -6,7 +6,7 @@ playervar Nemesis_armor
 
 def initRamattra():
     @Name "[ramattra/init.opy]: initRamattra()"
-    
+
     eventPlayer.custom_hp_pvar[0] = 167
     eventPlayer.custom_hp_pvar[1] = 11.8
     eventPlayer.custom_hp_pvar[2] = 0

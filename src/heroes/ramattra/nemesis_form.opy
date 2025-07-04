@@ -1,8 +1,10 @@
+#!mainFile "../../main.opy"
+
 rule "[ramattra/nemesis_form.opy]: Correct Nemesis Form armor and movement speed":
     @Event eachPlayer
     @Hero ramattra
     @Condition eventPlayer.isUsingAbility1() == true
-    
+
     eventPlayer.startScalingSize(0.97)
     eventPlayer.setDamageDealt(92.308)
     eventPlayer._current_move_speed -= 16.6
@@ -24,5 +26,5 @@ rule "[ramattra/nemesis_form.opy]: Increase other forms of damage (in nemesis)":
     @Condition eventPlayer.isUsingUltimate() == true
     #This condition stops pummel from applying the damage increase
     @Condition eventDamage < 60
-    
+
     damage(victim, null, (eventDamage / 0.923 - eventDamage) / 0.923)

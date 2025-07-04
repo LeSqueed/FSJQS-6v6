@@ -11,12 +11,12 @@ playervar number_of_victims_uppercut
 #!include "punch.opy"
 #!include "powerblock.opy"
 #!include "uppercut.opy"
-#!include "seismic_slam.opy" 
+#!include "seismic_slam.opy"
 #!include "hand_cannon.opy"
 
 def initDoomfist():
     @Name "[doomfist/init.opy]: initDoomfist()"
-    
+
     eventPlayer.custom_hp_pvar[0] = 450
     eventPlayer.custom_hp_pvar[1] = 0
     eventPlayer.custom_hp_pvar[2] = 0
@@ -32,10 +32,11 @@ def initDoomfist():
     eventPlayer.is_using_uppercut = false
     eventPlayer.hero_initialized = true
 
+
 rule "[doomfist/init.opy]: Clean up Doomfist":
     @Event eachPlayer
     @Condition eventPlayer.hero_setup != Hero.DOOMFIST
-    
+
     eventPlayer.punched_victims = null
     eventPlayer.wall_impacted_victims = null
     eventPlayer.uppercut_victims = null

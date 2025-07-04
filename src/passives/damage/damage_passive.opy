@@ -1,8 +1,10 @@
+#!mainFile "../../main.opy"
+
 rule "[passives/damage/damage_passive.opy]: Remove DPS Passive":
     @Event playerTookDamage
     @Condition attacker.getHero() in getDamageHeroes() == true
     @Condition attacker != victim
-    
+
     if victim.getHero() in getTankHeroes():
         eventPlayer.setHealingReceived(115)
     else:

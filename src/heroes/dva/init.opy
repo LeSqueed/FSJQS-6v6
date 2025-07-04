@@ -8,7 +8,7 @@ playervar self_destruct_charge
 
 def initDva():
     @Name "[dva/init.opy]: initDva()"
-    
+
     eventPlayer.ult_charge_pvar[1] = 1540
     removeTankPassive()
     eventPlayer._base_damage_scalar = 0.91
@@ -22,11 +22,12 @@ def initDva():
     applyCustomHp()
     eventPlayer.hero_initialized = true
 
+
 rule "[dva/init.opy]: Reduce Micro Missiles damage":
     @Event playerDealtDamage
     @Hero dva
     @Condition eventAbility == Button.ABILITY_2
-    
+
     heal(victim, null, eventDamage - 0.75 * eventDamage / eventPlayer._base_damage_scalar)
 
 
@@ -34,7 +35,7 @@ rule "[dva/init.opy]: Increase D.va other forms of damage":
     @Event playerDealtDamage
     @Hero dva
     @Condition eventAbility in [Button.MELEE, Button.ULTIMATE] == true
-    
+
     damage(victim, attacker, (eventDamage / eventPlayer._base_damage_scalar - eventDamage) / eventPlayer._base_damage_scalar)
 
 
@@ -42,7 +43,7 @@ rule "[dva/init.opy]: Force reset ult charge when DVa exits Mech":
     @Event eachPlayer
     @Hero dva
     @Condition eventPlayer.isInAlternateForm() == true
-    
+
     if eventPlayer.isUsingUltimate():
         return
     eventPlayer.setUltCharge(0)

@@ -2,7 +2,7 @@
 
 def executeUppercut():
     @Name "[doomfist/uppercut.opy]: Execute main logic for Rising Uppercut ability"
-    
+
     #vfx
     playEffect(getAllPlayers(), DynamicEffect.EXPLOSION_SOUND, eventPlayer.getTeam(), eventPlayer, 80)
     playEffect(getAllPlayers(), DynamicEffect.DEBUFF_IMPACT_SOUND, eventPlayer.getTeam(), eventPlayer, 80)
@@ -54,7 +54,7 @@ rule "[doomfist/uppercut.opy]: Control flow for Uppercut":
     @Event eachPlayer
     @Hero doomfist
     @Condition eventPlayer.isUsingAbility2() == true
-    
+
     executeUppercut()
 
 
@@ -64,7 +64,7 @@ rule "[doomfist/uppercut.opy]: Detect Uppercut Victims":
     @Condition angleBetweenVectors(normalize(vect(((([player for player in getPlayersOnHero(Hero.DOOMFIST, getOppositeTeam(eventPlayer.getTeam())) if player.is_using_uppercut == true])[0]).getFacingDirection()).x, 0, ((([player for player in getPlayersOnHero(Hero.DOOMFIST, getOppositeTeam(eventPlayer.getTeam())) if player.is_using_uppercut == true])[0]).getFacingDirection()).z)), directionTowards(([player for player in getPlayersOnHero(Hero.DOOMFIST, getOppositeTeam(eventPlayer.getTeam())) if player.is_using_uppercut == true])[0], eventPlayer)) <= 90
     @Condition eventPlayer in ((([player for player in getPlayersOnHero(Hero.DOOMFIST, getOppositeTeam(eventPlayer.getTeam())) if player.is_using_uppercut == true])[0]).uppercut_victims) == false
     @Condition eventPlayer.Orisa_fortified == null
-    
+
     (([player for player in getPlayersOnHero(Hero.DOOMFIST, getOppositeTeam(eventPlayer.getTeam())) if player.is_using_uppercut == true])[0]).uppercut_victims.append(eventPlayer)
     damage(eventPlayer, ([player for player in getPlayersOnHero(Hero.DOOMFIST, getOppositeTeam(eventPlayer.getTeam())) if player.is_using_uppercut == true])[0], 60 / getPlayersOnHero(Hero.DOOMFIST, getOppositeTeam(eventPlayer.getTeam()))._base_damage_scalar)
     playEffect(getAllPlayers(), DynamicEffect.BAD_EXPLOSION, Color.WHITE, eventPlayer, 1)
@@ -95,12 +95,13 @@ rule "[doomfist/uppercut.opy]: Shields for Uppercut":
     @Event eachPlayer
     @Hero doomfist
     @Condition eventPlayer.is_using_uppercut == true
-    
+
     waitUntil(eventPlayer.is_using_uppercut == false, Math.INFINITY)
     eventPlayer.number_of_victims_uppercut = len(eventPlayer.uppercut_victims)
     if eventPlayer.number_of_victims_uppercut > 0:
         eventPlayer.addHealthPool(Health.SHIELDS, eventPlayer.number_of_victims_uppercut * 25, false, false)
         eventPlayer.doom_uppercut_shields = getLastCreatedHealthPool()
+
 
 rule "[doomfist/uppercut.opy]: Decay for Uppercut Shields":
     @Event eachPlayer
