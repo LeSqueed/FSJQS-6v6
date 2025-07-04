@@ -11,7 +11,7 @@ playervar within_rally_radius
 
 def initBrigitte():
     @Name "[brigitte/init.opy]: initBrigitte()"
-    
+
     eventPlayer.custom_hp_pvar[0] = 15
     eventPlayer.custom_hp_pvar[1] = 10
     eventPlayer.custom_hp_pvar[2] = 0
@@ -24,10 +24,11 @@ def initBrigitte():
     eventPlayer._max_health_scalar = HeroHealthPercentage.BRIGITTE / 100
     eventPlayer.hero_initialized = true
 
+
 rule "[brigitte/init.opy]: Correct Whipshot damage":
     @Event playerDealtDamage
     @Hero brigitte
     @Condition eventAbility == Button.ABILITY_1
-    
+
     damage(victim, attacker, (eventDamage / eventPlayer._base_damage_scalar - eventDamage) / eventPlayer._base_damage_scalar)
 

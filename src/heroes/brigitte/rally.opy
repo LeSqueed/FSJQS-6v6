@@ -12,6 +12,7 @@ rule "[brigitte/rally.opy]: begin rally ally tracking":
     getPlayers(eventPlayer.getTeam()).within_rally_radius = false
     getPlayersOnHero(Hero.BRIGITTE, eventPlayer.getTeam()).Brig_Rally_Overhealth_amount = 0
 
+
 rule "[brigitte/rally.opy]: Begin tracking ally out of range":
     @Event eachPlayer
     @Hero brigitte
