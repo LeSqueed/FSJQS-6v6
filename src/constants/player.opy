@@ -13,8 +13,8 @@ playervar damage
 playervar time
 playervar textID
 playervar position
-playervar healing 
-playervar DoomPunchTrack 
+playervar healing
+playervar DoomPunchTrack
 playervar ReinChargeTrack
 playervar Orisa_fortified
 playervar Junkrat_Trap_target

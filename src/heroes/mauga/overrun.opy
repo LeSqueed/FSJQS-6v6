@@ -57,3 +57,30 @@ rule "[mauga/overrun.opy]: Mauga overrun knockdown":
     victim.setStatusEffect(eventPlayer, Status.KNOCKED_DOWN, 1.7)
     wait(0.09)
     victim.applyImpulse(victim.getVelocity() * -1, 0.001, Relativity.TO_WORLD, Impulse.CANCEL_CONTRARY_MOTION)
+
+
+rule "[mauga/overrun.opy]: Reduce Mauga stomp damage":
+    @Event playerDealtDamage
+    @Hero mauga
+    @Condition eventAbility == Button.ABILITY_1
+
+    heal(victim, null, eventDamage - 0.667 * eventDamage / eventPlayer._current_damage_received)
+
+
+rule "[mauga/overrun.opy]: Overrun logic":
+    @Event eachPlayer
+    @Hero mauga
+    @Condition eventPlayer.isUsingAbility1() == true
+
+    eventPlayer._current_move_speed -= 10
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
+    eventPlayer._current_damage_received += 50
+    eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
+    eventPlayer.Orisa_fortified = true
+    wait(0.32)
+    waitUntil(not eventPlayer.isUsingAbility1() or eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) or eventPlayer.isHoldingButton(Button.JUMP), 2.6)
+    eventPlayer._current_move_speed += 10
+    eventPlayer.setMoveSpeed(eventPlayer._current_move_speed)
+    eventPlayer._current_damage_received -= 50
+    eventPlayer.setDamageReceived(eventPlayer._current_damage_received)
+    eventPlayer.Orisa_fortified = null

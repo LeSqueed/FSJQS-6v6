@@ -9,7 +9,7 @@ def initBastion():
     @Name "[bastion/init.opy]: initBastion()"
 
     eventPlayer.custom_hp_pvar[0] = 50
-    eventPlayer.custom_hp_pvar[1] = 5
+    eventPlayer.custom_hp_pvar[1] = 4
     eventPlayer.custom_hp_pvar[2] = 0
     applyCustomHp()
     eventPlayer.ult_charge_pvar[1] = 2300

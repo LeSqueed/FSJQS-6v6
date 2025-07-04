@@ -12,7 +12,7 @@ def initMei():
     eventPlayer.custom_hp_pvar[2] = 0
     applyCustomHp()
     eventPlayer.ult_charge_pvar[1] = 1610
-    eventPlayer._base_damage_scalar = 0.882
+    eventPlayer._base_damage_scalar = 0.883
     eventPlayer.setDamageDealt(100 * eventPlayer._base_damage_scalar)
     eventPlayer._max_health_scalar = HeroHealthPercentage.MEI / 100
     eventPlayer.hero_initialized = true
@@ -32,14 +32,6 @@ def initMei():
     eventPlayer.startScalingSize(1.15)
     eventPlayer.hero_initialized = true
     eventPlayer._max_health_scalar = 1.1
-
-
-rule "[mei/init.opy]: Reduce Headshot damage taken Mei":
-    @Event playerTookDamage
-    @Hero mei
-    @Condition eventWasCriticalHit == true
-
-    heal(eventPlayer, null, eventDamage * 0.3)
 
 
 rule "[mei/init.opy]: Increase Mei other forms of damage":
