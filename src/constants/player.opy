@@ -1,21 +1,21 @@
-playervar custom_hp_pvar 3
-playervar regen_passive_id 14
-playervar self_heal_pvar 15
-playervar ult_charge_pvar 16
-playervar hero_initialized 4
-playervar hero_switch_pvar 7
-playervar hero_setup 8
-playervar overhealth_check 24
-playervar remainingAntiDuration 29
-playervar balance_change_check 31
-playervar AllowedHeroes 40
-playervar damage 86
-playervar time 87
-playervar textID 88
-playervar position 89
-playervar healing 104
-playervar DoomPunchTrack 108
-playervar ReinChargeTrack 109
+playervar custom_hp_pvar
+playervar regen_passive_id
+playervar self_heal_pvar
+playervar ult_charge_pvar
+playervar hero_initialized
+playervar hero_switch_pvar
+playervar hero_setup
+playervar overhealth_check
+playervar remainingAntiDuration
+playervar balance_change_check
+playervar AllowedHeroes
+playervar damage
+playervar time
+playervar textID
+playervar position
+playervar healing 
+playervar DoomPunchTrack 
+playervar ReinChargeTrack
 playervar Orisa_fortified
-playervar Junkrat_Trap_target 95
-playervar Junkrat_Trap_effect 96
+playervar Junkrat_Trap_target
+playervar Junkrat_Trap_effect
